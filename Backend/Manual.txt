@@ -7,6 +7,20 @@
 3. Ejecutar ProdataAPI, contactamos con este servicio directamente.
 
 
+Asumiendo que se creen en localhost:
+
+Puertos de red:
+
+API:
+localhost:8090
+
+MSProyectos:
+localhost:8086
+
+MSUnidades:
+localhost:8084
+
+
 
 Peticiones de ejemplo:
 

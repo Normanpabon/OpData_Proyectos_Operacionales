@@ -1,0 +1,38 @@
+
+
+1. Ejecutar los pasos del archivo .sql ubicado en la carpeta "BD Config".
+
+2. Ejecutar MSProyectos, verificar que se ejecute bien y no saque mensajes de error.
+
+3. Ejecutar ProdataAPI, contactamos con este servicio directamente.
+
+
+
+Peticiones de ejemplo:
+
+
+GET - devuelve todos los proyectos
+
+http://localhost:8090/prodata/API/V1/proyectos/
+
+GET - Devolver proyecto por id de unidad
+
+http//localhost:8090/prodata/API/V1/proyectos/unidad/{id unidad}
+eje : localhost:8090/prodata/API/V1/proyectos/unidad/1
+
+GET - Devolver proyecto por id proyecto
+
+http://localhost:8090/prodata/API/V1/proyectos/{id pro}
+eje : http://localhost:8090/prodata/API/V1/proyectos/1
+
+GET - Obtener estado por id 
+
+http://localhost:8090/prodata/API/V1/proyectos/estado/{id}
+
+POST - Crear un nuevo proyecto
+
+http://localhost:8090/prodata/API/V1/proyectos/{unidad}/{feReg}/{feEnd}/{desc}/{id_estado}/{obs}"
+
+POST - Crear un nuevo estado para proyecto
+
+http://localhost:8090/prodata/API/V1/proyectos//estado/{est}

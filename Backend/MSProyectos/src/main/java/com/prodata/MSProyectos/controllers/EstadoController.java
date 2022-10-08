@@ -19,13 +19,13 @@ public class EstadoController {
     // GET
 
     @GetMapping("/all")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     Flux<Estado> getAllEstados(){
         return estadoRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     Mono<Estado> estadoById(@PathVariable int id){
         return estadoRepository.findById((long) id);
     }
@@ -38,6 +38,17 @@ public class EstadoController {
         Estado tmpEstado = new Estado();
         tmpEstado.setEstado(estado);
         estadoRepository.save(tmpEstado).subscribe();
+    }
+
+    // PUT
+
+    @PutMapping("/{id}/{estado}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    Mono<Estado> updateEstado(@PathVariable int id, @PathVariable String estado){
+        Estado tmpEstado = new Estado(id, estado);
+        estadoRepository.save(tmpEstado).subscribe();
+
+        return estadoRepository.findById((long) id);
     }
 
     // Quizas metodo para verificar que el id del estado exista ?

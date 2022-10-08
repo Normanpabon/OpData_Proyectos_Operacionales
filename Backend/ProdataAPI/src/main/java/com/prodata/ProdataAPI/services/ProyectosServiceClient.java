@@ -33,7 +33,7 @@ public class ProyectosServiceClient {
     }
 
     public void saveEstado(String estado){
-        this.webClient.get().uri("estado/add/{estado}", estado)
+        this.webClient.post().uri("estado/add/{estado}", estado)
                 .retrieve();
     }
 
@@ -57,12 +57,28 @@ public class ProyectosServiceClient {
                 .bodyToMono(Proyecto.class);
     }
     //post
-    public void saveProyecto(int unidad, Date feReg, Date feEnd, String desc, int id_estado, String obs){
-        this.webClient.get().uri("proyecto/{unidad}/{feReg}/{feEnd}/{desc}/{id_estado}/{obs}",
-                unidad, feReg, feEnd, desc, id_estado, obs)
+    public void saveProyecto(int unidad, Date feReg,Date feIni, Date feEnd, String desc, int id_estado, String obs){
+        this.webClient.post().uri("proyecto/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}",
+                unidad, feReg, feIni, feEnd, desc, id_estado, obs)
                 .retrieve();
 
     }
+
+    // put
+
+    public Mono<Proyecto> updateProyecto(int id, int unidad, Date feReg,Date feIni, Date feEnd, String desc, int id_estado, String obs){
+        return this.webClient.put().uri("proyecto/{id}/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}",
+                        unidad, feReg, feIni, feEnd, desc, id_estado, obs)
+                .retrieve()
+                .bodyToMono(Proyecto.class);
+    }
+
+    public Mono<Estado> updateEstado(int id, String estado){
+        return this.webClient.put().uri("estado/{id}/{estado}", id, estado)
+                .retrieve()
+                .bodyToMono(Estado.class);
+    }
+
 
 
 }

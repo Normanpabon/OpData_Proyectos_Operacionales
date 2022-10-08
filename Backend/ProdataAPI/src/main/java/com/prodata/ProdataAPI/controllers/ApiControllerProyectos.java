@@ -22,19 +22,19 @@ public class ApiControllerProyectos {
     // GET Proyectos
 
     @GetMapping("/")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     Flux<Proyecto> getAll(){
         return proyectosServiceClient.getProyectos();
     }
 
     @GetMapping("/unidad/{id}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     Flux<Proyecto> getAllByUnidad(@PathVariable int id){
         return proyectosServiceClient.getProyectosByUnidad(id);
     }
 
     @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     Mono<Proyecto> getProyectoBy(@PathVariable int id){
         return proyectosServiceClient.getProyectoById(id);
     }
@@ -57,13 +57,13 @@ public class ApiControllerProyectos {
 
     // POST Proyectos y estado
 
-    @PostMapping("/{unidad}/{feReg}/{feEnd}/{desc}/{id_estado}/{obs}")
+    @PostMapping("/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createProyecto(@PathVariable int unidad, @PathVariable Date feReg, @PathVariable Date feEnd,
+    public void createProyecto(@PathVariable int unidad, @PathVariable Date feReg,@PathVariable Date feIni, @PathVariable Date feEnd,
                                @PathVariable String desc, @PathVariable int id_estado,
                                @PathVariable String obs){
 
-        proyectosServiceClient.saveProyecto(unidad, feReg, feEnd, desc, id_estado, obs);
+        proyectosServiceClient.saveProyecto(unidad, feReg, feIni, feEnd, desc, id_estado, obs);
 
     }
 
@@ -73,5 +73,21 @@ public class ApiControllerProyectos {
         proyectosServiceClient.saveEstado(est);
     }
 
+    // PUT Proyectos y estado
+
+    @PutMapping("/{id}/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public Mono<Proyecto> updateProyecto(@PathVariable int id,@PathVariable int unidad, @PathVariable Date feReg,@PathVariable Date feIni, @PathVariable Date feEnd,
+                                         @PathVariable String desc, @PathVariable int id_estado,
+                                         @PathVariable String obs){
+        return proyectosServiceClient.updateProyecto(id, unidad, feReg, feIni, feEnd, desc, id_estado, obs);
+    }
+
+    @PutMapping("/estado/{id}/{estado}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public Mono<Estado> updateEstado(@PathVariable int id, @PathVariable String estado){
+
+        return proyectosServiceClient.updateEstado(id, estado);
+    }
 
 }

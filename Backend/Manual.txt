@@ -25,6 +25,8 @@ localhost:8084
 Peticiones de ejemplo:
 
 
+// PROYECTOS
+
 GET - devuelve todos los proyectos
 
 http://localhost:8090/prodata/API/V1/proyectos/
@@ -39,6 +41,13 @@ GET - Devolver proyecto por id proyecto
 http://localhost:8090/prodata/API/V1/proyectos/{id pro}
 eje : http://localhost:8090/prodata/API/V1/proyectos/1
 
+
+POST - Crear un nuevo proyecto
+
+http://localhost:8090/prodata/API/V1/proyectos/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}"
+
+// ESTADOS
+
 GET - Obtener estado por id 
 
 http://localhost:8090/prodata/API/V1/proyectos/estado/{id}
@@ -47,10 +56,34 @@ GET - Obtener todos los estados
 
 http://localhost:8090/prodata/API/V1/proyectos/estado/all
 
-POST - Crear un nuevo proyecto
-
-http://localhost:8090/prodata/API/V1/proyectos/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}"
-
 POST - Crear un nuevo estado para proyecto
 
-http://localhost:8090/prodata/API/V1/proyectos//estado/{est}
+http://localhost:8090/prodata/API/V1/proyectos/estado/{est}
+
+// UNIDADES
+
+GET - Obtener todas las unidades
+
+http://localhost:8090/prodata/API/V1/unidades/
+
+GET - Obtener unidad por id
+
+http://localhost:8090/prodata/API/V1/unidades/{id}
+
+eje: http://localhost:8090/prodata/API/V1/unidades/3
+
+GET - Obtener unidad por uid del jefe a cargo
+
+http://localhost:8090/prodata/API/V1/unidades/jefe/{uid}
+
+eje: http://localhost:8090/prodata/API/V1/unidades/jefe/22010
+
+POST - Crear una nueva unidad (esta fallando en el API)
+
+http://localhost:8090/prodata/API/V1/unidades/{nombre}/{uid_jefe}
+
+PUT - Actualizar datos de una unidad
+
+http://localhost:8090/prodata/API/V1/unidades/{id}/{nombre}/{new_uid}
+
+eje: http://localhost:8090/prodata/API/V1/unidades/1/Cambio de datos unidad/11111

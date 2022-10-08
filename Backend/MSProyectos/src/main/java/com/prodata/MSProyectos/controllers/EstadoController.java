@@ -6,6 +6,7 @@ import com.prodata.MSProyectos.repository.EstadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -16,6 +17,12 @@ public class EstadoController {
     EstadoRepository estadoRepository;
 
     // GET
+
+    @GetMapping("/all")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    Flux<Estado> getAllEstados(){
+        return estadoRepository.findAll();
+    }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)

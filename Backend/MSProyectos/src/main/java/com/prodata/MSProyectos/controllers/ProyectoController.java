@@ -43,15 +43,16 @@ public class ProyectoController {
 
     // POST
 
-    @PostMapping("/{unidad}/{feReg}/{feEnd}/{desc}/{id_estado}/{obs}")
+    @PostMapping("/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}")
     @ResponseStatus(HttpStatus.CREATED)
-    void addProyecto(@PathVariable int unidad, @PathVariable Date feReg, @PathVariable Date feEnd,
+    void addProyecto(@PathVariable int unidad, @PathVariable Date feReg, @PathVariable Date feIni, @PathVariable Date feEnd,
                      @PathVariable String desc, @PathVariable int id_estado,
                      @PathVariable String obs){
 
         Proyecto tmpProyecto =  new Proyecto();
         tmpProyecto.setUnidad_p(unidad);
         tmpProyecto.setFecha_reg(feReg);
+        tmpProyecto.setFecha_ini(feIni);
         tmpProyecto.setFecha_fin(feEnd);
         tmpProyecto.setDesc_pro(desc);
         tmpProyecto.setId_estado(id_estado);

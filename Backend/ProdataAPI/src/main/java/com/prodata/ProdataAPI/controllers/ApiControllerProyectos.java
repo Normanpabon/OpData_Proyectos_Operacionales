@@ -48,6 +48,12 @@ public class ApiControllerProyectos {
         return proyectosServiceClient.getEstadoById(id);
     }
 
+    @GetMapping("/estado/all")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    Flux<Estado> getAllEstados(){
+        return proyectosServiceClient.getEstados();
+    }
+
 
     // POST Proyectos y estado
 

@@ -26,6 +26,12 @@ public class ProyectosServiceClient {
                 .bodyToMono(Estado.class);
     }
 
+    public Flux<Estado> getEstados(){
+        return this.webClient.get().uri("/estado/all")
+                .retrieve()
+                .bodyToFlux(Estado.class);
+    }
+
     public void saveEstado(String estado){
         this.webClient.get().uri("estado/add/{estado}", estado)
                 .retrieve();

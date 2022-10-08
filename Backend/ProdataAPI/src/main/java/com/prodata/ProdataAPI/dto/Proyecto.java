@@ -23,6 +23,8 @@ public class Proyecto {
 
     private Date fecha_reg;
 
+    private Date fecha_ini;
+
     private Date fecha_fin;
 
     private String desc_pro;

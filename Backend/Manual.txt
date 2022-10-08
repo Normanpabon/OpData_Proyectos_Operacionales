@@ -29,9 +29,13 @@ GET - Obtener estado por id
 
 http://localhost:8090/prodata/API/V1/proyectos/estado/{id}
 
+GET - Obtener todos los estados
+
+http://localhost:8090/prodata/API/V1/proyectos/estado/all
+
 POST - Crear un nuevo proyecto
 
-http://localhost:8090/prodata/API/V1/proyectos/{unidad}/{feReg}/{feEnd}/{desc}/{id_estado}/{obs}"
+http://localhost:8090/prodata/API/V1/proyectos/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}"
 
 POST - Crear un nuevo estado para proyecto
 

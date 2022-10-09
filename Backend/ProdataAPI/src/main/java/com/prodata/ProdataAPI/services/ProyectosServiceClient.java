@@ -7,7 +7,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.sql.Date;
 @Service
 public class ProyectosServiceClient {
 
@@ -57,17 +56,20 @@ public class ProyectosServiceClient {
                 .bodyToMono(Proyecto.class);
     }
     //post
-    public void saveProyecto(int unidad, Date feReg,Date feIni, Date feEnd, String desc, int id_estado, String obs){
-        this.webClient.post().uri("proyecto/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}",
-                unidad, feReg, feIni, feEnd, desc, id_estado, obs)
-                .retrieve();
+
+    // TODO : Verificar porque no se esta creando en el ms (no llega la peticion al controlador del ms)
+    public void saveProyecto(int unidad, String feReg,String feIni, String feEnd, String desc, int id_estado, String obs){
+        this.webClient.post().uri("proyecto/add/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}/",
+                        unidad, feReg, feIni, feEnd, desc, id_estado, obs)
+                        .retrieve();
+
 
     }
 
     // put
 
-    public Mono<Proyecto> updateProyecto(int id, int unidad, Date feReg,Date feIni, Date feEnd, String desc, int id_estado, String obs){
-        return this.webClient.put().uri("proyecto/{id}/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}",
+    public Mono<Proyecto> updateProyecto(int id, int unidad, String feReg,String feIni, String feEnd, String desc, int id_estado, String obs){
+        return this.webClient.put().uri("proyecto/{id}/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}",id,
                         unidad, feReg, feIni, feEnd, desc, id_estado, obs)
                 .retrieve()
                 .bodyToMono(Proyecto.class);

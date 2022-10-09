@@ -46,6 +46,12 @@ POST - Crear un nuevo proyecto
 
 http://localhost:8090/prodata/API/V1/proyectos/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}"
 
+PUT - Actualizar datos de proyecto
+http://localhost:8090/prodata/API/V1/proyectos/{id}/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}
+
+(Verificar previamente que el ID exista)
+eje: http://localhost:8090/prodata/API/V1/proyectos/6/2/2022-10-05/2022-10-05/2023-12-05/ProyectoDesdePostman/2/Modificado con put desde api
+
 // ESTADOS
 
 GET - Obtener estado por id 

@@ -59,7 +59,7 @@ public class ApiControllerProyectos {
 
     @PostMapping("/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createProyecto(@PathVariable int unidad, @PathVariable Date feReg,@PathVariable Date feIni, @PathVariable Date feEnd,
+    public void createProyecto(@PathVariable int unidad, @PathVariable String feReg,@PathVariable String feIni, @PathVariable String feEnd,
                                @PathVariable String desc, @PathVariable int id_estado,
                                @PathVariable String obs){
 
@@ -76,10 +76,11 @@ public class ApiControllerProyectos {
     // PUT Proyectos y estado
 
     @PutMapping("/{id}/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public Mono<Proyecto> updateProyecto(@PathVariable int id,@PathVariable int unidad, @PathVariable Date feReg,@PathVariable Date feIni, @PathVariable Date feEnd,
-                                         @PathVariable String desc, @PathVariable int id_estado,
-                                         @PathVariable String obs){
+    @ResponseStatus(HttpStatus.CREATED)
+    public Mono<Proyecto> updateProyecto(@PathVariable int id,@PathVariable int unidad, @PathVariable String feReg, @PathVariable String feIni,
+                                        @PathVariable String feEnd,
+                                        @PathVariable String desc, @PathVariable int id_estado,
+                                        @PathVariable String obs){
         return proyectosServiceClient.updateProyecto(id, unidad, feReg, feIni, feEnd, desc, id_estado, obs);
     }
 

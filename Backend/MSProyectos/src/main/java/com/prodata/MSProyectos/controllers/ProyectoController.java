@@ -15,29 +15,30 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-@ControllerAdvice
+
+
 @RestController
 @RequestMapping("/MSProyect/V1/proyecto")
 public class ProyectoController {
 
 
     @Autowired
-    ProyectoRepository proyectoRepository;
+    private ProyectoRepository proyectoRepository;
     //para conversion de STring a fecha yyyy/mm/dd
-    DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     // GET
 
     @GetMapping("/proyectos")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    Flux<Proyecto> getProyectos(){
+    public Flux<Proyecto> getProyectos(){
         return proyectoRepository.findAll();
     }
 
     // Obtener por id de unidad designada
     @GetMapping("/unidad/{uni}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    Flux<Proyecto> getProyectosByUnidad(@PathVariable int uni){
+    public Flux<Proyecto> getProyectosByUnidad(@PathVariable int uni){
         return proyectoRepository.getProyectoByUnidad(uni);
     }
 
@@ -45,15 +46,15 @@ public class ProyectoController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    Mono<Proyecto> getProyectoById(@PathVariable int id){
+    public Mono<Proyecto> getProyectoById(@PathVariable int id){
         return proyectoRepository.findById((long) id);
     }
 
     // POST
-    // Todo : Recibir String y convertir en localdate
-    @PostMapping("/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}")
+
+    @PostMapping("/add/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}")
     @ResponseStatus(HttpStatus.CREATED)
-    void addProyecto(@PathVariable int unidad, @PathVariable String feReg, @PathVariable String feIni, @PathVariable String feEnd,
+    public void addProyecto(@PathVariable int unidad, @PathVariable String feReg, @PathVariable String feIni, @PathVariable String feEnd,
                      @PathVariable String desc, @PathVariable int id_estado,
                      @PathVariable String obs){
 
@@ -79,6 +80,8 @@ public class ProyectoController {
 
         proyectoRepository.save(tmpProyecto).subscribe();
 
+
+
     }
 
     // PUT
@@ -86,7 +89,7 @@ public class ProyectoController {
 
     @PutMapping("/{id}/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}")
     @ResponseStatus(HttpStatus.CREATED)
-    Mono<Proyecto> updateProyecto(@PathVariable int id,@PathVariable int unidad, @PathVariable String feReg, @PathVariable String feIni,
+    public Mono<Proyecto> updateProyecto(@PathVariable int id,@PathVariable int unidad, @PathVariable String feReg, @PathVariable String feIni,
                                   @PathVariable String feEnd,
                      @PathVariable String desc, @PathVariable int id_estado,
                      @PathVariable String obs){

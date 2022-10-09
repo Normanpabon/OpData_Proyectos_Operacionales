@@ -57,6 +57,8 @@ public class ApiControllerProyectos {
 
     // POST Proyectos y estado
 
+/*
+@Deprecated
     @PostMapping("/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}")
     @ResponseStatus(HttpStatus.CREATED)
     public void createProyecto(@PathVariable int unidad, @PathVariable String feReg,@PathVariable String feIni, @PathVariable String feEnd,
@@ -64,6 +66,18 @@ public class ApiControllerProyectos {
                                @PathVariable String obs){
 
         proyectosServiceClient.saveProyecto(unidad, feReg, feIni, feEnd, desc, id_estado, obs);
+
+    }
+
+ */
+
+    @PostMapping("/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Mono<Proyecto> createProyecto(@PathVariable int unidad, @PathVariable String feReg,@PathVariable String feIni, @PathVariable String feEnd,
+                               @PathVariable String desc, @PathVariable int id_estado,
+                               @PathVariable String obs){
+
+        return proyectosServiceClient.addProyecto(unidad, feReg, feIni, feEnd, desc, id_estado, obs);
 
     }
 

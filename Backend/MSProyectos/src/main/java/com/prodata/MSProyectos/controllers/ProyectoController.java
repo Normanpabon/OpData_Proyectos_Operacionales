@@ -52,6 +52,42 @@ public class ProyectoController {
 
     // POST
 
+    @PostMapping("/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Mono<Proyecto> saveProyecto(@PathVariable int unidad, @PathVariable String feReg, @PathVariable String feIni, @PathVariable String feEnd,
+                            @PathVariable String desc, @PathVariable int id_estado,
+                            @PathVariable String obs){
+
+        Proyecto tmpProyecto =  new Proyecto();
+        tmpProyecto.setUnidad_p(unidad);
+
+        // Conversion y asignacion de fechas
+        LocalDate TmpDate = LocalDate.parse(feReg, DATEFORMATTER);
+
+        tmpProyecto.setFecha_reg(TmpDate);
+
+        TmpDate = LocalDate.parse(feIni, DATEFORMATTER);
+
+        tmpProyecto.setFecha_ini(TmpDate);
+
+        TmpDate = LocalDate.parse(feEnd, DATEFORMATTER);
+        tmpProyecto.setFecha_fin(TmpDate);
+
+        tmpProyecto.setDesc_pro(desc);
+        tmpProyecto.setId_estado(id_estado);
+        tmpProyecto.setObservaciones(obs);
+
+
+        proyectoRepository.save(tmpProyecto).subscribe();
+
+        return proyectoRepository.getLastProyectAdded();
+
+
+
+    }
+
+    // Metodo viejo, borrar en proxima revision
+    @Deprecated
     @PostMapping("/add/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}")
     @ResponseStatus(HttpStatus.CREATED)
     public void addProyecto(@PathVariable int unidad, @PathVariable String feReg, @PathVariable String feIni, @PathVariable String feEnd,

@@ -58,10 +58,21 @@ public class ProyectosServiceClient {
     //post
 
     // TODO : Verificar porque no se esta creando en el ms (no llega la peticion al controlador del ms)
+    @Deprecated
     public void saveProyecto(int unidad, String feReg,String feIni, String feEnd, String desc, int id_estado, String obs){
         this.webClient.post().uri("proyecto/add/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}/",
                         unidad, feReg, feIni, feEnd, desc, id_estado, obs)
                         .retrieve();
+
+
+    }
+
+    // Prueba con return
+
+    public Mono<Proyecto> addProyecto(int unidad, String feReg,String feIni, String feEnd, String desc, int id_estado, String obs){
+        return this.webClient.post().uri("proyecto/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}/",
+                        unidad, feReg, feIni, feEnd, desc, id_estado, obs)
+                .retrieve().bodyToMono(Proyecto.class);
 
 
     }

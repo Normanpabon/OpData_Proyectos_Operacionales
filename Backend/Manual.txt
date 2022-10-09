@@ -45,6 +45,7 @@ eje : http://localhost:8090/prodata/API/V1/proyectos/1
 POST - Crear un nuevo proyecto
 
 http://localhost:8090/prodata/API/V1/proyectos/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}"
+eje: http://localhost:8090/prodata/API/V1/proyectos/2/2020-10-05/2021-10-05/2023-12-05/V2 Proyecto mandado a api desde postman/2/NA
 
 PUT - Actualizar datos de proyecto
 http://localhost:8090/prodata/API/V1/proyectos/{id}/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}

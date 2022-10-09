@@ -7,8 +7,11 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.sql.Date;
-import java.sql.Timestamp;
+
 
 @Data
 @AllArgsConstructor
@@ -22,10 +25,15 @@ public class Proyecto {
 
     private int unidad_p;
 
+
+    private LocalDate fecha_reg;
+    private LocalDate fecha_ini;
+    private LocalDate fecha_fin;
+    /*
     private Date fecha_reg;
     private Date fecha_ini;
     private Date fecha_fin;
-
+*/
     private String desc_pro;
 
     private int id_estado;

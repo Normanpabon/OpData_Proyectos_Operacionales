@@ -14,7 +14,6 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route element={<ProtectedRoute isAllowed={!!user} />}>
           <Route path="user" element={<UserMainPage />}>

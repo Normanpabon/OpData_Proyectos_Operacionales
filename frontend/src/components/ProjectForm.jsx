@@ -1,6 +1,11 @@
+import { useEffect, useState } from "react";
 import { useUser } from "../context/UserContext";
 function ProjectForm() {
-  const { projects, states } = useUser();
+  const { projects, allStatus, getAllStatus } = useUser();
+  useState;
+  useEffect(() => {
+    getAllStatus();
+  }, []);
   return (
     <div>
       <form>
@@ -9,12 +14,16 @@ function ProjectForm() {
         <label htmlFor="">Fecha de inicio</label>
         <input type="date" name="" id="" />
         <label htmlFor="">Fecha finalizacion</label>
-        <input type="date" name="" id="" />
+        <input type="date" name="" id="" onChange={(e) => console.log(e)} />
         <label htmlFor="">Estado</label>
-        <select name="" id="">
-          {/* {states.map((state) => {
-            return <option value={state.id}>{state.estado}</option>;
-          })} */}
+        <select name="" id="" value={2}>
+          {allStatus.map((state) => {
+            return (
+              <option value={state.id} key={state.id}>
+                {state.estado}
+              </option>
+            );
+          })}
         </select>
         <textarea
           name=""

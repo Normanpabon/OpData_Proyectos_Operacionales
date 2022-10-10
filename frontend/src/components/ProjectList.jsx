@@ -2,9 +2,10 @@ import { useEffect } from "react";
 import { useUser } from "../context/UserContext";
 import ProjectCard from "./ProjectCard";
 function ProjectList() {
-  const { projects, getProjectsByUnit } = useUser();
+  const { projects, getProjectsByUnit, getAllStatus } = useUser();
   useEffect(() => {
     getProjectsByUnit();
+    getAllStatus();
   }, []);
   return (
     <div>

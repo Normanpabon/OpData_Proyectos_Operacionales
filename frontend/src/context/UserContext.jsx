@@ -33,8 +33,17 @@ export function UserContextProvider({ children }) {
 
   const createProject = async (project) => {
     try {
+      const {
+        desc_pro,
+        fecha_fin,
+        fecha_ini,
+        fecha_reg,
+        id_estado,
+        observaciones,
+        unidad_p,
+      } = project;
       const { data } = await axios.post(
-        "http://localhost:8090/prodata/API/V1/proyectos/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}"
+        `http://localhost:8090/prodata/API/V1/proyectos/${unidad_p}/${fecha_reg}/${fecha_ini}/${fecha_fin}/${desc_pro}/${id_estado}/${observaciones}`
       );
       setProjects([...projects, data]);
     } catch (error) {}

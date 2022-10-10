@@ -9,7 +9,7 @@ function ProjectCard({ project }) {
       <p>
         {project.observaciones ? project.observaciones : "No hay Observaciones"}
       </p>
-      <button onClick={(e) => navigate(`/user/edit/${project.id}`)}>
+      <button onClick={(e) => navigate(`/user/read/${project.id}`)}>
         Modificar
       </button>
     </div>

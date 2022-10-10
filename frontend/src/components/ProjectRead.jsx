@@ -14,9 +14,9 @@ function ProjectRead() {
       <h3>Fecha Fin: {project.fecha_fin}</h3>
       <h3>Estado: {status.estado}</h3>
       <p>
-        Observaciones:{" "}
+        Observaciones:
         {project.observaciones ? (
-          <p>No hay observacio</p>
+          <p>No hay observaciones</p>
         ) : (
           project.observaciones
         )}

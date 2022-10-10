@@ -40,12 +40,29 @@ export function UserContextProvider({ children }) {
         fecha_reg,
         id_estado,
         observaciones,
-        unidad_p,
       } = project;
       const { data } = await axios.post(
-        `http://localhost:8090/prodata/API/V1/proyectos/${unidad_p}/${fecha_reg}/${fecha_ini}/${fecha_fin}/${desc_pro}/${id_estado}/${observaciones}`
+        `http://localhost:8090/prodata/API/V1/proyectos/${user.unit}/${fecha_reg}/${fecha_ini}/${fecha_fin}/${desc_pro}/${id_estado}/${observaciones}`
       );
       setProjects([...projects, data]);
+    } catch (error) {}
+  };
+
+  const updateProject = async (project) => {
+    try {
+      const {
+        id,
+        desc_pro,
+        fecha_fin,
+        fecha_ini,
+        fecha_reg,
+        id_estado,
+        observaciones,
+      } = project;
+      const { data } = await axios.put(
+        `http://localhost:8090/prodata/API/V1/proyectos/${id}/${user.unit}/${fecha_reg}/${fecha_ini}/${fecha_fin}/${desc_pro}/${id_estado}/${observaciones}`
+      );
+      setProjects([...projects.filter((pro) => pro.id !== data.id), data]);
     } catch (error) {}
   };
 
@@ -61,6 +78,7 @@ export function UserContextProvider({ children }) {
         getProjectsByUnit: getProjectsByUnit,
         getAllStatus: getAllStatus,
         createProject: createProject,
+        updateProject: updateProject,
       }}
     >
       {children}

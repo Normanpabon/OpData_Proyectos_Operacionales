@@ -10,25 +10,33 @@ export const useUser = () => {
 
 export function UserContextProvider({ children }) {
   const [projects, setProjects] = useState([]);
-  const [user, setUser] = useState("1");
+  const [user, setUser] = useState(null);
+  const [allStatus, setAllStatus] = useState([]);
 
   const getProjectsByUnit = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8090/prodata/API/V1/proyectos/unidad/${user}`
+        `http://localhost:8090/prodata/API/V1/proyectos/unidad/${user.unit}`
       );
       setProjects(data);
     } catch (error) {}
   };
-  useEffect(() => {
-    getProjectsByUnit();
-  }, []);
 
-  const createProject = async (proyect) => {
+  const getAllStatus = async () => {
     try {
-      const response = await axios.post(
+      const { data } = await axios.get(
+        "http://localhost:8090/prodata/API/V1/proyectos/estado/all"
+      );
+      setAllStatus(data);
+    } catch (error) {}
+  };
+
+  const createProject = async (project) => {
+    try {
+      const { data } = await axios.post(
         "http://localhost:8090/prodata/API/V1/proyectos/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}"
       );
+      setProjects([...projects, data]);
     } catch (error) {}
   };
 
@@ -37,7 +45,12 @@ export function UserContextProvider({ children }) {
       value={{
         projects: projects,
         user: user,
+        allStatus: allStatus,
+        setProjects: setProjects,
+        setUser: setUser,
+        setAllStatus: setAllStatus,
         getProjectsByUnit: getProjectsByUnit,
+        getAllStatus: getAllStatus,
         createProject: createProject,
       }}
     >

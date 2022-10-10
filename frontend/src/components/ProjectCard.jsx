@@ -1,5 +1,7 @@
 import {} from "../context/UserContext";
-function ProyectCard({ project }) {
+import { useNavigate } from "react-router-dom";
+function ProjectCard({ project }) {
+  const navigate = useNavigate();
   return (
     <div>
       <h3>{project.desc_pro}</h3>
@@ -7,8 +9,11 @@ function ProyectCard({ project }) {
       <p>
         {project.observaciones ? project.observaciones : "No hay Observaciones"}
       </p>
+      <button onClick={(e) => navigate(`/user/edit/${project.id}`)}>
+        Modificar
+      </button>
     </div>
   );
 }
 
-export default ProyectCard;
+export default ProjectCard;

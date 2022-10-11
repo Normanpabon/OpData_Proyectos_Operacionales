@@ -54,6 +54,7 @@ function Login() {
           name="user-login"
           id="user-username-login-input"
           placeholder="juanito.perez@uao.edu.co"
+          required
           onChange={(e) => setUsername(e.target.value)}
         />
         </div>
@@ -65,12 +66,15 @@ function Login() {
           name="password-login"
           id="user-password-login-input"
           placeholder="Contraseña"
+          required
+          oninvalid="this.setCustomValidity('Enter User Name Here')"
+          oninput="this.setCustomValidity('')"
           onChange={(e) => setPassword(e.target.value)}
         />
         </div>
         <button
             type="submit"
-            class="inline-block px-7 py-3 bg-rojoUAO text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full"
+            class="inline-block px-7 py-3 bg-rojoUAO-100 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-rojoUAO-200 hover:shadow-lg focus:bg-rojoUAO-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-rojoUAO-200 active:shadow-lg transition duration-150 ease-in-out w-full"
             data-mdb-ripple="true"
             data-mdb-ripple-color="light"
           >

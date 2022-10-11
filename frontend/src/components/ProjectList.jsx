@@ -8,7 +8,7 @@ function ProjectList() {
     getAllStatus();
   }, []);
   return (
-    <div>
+    <div className="columns-3 m-2 p-8 bg-gray-300 h-full">
       {projects.map((project) => {
         return <ProjectCard key={project.id} project={project} />;
       })}

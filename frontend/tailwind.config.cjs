@@ -10,7 +10,11 @@ module.exports = {
       colors:{
         transparent: 'transparent',
         current: 'currentColor',
-        'rojoUAO': '#FF3333'
+        'rojoUAO': {
+          100: '#FF3333',
+          200: '#AA1111'
+        }
+        
       },
       borderRadius:{
         '4xl': '2rem'

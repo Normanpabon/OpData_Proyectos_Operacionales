@@ -27,7 +27,8 @@ function Login() {
   };
   //Render
   return (
-    <div>
+    
+    <div className="bg-zinc-800 h-screen align-middle" style={{backgroundImage: "url(/src/assets/Background.svg)", backgroundRepeat: "no-repeat", backgroundSize: "cover" }}>
       <h1>Bienvenido</h1>
       <p>Ingreso a Prodata</p>
       <form onSubmit={handleSubmit}>

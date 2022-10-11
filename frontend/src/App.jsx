@@ -1,7 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import { ProtectedRoute } from "./components/ProtectedRoute";
-import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import { useUser } from "./context/UserContext";
 import UserMainPage from "./pages/user/UserMainPage";
@@ -14,6 +13,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route element={<ProtectedRoute isAllowed={!!user} />}>
           <Route path="user" element={<UserMainPage />}>

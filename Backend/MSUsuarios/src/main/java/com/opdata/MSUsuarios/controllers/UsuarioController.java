@@ -3,6 +3,7 @@ package com.opdata.MSUsuarios.controllers;
 
 import com.opdata.MSUsuarios.dto.Rol;
 import com.opdata.MSUsuarios.dto.Usuario;
+import com.opdata.MSUsuarios.repository.RolRepository;
 import com.opdata.MSUsuarios.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,12 +24,15 @@ public class UsuarioController {
     UsuarioRepository usuarioRepository;
 
     @Autowired
-    RolController rolController;
+    RolRepository rolRepository;
+
 
     // Metodo usuarios
 
     // ------------ Metodos temporales
     // Verificar claves (devolver true o false si es correcto el login ?
+
+    /*
     // Todo: verificar si va a ser temporal, creeria que si pues en caso tal el springboot security haria esta parte
 
     // Login
@@ -51,11 +55,7 @@ public class UsuarioController {
             }
         }
 
-
-
-    }
-
-    // Obtener rol
+            // Obtener rol
     @PostMapping("/getRol/{username}")
     Mono<Rol> getRol(@PathVariable String username){
 
@@ -73,6 +73,31 @@ public class UsuarioController {
 
 
 
+
+
+    }
+
+
+
+    }*/
+
+    // Login
+    @PostMapping("/login/{pass}/{username}")
+    Mono<Long> login(@PathVariable String pass, @PathVariable String username){
+        // Todo : Algoritmos de hash
+        // Todo corregir, devuelve -1 si los datos enviados son invalidos
+        return usuarioRepository.verificarLogin(username, pass);
+
+
+    }
+
+    // Obtener rol
+    @PostMapping("/getRol/{id}")
+    Mono<Rol> getRol(@PathVariable int id){
+
+        // Todo : no esta funcionando aun
+
+        return rolRepository.findById((long) id);
 
 
     }

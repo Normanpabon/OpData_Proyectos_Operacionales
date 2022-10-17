@@ -15,4 +15,6 @@ public interface RolRepository extends R2dbcRepository<Rol, Long> {
     Mono<Rol> getLastRoladded();
 
 
+
+
 }

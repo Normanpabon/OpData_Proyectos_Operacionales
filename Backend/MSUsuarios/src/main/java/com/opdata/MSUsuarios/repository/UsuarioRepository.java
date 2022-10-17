@@ -20,16 +20,16 @@ public interface UsuarioRepository extends R2dbcRepository<Usuario, Long> {
     Mono<Usuario> getUserByUsername(String user);
 
     @Query("SELECT IFNULL( (SELECT usuario.id FROM usuario WHERE usuario.username=:user) , -1)")
-    Long getUserIdByUsername(String user);
+    Mono<Long> getUserIdByUsername(String user);
 
     // Devuelve id del usuario si el nombre de usuario y contra son correctas, caso contrario devuelve -1
     @Query("SELECT IFNULL( (SELECT usuario.id FROM usuario WHERE usuario.username=:username AND usuario.hashed_pass=:pass) , -1)")
-    Long verificarLogin(String username, String pass);
+    Mono<Long> verificarLogin(String username, String pass);
 
     // Devuelve id del rol del usuario
     @Query("SELECT usuario.rol FROM usuario WHERE usuario.id=:id")
-    Long getRolByUserId(Long id);
+    Mono<Long> getRolByUserId(Long id);
 
     @Query("SELECT usuario.rol FROM usuario WHERE usuario.username=:user")
-    Long getRolByUsername(String user);
+    Mono<Long> getRolByUsername(String user);
 }

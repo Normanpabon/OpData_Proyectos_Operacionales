@@ -49,7 +49,8 @@ public class RolController {
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Rol> updateRol(@PathVariable int id, @PathVariable String rol){
         Rol tmpRol = new Rol(id, rol);
-
+        // Todo revisar porque no esta modificando
+        rolRepository.save(tmpRol);
 
 
         return rolRepository.findById((long) id);

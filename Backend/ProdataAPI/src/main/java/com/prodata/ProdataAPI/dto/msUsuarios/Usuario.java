@@ -1,4 +1,4 @@
-package com.opdata.MSUsuarios.dto;
+package com.prodata.ProdataAPI.dto.msUsuarios;
 
 
 import lombok.AllArgsConstructor;

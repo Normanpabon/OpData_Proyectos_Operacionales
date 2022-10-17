@@ -1,4 +1,4 @@
-package com.prodata.ProdataAPI.dto;
+package com.prodata.ProdataAPI.dto.msProyectos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

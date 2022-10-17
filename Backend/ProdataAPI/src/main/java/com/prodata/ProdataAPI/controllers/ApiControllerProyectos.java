@@ -1,7 +1,7 @@
 package com.prodata.ProdataAPI.controllers;
 
-import com.prodata.ProdataAPI.dto.Estado;
-import com.prodata.ProdataAPI.dto.Proyecto;
+import com.prodata.ProdataAPI.dto.msProyectos.Estado;
+import com.prodata.ProdataAPI.dto.msProyectos.Proyecto;
 import com.prodata.ProdataAPI.services.ProyectosServiceClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,33 +9,31 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.sql.Date;
-
 @RestController
 @CrossOrigin
 @RequestMapping("/prodata/API/V1/proyectos/")
 public class ApiControllerProyectos {
 
     @Autowired
-    ProyectosServiceClient proyectosServiceClient;
+    private ProyectosServiceClient proyectosServiceClient;
 
     // GET Proyectos
 
     @GetMapping("/")
     @ResponseStatus(HttpStatus.OK)
-    Flux<Proyecto> getAll(){
+    public Flux<Proyecto> getAll(){
         return proyectosServiceClient.getProyectos();
     }
 
     @GetMapping("/unidad/{id}")
     @ResponseStatus(HttpStatus.OK)
-    Flux<Proyecto> getAllByUnidad(@PathVariable int id){
+    public Flux<Proyecto> getAllByUnidad(@PathVariable int id){
         return proyectosServiceClient.getProyectosByUnidad(id);
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    Mono<Proyecto> getProyectoBy(@PathVariable int id){
+    public Mono<Proyecto> getProyectoBy(@PathVariable int id){
         return proyectosServiceClient.getProyectoById(id);
     }
 
@@ -44,13 +42,13 @@ public class ApiControllerProyectos {
 
     @GetMapping("/estado/{id}")
     @ResponseStatus(HttpStatus.OK)
-    Mono<Estado> getEstadoById(@PathVariable int id){
+    public Mono<Estado> getEstadoById(@PathVariable int id){
         return proyectosServiceClient.getEstadoById(id);
     }
 
     @GetMapping("/estado/all")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    Flux<Estado> getAllEstados(){
+    public Flux<Estado> getAllEstados(){
         return proyectosServiceClient.getEstados();
     }
 

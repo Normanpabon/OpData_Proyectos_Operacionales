@@ -24,9 +24,9 @@ public class PreferenciaController {
 
 
 
-    // Obtener preferencia por id de usuario (implementar)
+    // Obtener preferencia por id de usuario
 
-    @GetMapping("usr/{id}")
+    @GetMapping("/usr/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Mono<Preferencia> getPreferenciaByUser(@PathVariable int id){
         return preferenciaRepository.getPreferenciaByuserId(id);
@@ -37,13 +37,13 @@ public class PreferenciaController {
     @PostMapping("/{uid}/{orden_pro}/{tema}/{fuente}")
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Preferencia> savePreferencia(@PathVariable int uid, @PathVariable int orden_pro,
-                                             @PathVariable int tema, @PathVariable int funete){
+                                             @PathVariable int tema, @PathVariable int fuente){
         Preferencia tmpPreferencia = new Preferencia();
 
         tmpPreferencia.setUid(uid);
         tmpPreferencia.setOrden_pro(orden_pro);
         tmpPreferencia.setTema(tema);
-        tmpPreferencia.setFuente(funete);
+        tmpPreferencia.setFuente(fuente);
 
         preferenciaRepository.save(tmpPreferencia).subscribe();
 
@@ -57,9 +57,9 @@ public class PreferenciaController {
     @PutMapping("/{id}/{uid}/{orden_pro}/{tema}/{fuente}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Mono<Preferencia> updatePreferencia(@PathVariable int id, @PathVariable int uid, @PathVariable int orden_pro,
-                                               @PathVariable int tema, @PathVariable int funete){
+                                               @PathVariable int tema, @PathVariable int fuente){
 
-        Preferencia tmpPreferencia = new Preferencia(id, uid, orden_pro, tema, funete);
+        Preferencia tmpPreferencia = new Preferencia(id, uid, orden_pro, tema, fuente);
 
         preferenciaRepository.save(tmpPreferencia).subscribe();
 

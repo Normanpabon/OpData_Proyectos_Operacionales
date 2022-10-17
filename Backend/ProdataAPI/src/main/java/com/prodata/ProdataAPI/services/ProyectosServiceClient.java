@@ -1,7 +1,7 @@
 package com.prodata.ProdataAPI.services;
 
-import com.prodata.ProdataAPI.dto.Estado;
-import com.prodata.ProdataAPI.dto.Proyecto;
+import com.prodata.ProdataAPI.dto.msProyectos.Estado;
+import com.prodata.ProdataAPI.dto.msProyectos.Proyecto;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;

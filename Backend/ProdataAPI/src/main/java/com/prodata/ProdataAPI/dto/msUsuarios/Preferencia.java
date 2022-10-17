@@ -1,26 +1,27 @@
-package com.prodata.ProdataAPI.dto;
-
+package com.prodata.ProdataAPI.dto.msUsuarios;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-@Table("estado")
 
-public class Estado {
+public class Preferencia {
 
     @Id
     private int id;
 
-    private String estado;
+    private int uid;
 
+    private int orden_pro;
 
+    private int tema;
+
+    private int fuente;
 
 }

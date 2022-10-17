@@ -1,10 +1,9 @@
-package com.opdata.MSUsuarios.dto;
+package com.prodata.ProdataAPI.dto.msUsuarios;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import org.springframework.data.annotation.Id;
 
 @Data

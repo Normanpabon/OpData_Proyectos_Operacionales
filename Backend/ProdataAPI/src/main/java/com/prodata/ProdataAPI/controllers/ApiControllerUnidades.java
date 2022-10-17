@@ -1,7 +1,7 @@
 package com.prodata.ProdataAPI.controllers;
 
 
-import com.prodata.ProdataAPI.dto.Unidad;
+import com.prodata.ProdataAPI.dto.msUnidades.Unidad;
 import com.prodata.ProdataAPI.services.UnidadesServiceClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

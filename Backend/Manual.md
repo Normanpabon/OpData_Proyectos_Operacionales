@@ -1,5 +1,8 @@
+## --**Documentacion API REST OpData**--
 
-# **Puertos dev**
+
+
+## **Puertos de microservicios y api rest**
 
 Asumiendo que se creen en localhost:
 
@@ -17,18 +20,18 @@ Puertos de red:
 **MSUsuarios:**
 - localhost:8088
 
-#  **Como ejecutar backend**
+##  **Como ejecutar backend**
 
-1. Ejecutar los pasos del archivo .sql ubicado en la carpeta "BD Config".
+- 1. Ejecutar los pasos del archivo .sql ubicado en la carpeta "BD Config".
 
-2. Ejecutar MSProyectos, verificar que se ejecute bien y no saque mensajes de error.
+- 2. Ejecutar MSUsuarios, MSUnidades y MSProyectos; Puede usarse intellij y ejecutarse como proyectos separados. Verificar que se ejecute bien y no saque mensajes de error.
 
-3. Ejecutar ProdataAPI, contactamos con este servicio directamente.
+- 3. Ejecutar ProdataAPI, contactamos con este servicio directamente. Cuando termine de iniciar la API REST entrara en funcionamiento.
 
 
-# **Ejemplos consumo REST API**
+## **Ejemplos consumo REST API**
 
-## **/PROYECTOS**
+### **/PROYECTOS**
 
 - GET - devuelve todos los proyectos
 
@@ -56,7 +59,7 @@ eje: http://localhost:8090/prodata/API/V1/proyectos/2/2020-10-05/2021-10-05/2023
 (Verificar previamente que el ID exista)
 eje: http://localhost:8090/prodata/API/V1/proyectos/6/2/2022-10-05/2022-10-05/2023-12-05/ProyectoDesdePostman/2/Modificado con put desde api
 
-## **ESTADOS**
+### **ESTADOS**
 
 - GET - Obtener estado por id 
 
@@ -70,7 +73,7 @@ eje: http://localhost:8090/prodata/API/V1/proyectos/6/2/2022-10-05/2022-10-05/20
 
 ### http://localhost:8090/prodata/API/V1/proyectos/estado/{est}
 
-## **/UNIDADES**
+### **/UNIDADES**
 
 - GET - Obtener todas las unidades
 
@@ -98,8 +101,75 @@ eje: http://localhost:8090/prodata/API/V1/unidades/jefe/22010
 
 eje: http://localhost:8090/prodata/API/V1/unidades/1/Cambio de datos unidad/11111
 
-## **/USUARIOS**
+### **/USUARIOS**
 
- POST - Verificar username y pass, devuelve true o false
-## borrar  ### http://localhost:8080/MSUsers/V1/usuario/login/{pass}/{username}
+- POST - Login: Retorna el id del usuario o -1 si es invalido
+
+### http://localhost:8090/prodata/API/V1/users/login/{user}/{pass}}
+
+eje: http://localhost:8090/prodata/API/V1/users/login/Miguel.gallego/miguel123
+
+- GET - Obtener la lista de usuarios
+
+### http://localhost:8090/prodata/API/V1/users/all
+
+- GET - Obtener usuario por id
+
+### http://localhost:8090/prodata/API/V1/users/{id}
+
+eje: http://localhost:8090/prodata/API/V1/users/2
+
+- POST - Crear un nuevo usuario:
+
+### http://localhost:8090/prodata/API/V1/users/{cod_ins}/{nombre}/{apellido}/{username}/{correo}/{rol}/{pass}
+
+- PUT - Modificar usuario existente:
+  
+### http://localhost:8090/prodata/API/V1/users/{id}/{cod_ins}/{nombre}/{apellido}/{username}/{correo}/{rol}/{pass}
+
+### **Roles**
+
+- GET - Obtener todos los roles
+
+### http://localhost:8090/prodata/API/V1/users/rol/roles
+
+- GET - Obtener rol por id del rol
+
+### http://localhost:8090/prodata/API/V1/users/rol/{id}
+
+eje : http://localhost:8090/prodata/API/V1/users/rol/2
+
+- POST - Crear un nuevo rol
+
+### http://localhost:8090/prodata/API/V1/users/rol/{ nombre del nuevo rol}
+
+eje : http://localhost:8090/prodata/API/V1/users/rol/Nuevo rol de prueba/
+
+- PUT - Modificar rol
+
+### http://localhost:8090/prodata/API/V1/users/rol/{id del rol}/{ nombre del nuevo rol}
+
+eje : http://localhost:8090/prodata/API/V1/users/rol/5/Nuevo rol modificado de prueba/
+
+### **Preferencias**
+
+- GET - Obtener preferencias por default
+
+### http://localhost:8090/prodata/API/V1/users/preferencia/
+
+- GET - Obtener preferencia de usuario por UID de usuario
+
+### http://localhost:8090/prodata/API/V1/users/preferencia/user/{UID}
+
+eje http://localhost:8090/prodata/API/V1/users/preferencia/user/1
+
+- POST - Crear una nueva preferencia para un usuario
+
+### http://localhost:8090/prodata/API/V1/users/preferencia/{uid}/{orden_pro}/{tema}/{fuente}
+
+- PUT - Modificar preferencias de usuario 
+
+### http://localhost:8090/prodata/API/V1/users/preferencia/{id}/{uid}/{orden_pro}/{tema}/{fuente}
+
+
 

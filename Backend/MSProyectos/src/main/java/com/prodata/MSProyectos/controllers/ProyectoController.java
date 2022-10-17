@@ -124,7 +124,7 @@ public class ProyectoController {
     // TODO: Toca mirar como autocompletar los datos que no quiera modificar el usuario, solo modificar 1. los permitidos y 2. los que el usuario tuvo la intencion/ (Evitar campos vacios en el update)
 
     @PutMapping("/{id}/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public Mono<Proyecto> updateProyecto(@PathVariable int id,@PathVariable int unidad, @PathVariable String feReg, @PathVariable String feIni,
                                   @PathVariable String feEnd,
                      @PathVariable String desc, @PathVariable int id_estado,

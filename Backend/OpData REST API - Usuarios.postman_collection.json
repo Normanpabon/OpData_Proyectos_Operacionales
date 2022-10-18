@@ -11,14 +11,14 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8090/prodata/API/V1/users/login/Miguel.gallego/miguel123",
+					"raw": "http://localhost:8090/opData/API/V1/users/login/Miguel.gallego/miguel123",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8090",
 					"path": [
-						"prodata",
+						"opData",
 						"API",
 						"V1",
 						"users",
@@ -36,14 +36,14 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8090/prodata/API/V1/users/userRol/2",
+					"raw": "http://localhost:8090/opData/API/V1/users/userRol/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8090",
 					"path": [
-						"prodata",
+						"opData",
 						"API",
 						"V1",
 						"users",
@@ -60,14 +60,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8090/prodata/API/V1/users/all",
+					"raw": "http://localhost:8090/opData/API/V1/users/all",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8090",
 					"path": [
-						"prodata",
+						"opData",
 						"API",
 						"V1",
 						"users",
@@ -83,14 +83,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8090/prodata/API/V1/users/2",
+					"raw": "http://localhost:8090/opData/API/V1/users/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8090",
 					"path": [
-						"prodata",
+						"opData",
 						"API",
 						"V1",
 						"users",
@@ -106,14 +106,14 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8090/prodata/API/V1/users/{cod_ins}/{nombre}/{apellido}/{username}/{correo}/{rol}/{pass}",
+					"raw": "http://localhost:8090/opData/API/V1/users/{cod_ins}/{nombre}/{apellido}/{username}/{correo}/{rol}/{pass}",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8090",
 					"path": [
-						"prodata",
+						"opData",
 						"API",
 						"V1",
 						"users",
@@ -135,14 +135,14 @@
 				"method": "PUT",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8090/prodata/API/V1/users/{id}/{cod_ins}/{nombre}/{apellido}/{username}/{correo}/{rol}/{pass}",
+					"raw": "http://localhost:8090/opData/API/V1/users/{id}/{cod_ins}/{nombre}/{apellido}/{username}/{correo}/{rol}/{pass}",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8090",
 					"path": [
-						"prodata",
+						"opData",
 						"API",
 						"V1",
 						"users",
@@ -165,14 +165,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8090/prodata/API/V1/users/rol/roles",
+					"raw": "http://localhost:8090/opData/API/V1/users/rol/roles",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8090",
 					"path": [
-						"prodata",
+						"opData",
 						"API",
 						"V1",
 						"users",
@@ -189,14 +189,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8090/prodata/API/V1/users/rol/2",
+					"raw": "http://localhost:8090/opData/API/V1/users/rol/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8090",
 					"path": [
-						"prodata",
+						"opData",
 						"API",
 						"V1",
 						"users",
@@ -213,14 +213,14 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8090/prodata/API/V1/users/rol/Nuevo rol de prueba/",
+					"raw": "http://localhost:8090/opData/API/V1/users/rol/Nuevo rol de prueba/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8090",
 					"path": [
-						"prodata",
+						"opData",
 						"API",
 						"V1",
 						"users",
@@ -238,14 +238,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8090/prodata/API/V1/users/rol/5/Nuevo rol de prueba/",
+					"raw": "http://localhost:8090/opData/API/V1/users/rol/5/Nuevo rol de prueba/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8090",
 					"path": [
-						"prodata",
+						"opData",
 						"API",
 						"V1",
 						"users",
@@ -264,14 +264,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8090/prodata/API/V1/users/preferencia/",
+					"raw": "http://localhost:8090/opData/API/V1/users/preferencia/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8090",
 					"path": [
-						"prodata",
+						"opData",
 						"API",
 						"V1",
 						"users",
@@ -288,14 +288,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8090/prodata/API/V1/users/preferencia/user/{UID}",
+					"raw": "http://localhost:8090/opData/API/V1/users/preferencia/user/{UID}",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8090",
 					"path": [
-						"prodata",
+						"opData",
 						"API",
 						"V1",
 						"users",
@@ -313,14 +313,14 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8090/prodata/API/V1/users/preferencia/{uid}/{orden_pro}/{tema}/{fuente}",
+					"raw": "http://localhost:8090/opData/API/V1/users/preferencia/{uid}/{orden_pro}/{tema}/{fuente}",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8090",
 					"path": [
-						"prodata",
+						"opData",
 						"API",
 						"V1",
 						"users",
@@ -340,14 +340,14 @@
 				"method": "PUT",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8090/prodata/API/V1/users/preferencia/{id}/{uid}/{orden_pro}/{tema}/{fuente}",
+					"raw": "http://localhost:8090/opData/API/V1/users/preferencia/{id}/{uid}/{orden_pro}/{tema}/{fuente}",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8090",
 					"path": [
-						"prodata",
+						"opData",
 						"API",
 						"V1",
 						"users",

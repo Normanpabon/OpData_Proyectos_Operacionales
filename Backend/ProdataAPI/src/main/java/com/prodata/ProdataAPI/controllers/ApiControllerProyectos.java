@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/prodata/API/V1/proyectos/")
+@RequestMapping("/opData/API/V1/proyectos/")
 public class ApiControllerProyectos {
 
     @Autowired

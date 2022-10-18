@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/prodata/API/V1/users/")
+@RequestMapping("/opData/API/V1/users/")
 public class ApiControllerUsuarios {
 
     @Autowired

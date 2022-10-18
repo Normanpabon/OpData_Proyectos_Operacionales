@@ -9,6 +9,7 @@ function Login() {
   //Estados
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [incorrect, setIncorrect] = useState(" hidden");
   //Otros
   const navigate = useNavigate();
   //Funciones
@@ -22,22 +23,23 @@ function Login() {
       setUser({ name, role, unit });
       navigate("/user/main", { relative: false });
     } else {
-      //toggle classes
+      setIncorrect("");
     }
   };
   //Render
   return (
-    <main className="grid grid-cols-2 content-center mx-auto h-screen max-w-4xl">
-      <div className="bg bg-white grid grid-cols-2 content-center justify-center">
-        <img src="../../public/logonuevo.png" />
-        <h1 className="text-center m-auto text-4xl text-black">OpData</h1>
-      </div>
-      <div className="p-10 bg-white grid grid-cols-1">
-        <h1 className="text-center font-bold text-3xl text-black">
-          Bienvenido
-        </h1>
-        <form onSubmit={handleSubmit} className="grid grid-cols-1">
-          <div className="alert alert-error shadow-lg hidden">
+    <main className="grid grid-cols-2 w-full h-screen">
+      <div className=""></div>
+      <div className="p-10 bg-white content-center grid grid-cols-1">
+        <img
+          src="/public/Logo_OpData.png"
+          className="max-w-[400px] w-full mx-auto mb-0]"
+        />
+        <form
+          onSubmit={handleSubmit}
+          className="grid grid-cols-1 mx-auto w-full max-w-[400px]"
+        >
+          <div className={"alert alert-error shadow-lg" + incorrect}>
             <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +58,7 @@ function Login() {
             </div>
           </div>
           <label
-            className="text-black text-lg"
+            className="text-black text-lg mb-2"
             htmlFor="user-username-login-input"
           >
             Usuario
@@ -70,13 +72,13 @@ function Login() {
             onChange={(e) => setUsername(e.target.value)}
           />
           <label
-            className="text-black text-lg"
+            className="text-black text-lg mb-2"
             htmlFor="user-password-login-input"
           >
             Contrase&ntilde;a
           </label>
           <input
-            className="input input-bordered mb-1 bg-white border-gray-500"
+            className="input input-bordered mb-1 bg-white border-gray-500 text-black"
             type="password"
             name="password-login"
             id="user-password-login-input"

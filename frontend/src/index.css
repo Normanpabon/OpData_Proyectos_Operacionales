@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#root {
+  background-color: white;
+  background-image: url(/public/Background.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}

@@ -4,7 +4,8 @@
 
 #root {
   background-color: white;
-  background-image: url(/public/Background.png);
+  background-image: url(/Background.png);
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: "Roboto";
 }

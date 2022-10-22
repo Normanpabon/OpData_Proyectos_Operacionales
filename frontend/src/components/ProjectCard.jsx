@@ -9,9 +9,13 @@ function ProjectCard({ project }) {
       <p>
         {project.observaciones ? project.observaciones : "No hay Observaciones"}
       </p>
-      <button onClick={(e) => navigate(`/user/read/${project.id}`)}>
+      <label
+        htmlFor="my-modal"
+        className="btn btn-primary modal-button"
+        onClick={(e) => navigate(`/user/read/${project.id}`)}
+      >
         Modificar
-      </button>
+      </label>
     </div>
   );
 }

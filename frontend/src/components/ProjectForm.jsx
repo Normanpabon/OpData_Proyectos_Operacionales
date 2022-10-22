@@ -46,61 +46,66 @@ function ProjectForm() {
   );
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="">Nombre/Descripción del proyecto</label>
-        <input
-          type="text"
-          name="desc_pro"
-          id=""
-          value={project.desc_pro}
-          onChange={handleChange}
-        />
-        {params.id ? fechaRegistroComponente : <></>}
-        <label htmlFor="">Fecha de inicio</label>
-        <input
-          type="date"
-          name="fecha_ini"
-          id=""
-          value={project.fecha_ini}
-          onChange={handleChange}
-        />
-        <label htmlFor="">Fecha finalizacion</label>
-        <input
-          type="date"
-          name="fecha_fin"
-          id=""
-          value={project.fecha_fin}
-          onChange={handleChange}
-        />
-        <label htmlFor="">Estado</label>
-        <select
-          name="id_estado"
-          id=""
-          value={project.id_estado}
-          onChange={handleChange}
-        >
-          <option value="-1">Seleccione un estado</option>
-          {allStatus.map((state) => {
-            return (
-              <option value={state.id} key={state.id}>
-                {state.estado}
-              </option>
-            );
-          })}
-        </select>
-        <textarea
-          name="observaciones"
-          id=""
-          cols="30"
-          rows="10"
-          placeholder="Observaciones...."
-          value={project.observaciones}
-          onChange={handleChange}
-        ></textarea>
-        <button>Guardar</button>
-      </form>
-    </div>
+    <>
+      <input type="checkbox" id="my-modal" className="modal-toggle" />
+      <div className="modal">
+        <div className="modal-box">
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="">Nombre/Descripción del proyecto</label>
+            <input
+              type="text"
+              name="desc_pro"
+              id=""
+              value={project.desc_pro}
+              onChange={handleChange}
+            />
+            {params.id ? fechaRegistroComponente : <></>}
+            <label htmlFor="">Fecha de inicio</label>
+            <input
+              type="date"
+              name="fecha_ini"
+              id=""
+              value={project.fecha_ini}
+              onChange={handleChange}
+            />
+            <label htmlFor="">Fecha finalizacion</label>
+            <input
+              type="date"
+              name="fecha_fin"
+              id=""
+              value={project.fecha_fin}
+              onChange={handleChange}
+            />
+            <label htmlFor="">Estado</label>
+            <select
+              name="id_estado"
+              id=""
+              value={project.id_estado}
+              onChange={handleChange}
+            >
+              <option value="-1">Seleccione un estado</option>
+              {allStatus.map((state) => {
+                return (
+                  <option value={state.id} key={state.id}>
+                    {state.estado}
+                  </option>
+                );
+              })}
+            </select>
+            <textarea
+              name="observaciones"
+              id=""
+              cols="30"
+              rows="10"
+              placeholder="Observaciones...."
+              value={project.observaciones}
+              onChange={handleChange}
+            ></textarea>
+            <button>Guardar</button>
+          </form>
+        </div>
+      </div>
+    </>
   );
 }
 

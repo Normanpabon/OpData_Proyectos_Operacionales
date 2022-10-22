@@ -16,7 +16,7 @@ export function UserContextProvider({ children }) {
   const getProjectsByUnit = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8090/prodata/API/V1/proyectos/unidad/${user.unit}`
+        `http://localhost:8090/opData/API/V1/proyectos/unidad/${user.unit}`
       );
       setProjects(data);
     } catch (error) {}
@@ -25,7 +25,7 @@ export function UserContextProvider({ children }) {
   const getAllStatus = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:8090/prodata/API/V1/proyectos/estado/all"
+        "http://localhost:8090/opData/API/V1/proyectos/estado/all"
       );
       setAllStatus(data);
     } catch (error) {}

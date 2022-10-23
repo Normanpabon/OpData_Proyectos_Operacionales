@@ -1,4 +1,4 @@
-CREATE DATABASE Usuarios;
+DCREATE DATABASE Usuarios;
 
 use Usuarios;
 
@@ -20,9 +20,9 @@ CREATE TABLE Usuarios.PREFERENCIA(id int AUTO_INCREMENT, uid int, orden_pro int,
 
 /*Creacion de usuario para uso de la bd*/
 
-CREATE USER 'opdataUsuarios' IDENTIFIED BY 'wikitiUsuarios';
+CREATE USER 'opDataUsuarios' IDENTIFIED BY 'wikitiUsuarios';
 
-GRANT ALL PRIVILEGES ON Usuarios.* to 'opdataUsuarios';
+GRANT ALL PRIVILEGES ON Usuarios.* to 'opDataUsuarios';
 
 /*Creacion de roles default */
 

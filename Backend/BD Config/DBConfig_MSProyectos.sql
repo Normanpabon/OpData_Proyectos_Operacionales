@@ -13,9 +13,9 @@ CREATE TABLE proyectos.proyecto(id int NOT NULL AUTO_INCREMENT, unidad_p int, fe
 
 /*Creacion de usuario para uso de la bd*/
 
-CREATE USER 'opdataProyectos' IDENTIFIED BY 'wikitiProyectos';
+CREATE USER 'opDataProyectos' IDENTIFIED BY 'wikitiProyectos';
 
-GRANT ALL PRIVILEGES ON proyectos.* TO 'opdataProyectos';
+GRANT ALL PRIVILEGES ON proyectos.* TO 'opDataProyectos';
 
 INSERT INTO estado(estado) VALUES ('Activo');
 INSERT INTO estado(estado) VALUES ('En espera');

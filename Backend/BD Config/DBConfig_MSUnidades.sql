@@ -8,9 +8,9 @@ CREATE TABLE unidad(id INT AUTO_INCREMENT, nombre_unidad VARCHAR(64), uid_jefe I
 
 /* Creacion usuario y asignacion de permisos */
 
-CREATE USER 'opdataUnidades' IDENTIFIED BY 'wikitiUnidades';
+CREATE USER 'opDataUnidades' IDENTIFIED BY 'wikitiUnidades';
 
-GRANT ALL PRIVILEGES ON unidades.unidad TO 'opdataUnidades';
+GRANT ALL PRIVILEGES ON unidades.unidad TO 'opDataUnidades';
 
 
 /* Creacion registros de prueba */

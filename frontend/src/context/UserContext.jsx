@@ -12,11 +12,12 @@ export function UserContextProvider({ children }) {
   const [projects, setProjects] = useState([]);
   const [user, setUser] = useState(null);
   const [allStatus, setAllStatus] = useState([]);
+  const opDataRestApi = "http://localhost:8090/opData/API/V1";
 
   const getProjectsByUnit = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8090/opData/API/V1/proyectos/unidad/${user.unit}`
+        `${opDataRestApi}/proyectos/unidad/${user.unit}`
       );
       setProjects(data);
     } catch (error) {}
@@ -24,9 +25,7 @@ export function UserContextProvider({ children }) {
 
   const getAllStatus = async () => {
     try {
-      const { data } = await axios.get(
-        "http://localhost:8090/opData/API/V1/proyectos/estado/all"
-      );
+      const { data } = await axios.get(`${opDataRestApi}/proyectos/estado/all`);
       setAllStatus(data);
     } catch (error) {}
   };
@@ -42,7 +41,7 @@ export function UserContextProvider({ children }) {
         observaciones,
       } = project;
       const { data } = await axios.post(
-        `http://localhost:8090/prodata/API/V1/proyectos/${user.unit}/${fecha_reg}/${fecha_ini}/${fecha_fin}/${desc_pro}/${id_estado}/${observaciones}`
+        `${opDataRestApi}/proyectos/${user.unit}/${fecha_reg}/${fecha_ini}/${fecha_fin}/${desc_pro}/${id_estado}/${observaciones}`
       );
       setProjects([...projects, data]);
     } catch (error) {}
@@ -60,7 +59,7 @@ export function UserContextProvider({ children }) {
         observaciones,
       } = project;
       const { data } = await axios.put(
-        `http://localhost:8090/prodata/API/V1/proyectos/${id}/${user.unit}/${fecha_reg}/${fecha_ini}/${fecha_fin}/${desc_pro}/${id_estado}/${observaciones}`
+        `http://localhost:8090/opData/API/V1/proyectos/${id}/${user.unit}/${fecha_reg}/${fecha_ini}/${fecha_fin}/${desc_pro}/${id_estado}/${observaciones}`
       );
       setProjects([...projects.filter((pro) => pro.id !== data.id), data]);
     } catch (error) {}

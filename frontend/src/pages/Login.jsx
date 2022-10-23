@@ -21,14 +21,15 @@ function Login() {
     if (userValidation) {
       const { name, role, unit } = userValidation;
       setUser({ name, role, unit });
-      navigate("/user/main", { relative: false });
+      navigate("/user", { relative: false });
     } else {
       setIncorrect("");
+      setTimeout(() => setIncorrect(" hidden"), 5000);
     }
   };
   //Render
   return (
-    <main className="grid grid-cols-2 w-full h-screen">
+    <main className="grid grid-cols-2 w-full h-screen" id="root-login">
       <div className=""></div>
       <div className="p-10 bg-white content-center grid grid-cols-1">
         <img
@@ -84,7 +85,7 @@ function Login() {
             id="user-password-login-input"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button className="btn mt-3 max-w-xs mx-auto bg-red-700 hover:bg-red-600 text-white border-white hover:border-white">
+          <button className="btn btn-primary mt-3 max-w-xs mx-auto text-white border-white hover:border-white">
             Login
           </button>
         </form>

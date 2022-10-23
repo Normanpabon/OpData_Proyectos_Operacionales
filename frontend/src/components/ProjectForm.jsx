@@ -25,10 +25,10 @@ function ProjectForm() {
     const fechaFormateada = fecha.toISOString().slice(0, 10);
     if (params.id) {
       updateProject({ ...project, id: params.id, fecha_reg: fechaFormateada });
-      navigate(`/user/read/${params.id}`);
+      navigate(`/user`);
     } else {
       createProject({ ...project, id: params.id, fecha_reg: fechaFormateada });
-      navigate("/user/main");
+      navigate("/user");
     }
   };
 

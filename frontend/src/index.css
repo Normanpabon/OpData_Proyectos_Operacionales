@@ -2,10 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-#root {
+#root-login {
   background-color: white;
   background-image: url(/Background.png);
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+#root {
   font-family: "Roboto";
 }

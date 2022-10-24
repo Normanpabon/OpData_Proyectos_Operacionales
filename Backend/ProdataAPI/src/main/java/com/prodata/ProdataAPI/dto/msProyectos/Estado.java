@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
+import javax.validation.constraints.NotBlank;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,6 +21,7 @@ public class Estado {
     @Id
     private int id;
 
+    @NotBlank(message = "El estado debe tener un nombre.")
     private String estado;
 
 

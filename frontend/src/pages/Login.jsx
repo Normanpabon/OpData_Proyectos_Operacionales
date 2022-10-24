@@ -65,7 +65,7 @@ function Login() {
             Usuario
           </label>
           <input
-            className="input input-bordered mb-1 bg-white border-gray-500 text-black"
+            className="input input-bordered mb-1 input-primary"
             type="email"
             name="user-login"
             id="user-username-login-input"
@@ -79,7 +79,7 @@ function Login() {
             Contrase&ntilde;a
           </label>
           <input
-            className="input input-bordered mb-1 bg-white border-gray-500 text-black"
+            className="input input-bordered mb-1 input-primary"
             type="password"
             name="password-login"
             id="user-password-login-input"

@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/UserContext";
 function UserNavBar() {
   const navigation = useNavigate();
+  const { setUser } = useUser();
   return (
     <div className="navbar bg-primary shadow-lg">
       <div className="flex-none">
@@ -26,7 +28,7 @@ function UserNavBar() {
       <div className="flex-1">
         <a
           className="btn btn-ghost text-white normal-case text-xl"
-          onClick={() => navigation("/user/main")}
+          onClick={() => navigation("/user")}
         >
           OpData
         </a>
@@ -47,7 +49,7 @@ function UserNavBar() {
             <a>Editar perfil</a>
           </li>
           <li>
-            <a onClick>
+            <a onClick={() => setUser(null)}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"

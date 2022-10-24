@@ -1,4 +1,4 @@
-DCREATE DATABASE Usuarios;
+CREATE DATABASE Usuarios;
 
 use Usuarios;
 

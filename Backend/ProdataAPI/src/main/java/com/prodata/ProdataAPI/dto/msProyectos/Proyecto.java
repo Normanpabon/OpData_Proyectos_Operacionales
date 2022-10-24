@@ -34,7 +34,7 @@ public class Proyecto {
     private LocalDate fecha_ini;
 
     @NotBlank(message = "La fecha de fin es obligatoria.")
-    @Future(message = "La fecha de finalizacion debe ser posterior a la actual.")
+    //@Future(message = "La fecha de finalizacion debe ser posterior a la actual.")
     private LocalDate fecha_fin;
     /*
     private Date fecha_reg;

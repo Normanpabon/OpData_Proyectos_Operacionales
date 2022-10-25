@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import javax.validation.ConstraintViolationException;
+
 @RestController
 @CrossOrigin
 @RequestMapping("/opData/API/V1/users/")
@@ -140,4 +142,16 @@ public class ApiControllerUsuarios {
 
         return usuariosServiceClient.updatePreferencia(id, uid, orden_pro, tema, fuente);
     }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Mono<String> handleException(ConstraintViolationException exception) {
+
+        String errMsg = exception.getMessage();
+
+        return Mono.just(errMsg);
+    }
+
+
+    // Todo: Manejo de excepcion para servidor caido (MS) ?
 }

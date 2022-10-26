@@ -24,7 +24,7 @@ function UserMainPage() {
           </label>
         </section>
       </main>
-      <footer className="footer footer-center p-4 bg-black text-white ">
+      <footer className="footer footer-center p-4 bg-secondary text-white ">
         <div>
           <p className="inline">
             <img src="/logonuevo.png" className="w-10 inline" />

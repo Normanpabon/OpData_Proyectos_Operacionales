@@ -18,9 +18,7 @@ function ProjectCard({ project }) {
           open ? "" : "max-h-9"
         }`}
       >
-        {/* {project.desc_pro} */}
-        Proyecto con un titulo que tenga el maximo de caracteres permitidos para
-        el campo, para asi acomodar las dimensiones en el front
+        {project.desc_pro}
       </h3>
       <div className="grid grid-cols-2 px-3 bg-gray-300 rounded-lg mb-2">
         <p className="font-bold">Registro:</p>
@@ -37,13 +35,9 @@ function ProjectCard({ project }) {
         }`}
       >
         <p>
-          {/* {project.observaciones
+          {project.observaciones
             ? project.observaciones
-            : "No hay Observaciones"} */}
-          Observación que tiene la máxima cantidad de caracteres posibles para
-          el campo con el objetivo de organizar las dimensiones del frontend por
-          lo cual se trata en lo posible de escribir los caracteres máximos los
-          cuales serían 256 caracteres que irían en este
+            : "No hay Observaciones"}
         </p>
       </div>
       <label

@@ -1,7 +1,7 @@
 import { useUser } from "../context/UserContext";
 import { useRef } from "react";
 
-function ProjectFilterStatus() {
+function ProjectFilterStatus({ setFilterApplied }) {
   const { allStatus, filterProjectsByStatus, orderProjectsByStatus } =
     useUser();
   const status = useRef(null);
@@ -15,10 +15,24 @@ function ProjectFilterStatus() {
         className="dropdown-content menu p-2 shadow bg-secondary rounded-box w-fit"
       >
         <li>
-          <p onClick={() => orderProjectsByStatus("asc")}>Ascendente</p>
+          <p
+            onClick={() => {
+              orderProjectsByStatus("asc");
+              setFilterApplied(true);
+            }}
+          >
+            Ascendente
+          </p>
         </li>
         <li>
-          <p onClick={() => orderProjectsByStatus("des")}>Descendente</p>
+          <p
+            onClick={() => {
+              orderProjectsByStatus("des");
+              setFilterApplied(true);
+            }}
+          >
+            Descendente
+          </p>
         </li>
         <li>
           <div className="">
@@ -34,6 +48,7 @@ function ProjectFilterStatus() {
             <button
               onClick={() => {
                 filterProjectsByStatus(status.current.value);
+                setFilterApplied(true);
               }}
               className="btn btn-primary btn-sm text-white"
             >

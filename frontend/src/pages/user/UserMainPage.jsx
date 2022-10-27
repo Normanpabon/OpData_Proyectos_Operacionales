@@ -12,12 +12,12 @@ function UserMainPage() {
       <UserNavBar />
       <main className="grid grid-cols-1 flex-1">
         <section className="shadow-2xl mx-auto w-11/12 px-10 pt-2 pb-5 flex flex-col relative">
-          <h1 className="text-5xl mb-1">Bienvenido, {user.name}</h1>
+          <h1 className="text-4xl mb-1">Bienvenido, {user.name}</h1>
           <Outlet />
           <ProjectList />
           <label
             htmlFor="my-modal"
-            className="btn btn-primary btn-circle modal-button absolute bottom-1 right-3 text-white text-bold text-lg"
+            className="btn btn-primary btn-circle btn-lg modal-button absolute bottom-1 right-2 text-white text-5xl"
             onClick={(e) => navigate(`/user/create/`)}
           >
             +

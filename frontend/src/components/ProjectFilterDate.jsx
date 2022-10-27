@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { useUser } from "../context/UserContext";
-function ProjectFilterDate() {
+function ProjectFilterDate({ setFilterApplied }) {
   const { filterProjectsByDate, orderProjectsByDate } = useUser();
   const order = useRef(null);
   const dateFilter = useRef(null);
@@ -69,16 +69,27 @@ function ProjectFilterDate() {
           className="p-2 menu border-white border-2 bg-secondary rounded-box w-full mb-2"
         >
           <li>
-            <button onClick={() => orderProjectsByDate(dateType, "asc")}>
+            <button
+              onClick={() => {
+                orderProjectsByDate(dateType, "asc");
+                setFilterApplied(true);
+              }}
+            >
               Ascendente
             </button>
           </li>
           <li>
-            <button onClick={() => orderProjectsByDate(dateType, "des")}>
+            <button
+              onClick={() => {
+                orderProjectsByDate(dateType, "des");
+                setFilterApplied(true);
+              }}
+            >
               Descendente
             </button>
           </li>
         </ul>
+        <p>Filtrar por fecha: </p>
         <div className="p-2 flex flex-row border-white border-2 rounded-xl">
           <select ref={order} className="inline select select-sm text-black">
             <option className="" value={">"}>
@@ -103,11 +114,7 @@ function ProjectFilterDate() {
                 dateFilter.current.value,
                 order.current.value
               );
-              console.log(
-                dateType,
-                dateFilter.current.value,
-                order.current.value
-              );
+              setFilterApplied(true);
             }}
             className="btn btn-primary btn-sm text-white"
           >

@@ -1,16 +1,29 @@
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 function ProjectCard({ project }) {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const [color, setColor] = useState("");
   const { allStatus } = useUser();
   const estado = allStatus.find(
     (status) => status.id === project.id_estado
   ).estado;
+
+  useEffect(() => {
+    if (project.id_estado == 1) {
+      setColor("badge-success");
+    } else if (project.id_estado == 2) {
+      setColor("badge-warning");
+    } else if (project.id_estado == 3) {
+      setColor("badge-error");
+    } else {
+      setColor("badge-secondary");
+    }
+  }, [color]);
   return (
     <div
-      className={`shadow-lg border-2 border-gray-100 rounded-xl py-2 px-3 m-3 flex flex-col h-fit`}
+      className={`shadow-lg border-2 border-gray-100 rounded-xl py-2 px-3 m-3 flex flex-col h-fit relative`}
       onClick={() => setOpen(~open)}
     >
       <h3
@@ -20,14 +33,18 @@ function ProjectCard({ project }) {
       >
         {project.desc_pro}
       </h3>
-      <div className="grid grid-cols-2 px-3 bg-gray-300 rounded-lg mb-2">
+      <p
+        className={`badge text-white mt-1 mb-3 absolute -top-5 -right-5 ${color}`}
+      >
+        {estado}
+      </p>
+      <div className="grid grid-cols-2 px-3 bg-gray-300 rounded-lg mb-2 relative">
         <p className="font-bold">Registro:</p>
         <p className="text-right">{project.fecha_reg}</p>
         <p className="font-bold">Inicio:</p>
         <p className="text-right">{project.fecha_ini}</p>
         <p className="font-bold">Finalización:</p>
         <p className="text-right">{project.fecha_fin}</p>
-        <p className="badge badge-black text-white mt-1 mb-3">{estado}</p>
       </div>
       <div
         className={`border-primary border-2 overflow-auto rounded-xl p-2 text-justify ${
@@ -35,7 +52,7 @@ function ProjectCard({ project }) {
         }`}
       >
         <p>
-          {project.observaciones
+          {project.observaciones != "na"
             ? project.observaciones
             : "No hay Observaciones"}
         </p>

@@ -82,7 +82,6 @@ function ProjectForm() {
         updateProject({
           ...project,
           id: params.id,
-          fecha_reg: fechaFormateada,
         });
         navigate(`/user`);
       } else {
@@ -215,7 +214,6 @@ function ProjectForm() {
                 </label>
                 <select
                   name="id_estado"
-                  id=""
                   className={`select select-bordered${
                     validation.estado_default
                       ? " select-error"
@@ -223,8 +221,9 @@ function ProjectForm() {
                   }`}
                   value={project.id_estado}
                   onChange={handleChange}
+                  defaultValue={-1}
                 >
-                  <option disabled selected>
+                  <option value={-1} disabled>
                     Seleccione un estado
                   </option>
                   {allStatus.map((state) => {
@@ -272,7 +271,10 @@ function ProjectForm() {
               </button>
               <button
                 className="btn btn-secondary text-white rounded-3xl w-fit"
-                onClick={() => navigate("/user")}
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("/user");
+                }}
               >
                 Cancelar
               </button>

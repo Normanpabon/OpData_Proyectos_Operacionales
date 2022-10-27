@@ -3,7 +3,7 @@ import { useUser } from "../context/UserContext";
 import { useEffect } from "react";
 function UserNavBar() {
   const navigation = useNavigate();
-  const { setUser, unit, getUnitById } = useUser();
+  const { setUser, unit, getUnitById, user } = useUser();
   useEffect(() => {
     getUnitById();
   }, []);
@@ -12,13 +12,13 @@ function UserNavBar() {
     <div className="navbar bg-primary shadow-lg">
       <div className="flex-1">
         <a
-          className="btn btn-ghost text-white normal-case text-xl"
+          className="btn btn-ghost text-white normal-case text-3xl"
           onClick={() => navigation("/user")}
         >
           OpData
         </a>
 
-        <div className="text-center text-lg font-bold flex-1 text-white">
+        <div className="text-center text-2xl font-bold flex-1 text-white">
           {unit}
         </div>
       </div>
@@ -26,7 +26,7 @@ function UserNavBar() {
         <label tabIndex={0} className="m-1 btn btn-square btn-ghost">
           <div className="avatar placeholder">
             <div className="bg-secondary text-white rounded-full w-12">
-              <span>MX</span>
+              <span>{user.name.slice(0, 2)}</span>
             </div>
           </div>
         </label>

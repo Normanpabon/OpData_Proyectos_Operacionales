@@ -3,14 +3,7 @@ import { useUser } from "../context/UserContext";
 import ProjectCard from "./ProjectCard";
 import ProjectFilterBar from "./ProjectFilterBar";
 function ProjectList() {
-  const {
-    filteredProjects,
-    setFilteredProjects,
-    getProjectsByUnit,
-    getAllStatus,
-    orderProjectsByStatus,
-    projects,
-  } = useUser();
+  const { filteredProjects, getProjectsByUnit, getAllStatus } = useUser();
   useEffect(() => {
     getProjectsByUnit();
     getAllStatus();
@@ -19,7 +12,7 @@ function ProjectList() {
     <>
       <div className="h-full shadow-xl rounded-xl pt-2 border-2 border-secondart pb-2">
         <ProjectFilterBar />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 mt-4">
           {filteredProjects.map((project) => {
             return <ProjectCard key={project.id} project={project} />;
           })}

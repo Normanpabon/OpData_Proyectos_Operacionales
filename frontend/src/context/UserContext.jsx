@@ -174,15 +174,23 @@ export function UserContextProvider({ children }) {
         id_estado,
         observaciones,
       } = project;
+      let observacionesSend = "";
+      if (observaciones == "" || observaciones == undefined) {
+        observacionesSend = "na";
+      } else {
+        observacionesSend = observaciones;
+      }
       const { data } = await axios.post(
-        `${opDataRestApi}/proyectos/${user.unit}/${fecha_reg}/${fecha_ini}/${fecha_fin}/${desc_pro}/${id_estado}/${observaciones}`
+        `${opDataRestApi}/proyectos/${user.unit}/${fecha_reg}/${fecha_ini}/${fecha_fin}/${desc_pro}/${id_estado}/${observacionesSend}`
       );
       setProjects([...projects, data]);
       setFilteredProjects([
         ...projects.filter((pro) => pro.id !== data.id),
         data,
       ]);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error.response.data);
+    }
   };
 
   const updateProject = async (project) => {
@@ -198,13 +206,13 @@ export function UserContextProvider({ children }) {
       } = project;
       let observacionesSend = "";
       if (observaciones == "" || observaciones == undefined) {
-        observacionesSend = null;
+        observacionesSend = "na";
       } else {
         observacionesSend = observaciones;
       }
       console.log(observaciones);
       const { data } = await axios.put(
-        `http://localhost:8090/opData/API/V1/proyectos/${id}/${user.unit}/${fecha_reg}/${fecha_ini}/${fecha_fin}/${desc_pro}/${id_estado}/${observacionesSend}`
+        `${opDataRestApi}/proyectos/${id}/${user.unit}/${fecha_reg}/${fecha_ini}/${fecha_fin}/${desc_pro}/${id_estado}/${observacionesSend}`
       );
       setProjects([...projects.filter((pro) => pro.id !== data.id), data]);
       setFilteredProjects([

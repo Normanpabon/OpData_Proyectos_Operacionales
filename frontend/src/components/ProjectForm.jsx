@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { useUser } from "../context/UserContext";
 import { useParams, useNavigate } from "react-router-dom";
 function ProjectForm() {
-  const { projects, allStatus, updateProject, createProject } = useUser();
-  const [validation, setValidation, clearFilter] = useState({});
+  const { projects, allStatus, updateProject, createProject, setAlert } =
+    useUser();
+  const [validation, setValidation] = useState({});
   const navigate = useNavigate();
   const params = useParams();
   const [project, setProject] = useState({
@@ -25,7 +26,7 @@ function ProjectForm() {
     });
   };
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
     const fecha = new Date();
     const fechaFormateada = fecha.toISOString().slice(0, 10);
@@ -76,7 +77,7 @@ function ProjectForm() {
       validationTemp = { ...validationTemp, obs: false };
     }
     setValidation(validationTemp);
-    console.log(validationPass);
+
     if (validationPass) {
       if (params.id) {
         updateProject({
@@ -92,8 +93,12 @@ function ProjectForm() {
         });
         navigate("/user");
       }
+      setAlert("");
+      setTimeout(() => {
+        setAlert(" hidden");
+      }, 5000);
     }
-  };
+  }
 
   const fechaRegistroComponente = (
     <div className="form-control">
@@ -254,7 +259,9 @@ function ProjectForm() {
                   validation.obs ? " textarea-error" : " textarea-secondary"
                 }`}
                 placeholder="Observaciones...."
-                value={project.observaciones}
+                value={
+                  project.observaciones == "na" ? "" : project.observaciones
+                }
                 onChange={handleChange}
               ></textarea>
               <label htmlFor="" className="label">

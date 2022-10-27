@@ -15,6 +15,7 @@ export function UserContextProvider({ children }) {
   const [allStatus, setAllStatus] = useState([]);
   const [unit, setUnit] = useState("");
   const opDataRestApi = "http://localhost:8090/opData/API/V1";
+  const [alert, setAlert] = useState(" hidden");
 
   const clearFilters = () => {
     setFilteredProjects(() => [...projects]);
@@ -219,7 +220,9 @@ export function UserContextProvider({ children }) {
         ...projects.filter((pro) => pro.id !== data.id),
         data,
       ]);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error.response.data);
+    }
   };
 
   return (
@@ -230,10 +233,12 @@ export function UserContextProvider({ children }) {
         user: user,
         unit: unit,
         allStatus: allStatus,
+        alert: alert,
         setProjects: setProjects,
         setFilteredProjects: setFilteredProjects,
         setUser: setUser,
         setAllStatus: setAllStatus,
+        setAlert: setAlert,
         getProjectsByUnit: getProjectsByUnit,
         getAllStatus: getAllStatus,
         getUnitById: getUnitById,

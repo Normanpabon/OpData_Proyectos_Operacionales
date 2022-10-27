@@ -24,6 +24,7 @@ INSERT INTO estado(estado) VALUES ('ANULADO');
 
 INSERT INTO proyecto(unidad_p, fecha_reg, fecha_fin, desc_pro, id_estado) VALUES();
 
+/*Datos de prueba para la bd */
 
 INSERT INTO proyecto(unidad_p, fecha_reg, fecha_ini, fecha_fin, desc_pro, id_estado) VALUES(
     1, '2022-10-05','2022-10-05', '2022-12-05', "Proyecto No 1 prueba", 1
@@ -40,3 +41,41 @@ INSERT INTO proyecto(unidad_p, fecha_reg, fecha_ini, fecha_fin, desc_pro, id_est
 INSERT INTO proyecto(unidad_p, fecha_reg, fecha_ini, fecha_fin, desc_pro, id_estado, observaciones) VALUES(
     4, '2022-10-05', '2022-10-05', '2022-12-05', "Proyecto No 4 prueba", 4, "Anulado por pruebas"
 );
+
+INSERT INTO proyecto(unidad_p, fecha_reg, fecha_fin, desc_pro, id_estado) VALUES(4, '2020-07-09', '2020-07-09', '2020-07-17', "Entendimiento e Implementacion inicial de Guacamole", 3, "");
+
+INSERT INTO proyecto(unidad_p, fecha_reg, fecha_fin, desc_pro, id_estado) VALUES(4, '2020-07-09', '2020-07-12', '2020-08-22', "Depuración Programas Academicos - Chatbot estudiantes nuevos", 3, "");
+
+INSERT INTO proyecto(unidad_p, fecha_reg, fecha_fin, desc_pro, id_estado) VALUES(4, '2020-07-09', '2020-08-12', '2020-09-22', "Implementación Salas de Computo Virtual x Clases(No incluye Practica Libre) - Salas de Computo Virtual - Guacamole", 3, "Se indica que el producto tecnicamente si es capas de permitir el acceso a las maquinas remotas, sin embargo tiene algunas limitantes(Montaje de unidades, Copiado y pegado a traves de la papelera) si se compara con soluciones tipo Citrix o VMWare Horizont.");
+
+INSERT INTO proyecto(unidad_p, fecha_reg, fecha_fin, desc_pro, id_estado) VALUES(4, '2020-08-31', '2020-08-31', '2020-09-04', "Mejoramiento y Optimizacion de los depliegues de los POC con Docker", 3, "");
+
+INSERT INTO proyecto(unidad_p, fecha_reg, fecha_fin, desc_pro, id_estado) VALUES(4, '2020-08-11', '2020-08-11', '2020-08-22', "Integracion Formularios con API de Marketing Cloud Salesforce", 3, "");
+
+INSERT INTO proyecto(unidad_p, fecha_reg, fecha_fin, desc_pro, id_estado) VALUES(4, '2022-01-10', '2022-01-23', '2022-08-19', "Alternativas entrega infraestructura a estudiantes a traves de Contenerizacion", 1, "<VICTOR> 
+Julio 28
+   * Se Presenta la implementacion de la BD MOngo usando un cluster de 3 nodos usando replication a la academia e indican que es funcional.
+   * Se programa capacitacion a los profesores(9 Agosto).
+   * Se solicita por parte de la academia la construccion de un cluster de Haddoop + Spark como siguiente paso.
+Se re-programa(EL profesor no podia asistir a la reunion planteada) la 1era sesion de revision con el profe Diego Diaz para el martes 2 de Agosto.
+La academia indica que para iniciar se debe crear como minimo un nodo de MongoDB y posteriormente hacer cluster de dos nodos (Prof. Diego Diaz).
+ Julio 22
+   * Se esta. la espera de la implementacion de una imagen con Docker(Segun experto de VMWare es posible), ademas nos indica que para este fin podemos usar RANCHER.
+   * Se va a crear una imagen desde cero para mejorar el desempeño de la maquina virtual de Docker.
+ Julio 11-15
+   * Pruebas Motores de BD:
+      * Se hacen pruebas Locales (Portatil VIctor) de uno de los motores de BD (Mongo), usando partitioning usando Docker.
+      * Se esta a la espera de respuesta de USU sobre implementacion de Escritorio con Docker Instalado para hacer pruebas de DOcker Locales(Victor).
+ Julio 4 - 8
+- Se crea Infraestructura usando contenedores (Docker-compose) de MongoDB con 1 nodo. (OK)
+ Junio 20-24
+- Investigando como construir infraestructura de MongoDB con multiples nodos.
+  - Se crean cluster de 3 nodos con replicacion, sisn embargo se esta valindado el acceso desde fuera de los contenedores.
+  - Pendiente generacion de cluster de 3 nodos para hacer sharding.
+");
+
+INSERT INTO proyecto(unidad_p, fecha_reg, fecha_fin, desc_pro, id_estado) VALUES(4, '2022-01-10', '2022-01-23', '2022-08-19', "Verificación Kubernetes (K8S) x Gestion Docker-engine (Open Source)", 1, "Se valida si es posible tener una plataforma de gestion de Contenedores Estable y Open Source:
+- Rancher");
+
+INSERT INTO proyecto(unidad_p, fecha_reg, fecha_fin, desc_pro, id_estado) VALUES(4, '2022-08-05', '2022-08-08', '2022-08-19', "POC Diseño de APi's con OpenApi(Incremento en el desempeño de equipos Back & Front)
+", 1, "Diseño de Soluciones de Software mas eficientes.");

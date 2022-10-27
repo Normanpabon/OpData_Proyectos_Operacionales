@@ -6,7 +6,7 @@ CREATE TABLE Usuarios.ROL(id int AUTO_INCREMENT, rol varchar(16), PRIMARY KEY(id
 
 CREATE TABLE Usuarios.USUARIO(id int AUTO_INCREMENT, cod_ins int, nombre varchar(16),
     apellido varchar(16), username varchar(16), correo varchar(32), rol int,
-    hashed_pass varchar(256), PRIMARY KEY(id), FOREIGN KEY (rol) REFERENCES ROL(id), CONSTRAINT UNQ_username UNIQUE(u));
+    hashed_pass varchar(256), PRIMARY KEY(id), FOREIGN KEY (rol) REFERENCES ROL(id), CONSTRAINT UNQ_username UNIQUE(username));
 
 /* Esta sin probar la de aca abajo*/
 

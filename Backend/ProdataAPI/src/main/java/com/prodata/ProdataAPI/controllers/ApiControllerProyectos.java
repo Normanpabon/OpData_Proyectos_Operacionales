@@ -96,11 +96,11 @@ public class ApiControllerProyectos {
 
         // si la primera fecha es mayor devuelve 0 > 1, si es igual 0
         // Validar que la fecha de inicio sea mayor o igual a la de registro
-
+        /*
         if (!((LocalDate.parse(feIni, DATEFORMATTER)).compareTo(LocalDate.parse(feReg, DATEFORMATTER)) >= 0)) {
 
             throw new ConstraintViolationException("La fecha de inicio debe ser mayor a la fecha de registro.", null);
-        }
+        }*/
 
         // Validar que la fecha de fin sea mayor o igual a la de inicio
         if(!((LocalDate.parse(feEnd, DATEFORMATTER)).compareTo(LocalDate.parse(feIni, DATEFORMATTER)) >= 0)){

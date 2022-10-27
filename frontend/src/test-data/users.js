@@ -19,4 +19,12 @@ export const users = [
     password: "password3",
     unit: 2,
   },
+  {
+    name: "Santiago Molina",
+    role: "jefe",
+    email: "SantiagoM@uao.edu.co",
+    password: "password4",
+    unit: 4,
+  },
+
 ];

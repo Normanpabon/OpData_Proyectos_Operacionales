@@ -1,10 +1,18 @@
 import { useUser } from "../context/UserContext";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function ProjectFilterStatus({ setFilterApplied }) {
   const { allStatus, filterProjectsByStatus, orderProjectsByStatus } =
     useUser();
-  const status = useRef(null);
+  const [statusArray, setStatusArray] = useState();
+  useEffect(() => {
+    var statusArrayTemp = {};
+    allStatus.map((status) => {
+      statusArrayTemp = { ...statusArrayTemp, [status.id]: false };
+    });
+    setStatusArray(statusArrayTemp);
+  }, []);
+
   return (
     <div className="dropdown">
       <label tabIndex={0} className="btn btn-primary text-white btn-sm m-1">
@@ -35,19 +43,32 @@ function ProjectFilterStatus({ setFilterApplied }) {
           </p>
         </li>
         <li>
-          <div className="">
-            <select ref={status} className="inline select select-sm text-black">
-              {allStatus.map((state) => {
-                return (
-                  <option value={state.id} key={state.id}>
-                    {state.estado}
-                  </option>
-                );
-              })}
-            </select>
+          <div className="flex flex-col">
+            {allStatus.map((state) => {
+              return (
+                <div className="form-control " key={state.id}>
+                  <label className="label cursor-pointer">
+                    <span className="label-text text-white">
+                      {state.estado}
+                    </span>
+                    <input
+                      type="checkbox"
+                      name={state.id}
+                      className="checkbox checkbox-primary ml-2"
+                      onChange={(e) => {
+                        setStatusArray({
+                          ...statusArray,
+                          [e.target.name]: e.target.checked,
+                        });
+                      }}
+                    />
+                  </label>
+                </div>
+              );
+            })}
             <button
               onClick={() => {
-                filterProjectsByStatus(status.current.value);
+                filterProjectsByStatus(statusArray);
                 setFilterApplied(true);
               }}
               className="btn btn-primary btn-sm text-white"

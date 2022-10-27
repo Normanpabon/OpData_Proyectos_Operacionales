@@ -92,7 +92,22 @@ export function UserContextProvider({ children }) {
   };
 
   const filterProjectsByStatus = (status) => {
-    setFilteredProjects(projects.filter((item) => item.id_estado == status));
+    var keysArray = [];
+    for (const key in status) {
+      if (status[key]) {
+        keysArray.push(key);
+      }
+    }
+    setFilteredProjects(
+      projects.filter((item) => {
+        for (const key of keysArray) {
+          if (item.id_estado == key) {
+            return true;
+          }
+        }
+        return false;
+      })
+    );
     console.log(filteredProjects);
   };
 

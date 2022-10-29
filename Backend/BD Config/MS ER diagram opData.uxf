@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.0.0">
-  <zoom_level>16</zoom_level>
+  <zoom_level>9</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1440</x>
-      <y>912</y>
-      <w>352</w>
-      <h>160</h>
+      <x>918</x>
+      <y>702</y>
+      <w>198</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>*unidad*
 bg=pink
@@ -21,10 +21,10 @@ nombre_unidad    varchar(128)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1424</x>
-      <y>272</y>
-      <w>336</w>
-      <h>272</h>
+      <x>909</x>
+      <y>342</y>
+      <w>180</w>
+      <h>153</h>
     </coordinates>
     <panel_attributes>*usuario*
 bg=pink
@@ -35,17 +35,17 @@ nombre     Varchar(64)
 apellido     Varchar(64)
 username Varchar(64)
 correo       Varchar(64)
-*rol            INT &lt;FK&gt;*
+rol           Varchar(32)
 hashed_pass   Varchar(1024)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>720</x>
-      <y>880</y>
-      <w>336</w>
-      <h>272</h>
+      <x>513</x>
+      <y>684</y>
+      <w>189</w>
+      <h>153</h>
     </coordinates>
     <panel_attributes>*proyecto*
 bg=pink
@@ -65,10 +65,10 @@ observaciones Varchar(12000)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>656</x>
-      <y>240</y>
-      <w>336</w>
-      <h>192</h>
+      <x>477</x>
+      <y>324</y>
+      <w>189</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>*preferencias*
 bg=pink
@@ -84,10 +84,10 @@ fuente         INT
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1904</x>
-      <y>640</y>
-      <w>432</w>
-      <h>128</h>
+      <x>765</x>
+      <y>540</y>
+      <w>243</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>Se coloca relacion de 0 a muchos,
 puesto que si el usuario es admin
@@ -100,10 +100,10 @@ bg=yellow
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1040</x>
-      <y>928</y>
-      <w>432</w>
-      <h>80</h>
+      <x>693</x>
+      <y>711</y>
+      <w>243</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..n
@@ -114,10 +114,10 @@ estan asignados a &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>976</x>
-      <y>288</y>
-      <w>480</w>
-      <h>80</h>
+      <x>657</x>
+      <y>351</y>
+      <w>270</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..1
@@ -128,10 +128,10 @@ personaliza la interfaz de &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1600</x>
-      <y>528</y>
-      <w>176</w>
-      <h>416</h>
+      <x>1008</x>
+      <y>486</y>
+      <w>99</w>
+      <h>234</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -142,10 +142,10 @@ administra &gt;</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>624</x>
-      <y>0</y>
-      <w>432</w>
-      <h>112</h>
+      <x>459</x>
+      <y>189</y>
+      <w>243</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>Un usuario nuevo se le aplica la 
 preferencia con id:1, la cual seria
@@ -156,10 +156,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>704</x>
-      <y>1280</y>
-      <w>432</w>
-      <h>112</h>
+      <x>504</x>
+      <y>909</y>
+      <w>243</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>Los jefes de unidad solo pueden mod
 proyectos asignados a la unidad que
@@ -170,10 +170,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>112</x>
-      <y>272</y>
-      <w>304</w>
-      <h>240</h>
+      <x>171</x>
+      <y>342</y>
+      <w>171</w>
+      <h>135</h>
     </coordinates>
     <panel_attributes>*log*
 bg=blue
@@ -189,10 +189,10 @@ usuario       Varchar()</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>624</x>
-      <y>160</y>
-      <w>1728</w>
-      <h>448</h>
+      <x>459</x>
+      <y>279</y>
+      <w>729</w>
+      <h>252</h>
     </coordinates>
     <panel_attributes>Servicio usuarios
 --
@@ -204,10 +204,10 @@ fg=red</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>0</x>
-      <y>784</y>
-      <w>1264</w>
-      <h>480</h>
+      <x>108</x>
+      <y>630</y>
+      <w>711</w>
+      <h>270</h>
     </coordinates>
     <panel_attributes>Servicio proyectos
 --
@@ -221,10 +221,10 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>1376</x>
-      <y>784</y>
-      <w>496</w>
-      <h>480</h>
+      <x>882</x>
+      <y>630</y>
+      <w>279</w>
+      <h>270</h>
     </coordinates>
     <panel_attributes>Servicio unidades
 --
@@ -237,10 +237,10 @@ fg=red</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>32</x>
-      <y>144</y>
-      <w>496</w>
-      <h>480</h>
+      <x>126</x>
+      <y>270</y>
+      <w>279</w>
+      <h>270</h>
     </coordinates>
     <panel_attributes>Servicio log
 --
@@ -253,10 +253,10 @@ fg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>64</x>
-      <y>864</y>
-      <w>336</w>
-      <h>240</h>
+      <x>144</x>
+      <y>675</y>
+      <w>189</w>
+      <h>135</h>
     </coordinates>
     <panel_attributes>*estado*
 bg=pink
@@ -270,10 +270,10 @@ estado         Varchar(32)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>384</x>
-      <y>960</y>
-      <w>368</w>
-      <h>80</h>
+      <x>324</x>
+      <y>729</y>
+      <w>207</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -282,57 +282,29 @@ m2=0..1
     <additional_attributes>10.0;20.0;210.0;20.0</additional_attributes>
   </element>
   <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1984</x>
-      <y>272</y>
-      <w>336</w>
-      <h>160</h>
-    </coordinates>
-    <panel_attributes>*rol*
-bg=pink
---
-*id              INT         &lt;PK&gt;*
-rol               Varchar(32)
-layer=1</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1744</x>
-      <y>336</y>
-      <w>272</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>lt=-
-m1=1
-m2=1
-tiene un &gt;</panel_attributes>
-    <additional_attributes>150.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1808</x>
-      <y>64</y>
-      <w>544</w>
-      <h>112</h>
+      <x>918</x>
+      <y>171</y>
+      <w>315</w>
+      <h>99</h>
     </coordinates>
     <panel_attributes>El aplicativo inicia con 3 roles por defecto
 - Administrador. 
 - Jefe de unidad.
 - No asignado.
+Estos se mapean en un ENUM dentro de la API
+ ENUM&lt; JefeUnidad, Administrador, NoAsignado &gt;
 bg=yellow</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>0</x>
-      <y>1296</y>
-      <w>352</w>
-      <h>144</h>
+      <x>108</x>
+      <y>918</y>
+      <w>198</w>
+      <h>81</h>
     </coordinates>
     <panel_attributes>El aplicativo inicia con 4 estados 
 - Activo

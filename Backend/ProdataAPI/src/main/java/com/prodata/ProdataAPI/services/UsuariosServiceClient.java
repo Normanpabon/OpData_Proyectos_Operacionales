@@ -1,7 +1,6 @@
 package com.prodata.ProdataAPI.services;
 
 import com.prodata.ProdataAPI.dto.msUsuarios.Preferencia;
-import com.prodata.ProdataAPI.dto.msUsuarios.Rol;
 import com.prodata.ProdataAPI.dto.msUsuarios.Usuario;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -25,12 +24,12 @@ public class UsuariosServiceClient {
         return this.webClient.post().uri("/usuario/login/{pass}/{username}", pass, username)
                 .retrieve().bodyToMono(Long.class);
     }
-
+    /*
     public Mono<Rol> getRolByUid(int uid){
         return this.webClient.post().uri("/usuario/getRol/{uid}", uid).retrieve()
                 .bodyToMono(Rol.class);
 
-    }
+    }*/
 
     // GETS
 
@@ -60,29 +59,8 @@ public class UsuariosServiceClient {
 
     }
 
-    // Roles
 
-    // Gets
 
-    public Flux<Rol> getAllRoles(){
-        return this.webClient.get().uri("/rol/roles").retrieve().bodyToFlux(Rol.class);
-    }
-
-    public Mono<Rol> getRolById(int id){
-        return this.webClient.get().uri("/rol/{id}", id).retrieve().bodyToMono(Rol.class);
-    }
-
-    // Posts
-
-    public Mono<Rol> postRol(String rol){
-        return this.webClient.post().uri("/rol/{rol}", rol).retrieve().bodyToMono(Rol.class);
-    }
-
-    // Updates
-
-    public Mono<Rol> updateRol(int id, String rol){
-        return this.webClient.put().uri("/rol/{id}/{rol}", id, rol).retrieve().bodyToMono(Rol.class);
-    }
 
     // Preferencias
 

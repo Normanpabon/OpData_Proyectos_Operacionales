@@ -80,7 +80,18 @@
 			<artifactId>springdoc-openapi-webflux-ui</artifactId>
 			<version>1.6.12</version>
 		</dependency>
+		<!-- Spring security -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>0.11.2</version>
+		</dependency>
 	</dependencies>
+
 
 	<build>
 		<plugins>

@@ -1,7 +1,6 @@
 package com.prodata.ProdataAPI.controllers;
 
 import com.prodata.ProdataAPI.dto.msUsuarios.Preferencia;
-import com.prodata.ProdataAPI.dto.msUsuarios.Rol;
 import com.prodata.ProdataAPI.dto.msUsuarios.Usuario;
 import com.prodata.ProdataAPI.services.UsuariosServiceClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +27,13 @@ public class ApiControllerUsuarios {
         return usuariosServiceClient.tryLogin(pass, user);
     }
 
+    /*
+
     @PostMapping("userRol/{uid}")
     @ResponseStatus(HttpStatus.OK)
     public Mono<Rol> rolByUid(@PathVariable int uid){
         return usuariosServiceClient.getRolByUid(uid);
-    }
+    }*/
 
     // Gets
 
@@ -74,37 +75,7 @@ public class ApiControllerUsuarios {
     }
 
 
-    // Metodos roles
 
-    // Gets
-
-    @GetMapping("/rol/roles")
-    @ResponseStatus(HttpStatus.OK)
-    public Flux<Rol> listRoles(){
-        return usuariosServiceClient.getAllRoles();
-    }
-
-    @GetMapping("/rol/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public Mono<Rol> getRolById(@PathVariable int id){
-        return usuariosServiceClient.getRolById(id);
-    }
-
-    // Posts
-
-    @PostMapping("/rol/{rol}")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Mono<Rol> saveRole(@PathVariable String rol){
-        return usuariosServiceClient.postRol(rol);
-    }
-
-    // Puts
-
-    @PutMapping("/rol/{id}/{rol}")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Mono<Rol> updateRol(@PathVariable int id,@PathVariable String rol){
-        return usuariosServiceClient.updateRol(id, rol);
-    }
 
     // Metodos preferencias
 

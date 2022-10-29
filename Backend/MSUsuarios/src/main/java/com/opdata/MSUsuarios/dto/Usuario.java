@@ -28,7 +28,7 @@ public class Usuario {
 
     private String correo;
 
-    private int rol;
+    private String rol;
 
     private String hashed_pass;
 

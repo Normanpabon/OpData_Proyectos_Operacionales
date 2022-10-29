@@ -1,19 +1,13 @@
 package com.opdata.MSUsuarios.controllers;
 
 
-import com.opdata.MSUsuarios.dto.Rol;
 import com.opdata.MSUsuarios.dto.Usuario;
-import com.opdata.MSUsuarios.repository.RolRepository;
 import com.opdata.MSUsuarios.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.time.Duration;
-import java.time.temporal.ChronoUnit;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/MSUsers/V1/usuario/")
@@ -23,8 +17,7 @@ public class UsuarioController {
     @Autowired
     UsuarioRepository usuarioRepository;
 
-    @Autowired
-    RolRepository rolRepository;
+
 
 
     // Metodo usuarios
@@ -91,17 +84,6 @@ public class UsuarioController {
 
     }
 
-    // Obtener rol
-    @PostMapping("/getRol/{id}")
-    Mono<Rol> getRol(@PathVariable int id){
-
-        // Todo : no esta funcionando aun
-
-        return rolRepository.findById((long) id);
-
-
-    }
-
 
 
     // Fin metodos temporales  -------------
@@ -128,7 +110,7 @@ public class UsuarioController {
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Usuario> saveUsuario(@PathVariable int cod_ins, @PathVariable String nombre,
                                      @PathVariable String apellido, @PathVariable String username,
-                                     @PathVariable String correo, @PathVariable int rol,
+                                     @PathVariable String correo, @PathVariable String rol,
                                      @PathVariable String pass){
 
         Usuario tmpUsuario = new Usuario();
@@ -153,7 +135,7 @@ public class UsuarioController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Mono<Usuario> updateUsuario(@PathVariable int id, @PathVariable int cod_ins, @PathVariable String nombre,
                                        @PathVariable String apellido, @PathVariable String username,
-                                       @PathVariable String correo, @PathVariable int rol,
+                                       @PathVariable String correo, @PathVariable String rol,
                                        @PathVariable String pass) {
 
         Usuario  tmpUsuario = new Usuario(id, cod_ins, nombre, apellido, username, correo, rol, pass);

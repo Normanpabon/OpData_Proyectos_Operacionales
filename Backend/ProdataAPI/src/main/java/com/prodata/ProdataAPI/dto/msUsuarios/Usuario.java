@@ -45,6 +45,10 @@ public class Usuario implements UserDetails {
 
     private Boolean habilitado;
 
+    public String getRol(){
+        return rol;
+    }
+
     @Override
     public List<? extends GrantedAuthority> getAuthorities() {
 

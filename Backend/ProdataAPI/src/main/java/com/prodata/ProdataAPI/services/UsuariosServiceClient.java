@@ -41,6 +41,10 @@ public class UsuariosServiceClient {
         return this.webClient.get().uri("/usuario/{id}", id).retrieve().bodyToMono(Usuario.class);
     }
 
+    public Mono<Usuario> getUserbyUsername(String username){
+        return this.webClient.get().uri("/usuario/username/{username}", username).retrieve().bodyToMono(Usuario.class);
+    }
+
     // POSTs
 
     public Mono<Usuario> postUsuario(int cod_ins, String nombre, String apellido, String username,

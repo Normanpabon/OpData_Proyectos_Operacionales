@@ -16,7 +16,7 @@ public interface UsuarioRepository extends R2dbcRepository<Usuario, Long> {
     Mono<Usuario> getLastUserAdded();
 
     // Obtener usuario por username
-    @Query("SELECT usuario.id FROM usuario WHERE usuario.username=:user")
+    @Query("SELECT * FROM usuario WHERE usuario.username=:user")
     Mono<Usuario> getUserByUsername(String user);
 
     @Query("SELECT IFNULL( (SELECT usuario.id FROM usuario WHERE usuario.username=:user) , -1)")

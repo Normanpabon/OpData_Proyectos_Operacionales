@@ -16,7 +16,7 @@ import javax.validation.constraints.Positive;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/opData/API/V1/unidades/")
+@RequestMapping("/opData/API/V2/unidades/")
 @Validated
 public class ApiControllerUnidades {
 

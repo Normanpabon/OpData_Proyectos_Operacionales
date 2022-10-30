@@ -13,7 +13,7 @@ import javax.validation.ConstraintViolationException;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/opData/API/V1/users/")
+@RequestMapping("/opData/API/V2/users/")
 public class ApiControllerUsuarios {
 
     @Autowired

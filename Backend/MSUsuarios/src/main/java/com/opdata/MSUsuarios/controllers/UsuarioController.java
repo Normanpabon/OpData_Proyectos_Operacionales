@@ -104,6 +104,12 @@ public class UsuarioController {
         return usuarioRepository.findById((long) id );
     }
 
+    @GetMapping("/username/{user}")
+    @ResponseStatus(HttpStatus.OK)
+    Mono<Usuario> usuarioByUsername(@PathVariable String user){
+        return usuarioRepository.getUserByUsername(user);
+    }
+
     // POSTs Usuario
 
     @PostMapping("/{cod_ins}/{nombre}/{apellido}/{username}/{correo}/{rol}/{pass}")

@@ -20,6 +20,7 @@ public class UsuariosServiceClient {
     // Usuarios
 
 
+    @Deprecated
     public Mono<Long> tryLogin(String pass, String username){
         return this.webClient.post().uri("/usuario/login/{pass}/{username}", pass, username)
                 .retrieve().bodyToMono(Long.class);

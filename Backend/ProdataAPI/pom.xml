@@ -14,7 +14,10 @@
 	<name>ProdataAPI</name>
 	<description>Prodata REST api</description>
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<io.jsonwebtoken.version>0.11.2</io.jsonwebtoken.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -87,8 +90,20 @@
 		</dependency>
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>${io.jsonwebtoken.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>${io.jsonwebtoken.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-jackson</artifactId>
-			<version>0.11.2</version>
+			<version>${io.jsonwebtoken.version}</version>
+			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 

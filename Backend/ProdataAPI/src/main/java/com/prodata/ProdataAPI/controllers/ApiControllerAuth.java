@@ -16,15 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 @AllArgsConstructor
-@RestController()
-@RequestMapping("/opData/API/V2/")
+@RestController
 public class ApiControllerAuth {
 
     private JWTUtil jwtUtil;
     private PBKDF2Encoder passEncoder;
     private UsuariosServiceClient usuariosServiceClient;
 
-    @PostMapping("/login")
+    @PostMapping("/opData/API/V2/login")
     public Mono<ResponseEntity<AuthResponse>> login(@RequestBody AuthRequest request){
 
         return usuariosServiceClient.getUserbyUsername(request.getUsername())

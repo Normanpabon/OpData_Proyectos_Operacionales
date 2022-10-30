@@ -25,7 +25,8 @@ public class WebSecurityConfig {
     private SecurityContextRepo securityContextRepo;
 
 
-
+    // Filtros para solicitudes
+    // Todo : Dejar el swagger detras de un login distinto solo para devs, o bien, deshabilitarlo en produccion
     @Bean
     public SecurityWebFilterChain securitygWebFilterChain(ServerHttpSecurity http) {
         return http
@@ -42,8 +43,12 @@ public class WebSecurityConfig {
                 .securityContextRepository(securityContextRepo)
                 .authorizeExchange()
                 .pathMatchers(HttpMethod.OPTIONS).permitAll()
-                .pathMatchers("/login").permitAll()
+                .pathMatchers("/opData/API/V2/login").permitAll()
+                .pathMatchers("/OpData-API-Docs/swagger", "/OpData-API-Docs/**",
+                        "/OpData-API-Docs/swagger/**").permitAll()
                 .anyExchange().authenticated()
                 .and().build();
     }
+
+
 }

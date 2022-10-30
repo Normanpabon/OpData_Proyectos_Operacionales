@@ -30,19 +30,13 @@ public class SecurityContextRepo implements ServerSecurityContextRepository {
     @Override
     public Mono<SecurityContext> load(ServerWebExchange swe) {
         return Mono.justOrEmpty(swe.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION))
-                .filter(authHeader -> authHeader.startsWith("Bearer "))
+                .filter(authHeader -> authHeader.startsWith("Opdata "))
                 .flatMap(authHeader -> {
                     String authToken = authHeader.substring(7);
                     Authentication auth = new UsernamePasswordAuthenticationToken(authToken, authToken);
                     return this.authenticationManager.authenticate(auth).map(SecurityContextImpl::new);
                 });
     }
-    /*
-    @Bean
-    public SecurityFilterChain filterChainSwagger(HttpSecurity http) throws Exception{
-        http.authorizeHttpRequests((swaggerRequest) -> swaggerRequest.antMatchers("/OpData-API-Docs/swagger", "/OpData-API-Docs/**",
-                "/OpData-API-Docs/swagger/**")).httpBasic(Customizer.withDefaults());
 
-        return http.build();
-    }*/
+
 }

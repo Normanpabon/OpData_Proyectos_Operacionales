@@ -26,10 +26,14 @@ INSERT INTO Usuarios.PREFERENCIA(orden_pro, tema, fuente) VALUES (1, 1, 1);
 /* Creacion datos de prueba */
 
 INSERT INTO Usuarios.USUARIO(cod_ins, nombre, apellido, username, correo, rol, hashed_pass) VALUES (2201000,
-    'Juan', 'Gallego', 'juan.gallego', 'juan.gallego@uao.edu.com', "JefeUnidad", 'juan123' );
+    'Juan', 'Gallego', 'juan.gallego', 'juan.gallego@uao.edu.com', "ROLE_JefeUnidad", 'juan123' );
 
 INSERT INTO Usuarios.USUARIO(cod_ins, nombre, apellido, username, correo, rol, hashed_pass) VALUES (2201001,
-    'Miguel', 'Gallego', 'Miguel.gallego', 'Miguel.gallego@uao.edu.com', "JefeUnidad", 'miguel123' );
+    'Miguel', 'Gallego', 'Miguel.gallego', 'Miguel.gallego@uao.edu.com', "ROLE_JefeUnidad", 'miguel123' );
 
 INSERT INTO Usuarios.USUARIO(cod_ins, nombre, apellido, username, correo, rol, hashed_pass) VALUES (2201002,
-    'Admin', 'ApellidoAdmin', 'admin.opdata', 'admin.opdata@uao.edu.com', "JefeUnidad", 'toor' );
+    'Fulano', 'Rodriguez', 'Fulano.Rodriguez', 'Fulano.Rodriguez@uao.edu.com', "ROLE_JefeUnidad", 'fulano123' );
+
+
+INSERT INTO Usuarios.USUARIO(cod_ins, nombre, apellido, username, correo, rol, hashed_pass) VALUES (2201003,
+    'Admin', 'Admin', 'Admin.opdata', 'admin.opdata@uao.edu.com', "ROLE_Administrador", 'toor' );

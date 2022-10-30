@@ -1,7 +1,7 @@
 package com.prodata.ProdataAPI.security.JwtModel;
 
 public enum Roles {
-    JefeUnidad, Administrador, NoAsignado
+    ROLE_JefeUnidad, ROLE_Administrador, ROLE_NoAsignado
 
 }
 

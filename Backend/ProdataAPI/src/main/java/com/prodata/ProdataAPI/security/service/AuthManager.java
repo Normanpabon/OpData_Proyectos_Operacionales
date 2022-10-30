@@ -32,6 +32,7 @@ public class AuthManager implements ReactiveAuthenticationManager {
                     //List<String> rolesMap = claims.get("role", List.class);
                     List<String> rolesMap = new ArrayList<>();
                     rolesMap.add(claims.get("role", String.class));
+                    System.out.println(rolesMap.toString());
                     return new UsernamePasswordAuthenticationToken(
                             username,
                             null,

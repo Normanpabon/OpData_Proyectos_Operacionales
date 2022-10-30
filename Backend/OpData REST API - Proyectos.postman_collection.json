@@ -1,18 +1,38 @@
 {
 	"info": {
-		"_postman_id": "2dfe9c5d-e6b0-43c3-be4f-2c671687574c",
-		"name": "OpData REST API : Proyectos",
+		"_postman_id": "419caeaa-78e3-4300-bd49-767e0f6cece7",
+		"name": "OpData REST API : Proyectos Copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Obtener todos los proyectos",
 			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "dadas",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "dada",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "OpdataKey eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSmVmZVVuaWRhZCIsInN1YiI6Imp1YW4uZ2FsbGVnbyIsImlhdCI6MTY2NzE1MjQxMywiZXhwIjoxNjY3MTU3NDEzfQ.MXAz5p6wn9jvKfQuIakO7yf2MVe8N1RLcvA66OjNkDM",
+						"type": "default"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8090/opData/API/V1/proyectos/",
-					"protocol": "http",
+					"raw": "localhost:8090/opData/API/V1/proyectos/",
 					"host": [
 						"localhost"
 					],
@@ -200,6 +220,37 @@
 						"proyectos",
 						"estado",
 						"{est}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"juan.gallego\",\r\n  \"password\": \"juan123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/opData/API/V2/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"opData",
+						"API",
+						"V2",
+						"login"
 					]
 				}
 			},

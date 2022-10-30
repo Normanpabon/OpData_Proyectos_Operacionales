@@ -19,7 +19,7 @@ import java.time.format.DateTimeFormatter;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/opData/API/V1/proyectos/")
+@RequestMapping("/opData/API/V2/proyectos/")
 @Validated
 public class ApiControllerProyectos {
 

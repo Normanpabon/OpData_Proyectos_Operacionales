@@ -1,4 +1,4 @@
-package com.prodata.ProdataAPI.dto.msUsuarios;
+package com.prodata.ProdataAPI.security.JwtModel;
 
 public enum Roles {
     JefeUnidad, Administrador, NoAsignado

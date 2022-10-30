@@ -6,6 +6,7 @@ import com.prodata.ProdataAPI.services.ProyectosServiceClient;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -31,12 +32,14 @@ public class ApiControllerProyectos {
     // GET Proyectos
 
     @GetMapping("/")
+    @PreAuthorize("hasRole('Administrador')")
     @ResponseStatus(HttpStatus.OK)
     public Flux<Proyecto> getAll(){
         return proyectosServiceClient.getProyectos();
     }
 
     @GetMapping("/unidad/{id}")
+    @PreAuthorize("hasRole('Administrador') or hasRole('JefeUnidad')")
     @ResponseStatus(HttpStatus.OK)
     public Flux<Proyecto> getAllByUnidad(@PathVariable @Positive(message = "El id debe ser mayor a 0 ") @NotNull(message = "Debe suministrarse un id") int id){
         return proyectosServiceClient.getProyectosByUnidad(id);
@@ -44,6 +47,7 @@ public class ApiControllerProyectos {
 
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('Administrador') or hasRole('JefeUnidad')")
     @ResponseStatus(HttpStatus.OK)
     public Mono<Proyecto> getProyectoBy(@PathVariable @Positive(message = "El id debe ser mayor a 0 ") @NotNull(message = "Debe suministrarse un id") int id){
         return proyectosServiceClient.getProyectoById(id);
@@ -53,12 +57,14 @@ public class ApiControllerProyectos {
     // GET Estado
 
     @GetMapping("/estado/{id}")
+    @PreAuthorize("hasRole('Administrador') or hasRole('JefeUnidad')")
     @ResponseStatus(HttpStatus.OK)
     public Mono<Estado> getEstadoById(@PathVariable @Positive(message = "El id debe ser mayor a 0 ") @NotNull(message = "Debe suministrarse un id") int id){
         return proyectosServiceClient.getEstadoById(id);
     }
 
     @GetMapping("/estado/all")
+    @PreAuthorize("hasRole('Administrador') or hasRole('JefeUnidad')")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Flux<Estado> getAllEstados(){
         return proyectosServiceClient.getEstados();
@@ -82,6 +88,7 @@ public class ApiControllerProyectos {
  */
 
     @PostMapping("/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}")
+    @PreAuthorize("hasRole('Administrador') or hasRole('JefeUnidad')")
     @ResponseStatus(HttpStatus.CREATED)
     @Validated
     public Mono<Proyecto> createProyecto(@PathVariable @Positive(message = "El id debe ser mayor a 0 ") @NotNull(message = "La unidad asociada es obligatoria.") int unidad,
@@ -132,6 +139,7 @@ public class ApiControllerProyectos {
 
     // Metodo post si no se envia observacion
     @PostMapping("/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}")
+    @PreAuthorize("hasRole('Administrador') or hasRole('JefeUnidad')")
     @ResponseStatus(HttpStatus.CREATED)
     @Validated
     public Mono<Proyecto> createProyecto(@PathVariable @Positive(message = "El id debe ser mayor a 0 ") @NotNull(message = "La unidad asociada es obligatoria.") int unidad,
@@ -176,6 +184,7 @@ public class ApiControllerProyectos {
     }
 
     @PostMapping("/estado/{est}")
+    @PreAuthorize("hasRole('Administrador')")
     @ResponseStatus(HttpStatus.CREATED)
     public void createEstado(@PathVariable  @NotBlank(message = "El estado debe tener un nombre.") String est){
         proyectosServiceClient.saveEstado(est);
@@ -184,6 +193,7 @@ public class ApiControllerProyectos {
     // PUT Proyectos y estado
 
     @PutMapping("/{id}/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}")
+    @PreAuthorize("hasRole('Administrador') or hasRole('JefeUnidad')")
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Proyecto> updateProyecto(@PathVariable @Positive(message = "El id debe ser mayor a 0 ") @NotNull int id, @PathVariable  @NotNull(message = "La unidad asociada es obligatoria.") int unidad,
                                          @PathVariable @NotBlank(message = "La fecha de registro es obligatoria.") String feReg,
@@ -225,6 +235,7 @@ public class ApiControllerProyectos {
     }
 
     @PutMapping("/estado/{id}/{estado}")
+    @PreAuthorize("hasRole('Administrador')")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Mono<Estado> updateEstado(@PathVariable @Positive(message = "El id debe ser mayor a 0 ") @NotNull int id,
                                      @PathVariable  @NotBlank(message = "El estado debe tener un nombre.") String estado){

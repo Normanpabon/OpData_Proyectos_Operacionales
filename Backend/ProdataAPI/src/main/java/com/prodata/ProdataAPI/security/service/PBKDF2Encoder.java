@@ -37,6 +37,8 @@ public class PBKDF2Encoder implements PasswordEncoder {
 
         /*
         try {
+            // Genera una instancia del algoritmo sha512 para codificar y usa de secreto la llave asignada en propiedades
+            // retorna si es exitoso, la clave codificada a base64
             byte[] result = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA512")
                     .generateSecret(new PBEKeySpec(rawPassword.toString().toCharArray(), secret.getBytes(), iteration, keylength))
                     .getEncoded();

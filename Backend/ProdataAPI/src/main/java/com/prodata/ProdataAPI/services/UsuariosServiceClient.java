@@ -49,18 +49,18 @@ public class UsuariosServiceClient {
     // POSTs
 
     public Mono<Usuario> postUsuario(int cod_ins, String nombre, String apellido, String username,
-                                     String correo, int rol, String pass){
-        return this.webClient.post().uri("/usuario/{cod_ins}/{nombre}/{apellido}/{username}/{correo}/{rol}/{pass}",
-                cod_ins, nombre, apellido, username, correo, rol, pass).retrieve().bodyToMono(Usuario.class);
+                                     String correo, int rol, String pass, int habilitado){
+        return this.webClient.post().uri("/usuario/{cod_ins}/{nombre}/{apellido}/{username}/{correo}/{rol}/{pass}/{habilitado}",
+                cod_ins, nombre, apellido, username, correo, rol, pass, habilitado).retrieve().bodyToMono(Usuario.class);
 
     }
 
     // Updates
 
     public Mono<Usuario> updateUsuario(int id,int cod_ins, String nombre, String apellido, String username,
-                                       String correo, int rol, String pass){
-        return this.webClient.post().uri("/usuario/{id}/{cod_ins}/{nombre}/{apellido}/{username}/{correo}/{rol}/{pass}", id,
-                cod_ins, nombre, apellido, username, correo, rol, pass).retrieve().bodyToMono(Usuario.class);
+                                       String correo, int rol, String pass, int habilitado){
+        return this.webClient.post().uri("/usuario/{id}/{cod_ins}/{nombre}/{apellido}/{username}/{correo}/{rol}/{pass}/{habilitado}", id,
+                cod_ins, nombre, apellido, username, correo, rol, pass, habilitado).retrieve().bodyToMono(Usuario.class);
 
     }
 

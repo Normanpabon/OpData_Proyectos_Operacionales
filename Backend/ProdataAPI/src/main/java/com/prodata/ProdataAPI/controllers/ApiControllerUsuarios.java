@@ -29,6 +29,14 @@ public class ApiControllerUsuarios {
         return usuariosServiceClient.tryLogin(pass, user);
     }
 
+    @GetMapping("/{username}")
+    @PreAuthorize("hasRole('Administrador') or hasRole('JefeUnidad')")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<Usuario> getUserByUsername(@PathVariable String username){
+        return usuariosServiceClient.getUserbyUsername(username);
+    }
+
+
     /*
 
     @PostMapping("userRol/{uid}")

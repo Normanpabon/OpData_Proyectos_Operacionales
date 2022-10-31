@@ -112,12 +112,19 @@ public class UsuarioController {
 
     // POSTs Usuario
 
-    @PostMapping("/{cod_ins}/{nombre}/{apellido}/{username}/{correo}/{rol}/{pass}")
+    @PostMapping("/{cod_ins}/{nombre}/{apellido}/{username}/{correo}/{rol}/{pass}/{habilitado}")
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Usuario> saveUsuario(@PathVariable int cod_ins, @PathVariable String nombre,
                                      @PathVariable String apellido, @PathVariable String username,
                                      @PathVariable String correo, @PathVariable String rol,
-                                     @PathVariable String pass){
+                                     @PathVariable String pass, @PathVariable int habilitado){
+
+        Boolean tmp = false;
+
+        if(habilitado == 1){
+            tmp = true;
+        }
+
 
         Usuario tmpUsuario = new Usuario();
 
@@ -128,6 +135,7 @@ public class UsuarioController {
         tmpUsuario.setCorreo(correo);
         tmpUsuario.setRol(rol);
         tmpUsuario.setHashed_pass(pass);
+        tmpUsuario.setHabilitado(tmp);
 
         usuarioRepository.save(tmpUsuario).subscribe();
 
@@ -137,14 +145,20 @@ public class UsuarioController {
 
     // PUT
 
-    @PutMapping("/{id}/{cod_ins}/{nombre}/{apellido}/{username}/{correo}/{rol}/{pass}")
+    @PutMapping("/{id}/{cod_ins}/{nombre}/{apellido}/{username}/{correo}/{rol}/{pass}/{habilitado}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Mono<Usuario> updateUsuario(@PathVariable int id, @PathVariable int cod_ins, @PathVariable String nombre,
                                        @PathVariable String apellido, @PathVariable String username,
                                        @PathVariable String correo, @PathVariable String rol,
-                                       @PathVariable String pass) {
+                                       @PathVariable String pass, @PathVariable int habilitado) {
 
-        Usuario  tmpUsuario = new Usuario(id, cod_ins, nombre, apellido, username, correo, rol, pass);
+        Boolean tmp = false;
+
+        if(habilitado == 1){
+            tmp = true;
+        }
+
+        Usuario  tmpUsuario = new Usuario(id, cod_ins, nombre, apellido, username, correo, rol, pass, tmp);
 
         usuarioRepository.save(tmpUsuario).subscribe();
 

@@ -29,7 +29,7 @@ public class ApiControllerUsuarios {
         return usuariosServiceClient.tryLogin(pass, user);
     }
 
-    @GetMapping("/{username}")
+    @GetMapping("username/{username}")
     @PreAuthorize("hasRole('Administrador') or hasRole('JefeUnidad')")
     @ResponseStatus(HttpStatus.OK)
     public Mono<Usuario> getUserByUsername(@PathVariable String username){
@@ -64,28 +64,28 @@ public class ApiControllerUsuarios {
 
     // Posts
 
-    @PostMapping("/{cod_ins}/{nombre}/{apellido}/{username}/{correo}/{rol}/{pass}")
+    @PostMapping("/{cod_ins}/{nombre}/{apellido}/{username}/{correo}/{rol}/{pass}/{habilitado}")
     @PreAuthorize("hasRole('Administrador')")
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Usuario> createUser(@PathVariable int cod_ins, @PathVariable String nombre,
                                     @PathVariable String apellido, @PathVariable String username,
                                     @PathVariable String correo, @PathVariable int rol,
-                                    @PathVariable String pass) {
+                                    @PathVariable String pass, @PathVariable int habilitado) {
 
-        return usuariosServiceClient.postUsuario(cod_ins, nombre, apellido, username, correo, rol, pass );
+        return usuariosServiceClient.postUsuario(cod_ins, nombre, apellido, username, correo, rol, pass, habilitado );
     }
 
     // Puts
 
-    @PutMapping("/{id}/{cod_ins}/{nombre}/{apellido}/{username}/{correo}/{rol}/{pass}")
+    @PutMapping("/{id}/{cod_ins}/{nombre}/{apellido}/{username}/{correo}/{rol}/{pass}/{habilitado}")
     @PreAuthorize("hasRole('Administrador') or hasRole('JefeUnidad')")
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Usuario> updateUser(@PathVariable int id, @PathVariable int cod_ins, @PathVariable String nombre,
                                     @PathVariable String apellido, @PathVariable String username,
                                     @PathVariable String correo, @PathVariable int rol,
-                                    @PathVariable String pass) {
+                                    @PathVariable String pass, @PathVariable int habilitado) {
 
-        return usuariosServiceClient.updateUsuario(id,cod_ins, nombre, apellido, username, correo, rol, pass );
+        return usuariosServiceClient.updateUsuario(id,cod_ins, nombre, apellido, username, correo, rol, pass, habilitado );
     }
 
 

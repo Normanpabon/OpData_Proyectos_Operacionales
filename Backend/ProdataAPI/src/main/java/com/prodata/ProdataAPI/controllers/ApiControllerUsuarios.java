@@ -3,6 +3,7 @@ package com.prodata.ProdataAPI.controllers;
 import com.prodata.ProdataAPI.dto.msUsuarios.Preferencia;
 import com.prodata.ProdataAPI.dto.msUsuarios.Usuario;
 import com.prodata.ProdataAPI.services.UsuariosServiceClient;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,6 +16,7 @@ import javax.validation.ConstraintViolationException;
 @RestController
 @CrossOrigin
 @RequestMapping("/opData/API/V2/users/")
+@SecurityRequirement(name = "Jwt Authentication")
 public class ApiControllerUsuarios {
 
     @Autowired

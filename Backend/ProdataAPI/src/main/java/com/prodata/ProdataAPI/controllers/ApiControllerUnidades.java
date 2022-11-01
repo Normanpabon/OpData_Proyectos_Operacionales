@@ -3,6 +3,7 @@ package com.prodata.ProdataAPI.controllers;
 
 import com.prodata.ProdataAPI.dto.msUnidades.Unidad;
 import com.prodata.ProdataAPI.services.UnidadesServiceClient;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -20,6 +21,7 @@ import javax.validation.constraints.Positive;
 @CrossOrigin
 @RequestMapping("/opData/API/V2/unidades/")
 @Validated
+@SecurityRequirement(name = "Jwt Authentication")
 public class ApiControllerUnidades {
 
     @Autowired

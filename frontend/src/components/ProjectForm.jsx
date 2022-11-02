@@ -15,7 +15,27 @@ function ProjectForm() {
   });
   useEffect(() => {
     if (params.id) {
-      setProject(projects.find((projectFound) => projectFound.id == params.id));
+      const temp = projects.find(
+        (projectFound) => projectFound.id == params.id
+      );
+      if (!(typeof temp.fecha_reg == "string")) {
+        temp.fecha_reg = `${temp.fecha_reg[0]}-${
+          temp.fecha_reg[1] < 10 ? `0${temp.fecha_reg[1]}` : temp.fecha_reg[1]
+        }-${
+          temp.fecha_reg[2] < 10 ? `0${temp.fecha_reg[2]}` : temp.fecha_reg[2]
+        }`;
+        temp.fecha_ini = `${temp.fecha_ini[0]}-${
+          temp.fecha_ini[1] < 10 ? `0${temp.fecha_ini[1]}` : temp.fecha_ini[1]
+        }-${
+          temp.fecha_ini[2] < 10 ? `0${temp.fecha_ini[2]}` : temp.fecha_ini[2]
+        }`;
+        temp.fecha_fin = `${temp.fecha_fin[0]}-${
+          temp.fecha_fin[1] < 10 ? `0${temp.fecha_fin[1]}` : temp.fecha_fin[1]
+        }-${
+          temp.fecha_fin[2] < 10 ? `0${temp.fecha_fin[2]}` : temp.fecha_fin[2]
+        }`;
+      }
+      setProject(temp);
     }
   }, []);
   const handleChange = (e) => {
@@ -123,11 +143,14 @@ function ProjectForm() {
     <>
       <input type="checkbox" id="my-modal" className="modal-toggle" />
       <div className="modal">
-        <div className="modal-box w-11/12 h-11/12 bg bg-primary over">
+        <div className="modal-box w-11/12 h-11/12 bg bg-secondary over">
           <form
             onSubmit={handleSubmit}
             className="flex flex-col p-3 h-full bg-white rounded-xl border-black border-2 overflow-auto"
           >
+            <h2 className="text-xl font-bold bg-primary -m-2 mb-1 text-white rounded-xl p-2">
+              {params.id ? "Modificación de proyecto" : "Creación de proyecto"}
+            </h2>
             <div className="form-control">
               <label htmlFor="desc_pro" className="label">
                 <span className="label-text font-bold">
@@ -272,12 +295,12 @@ function ProjectForm() {
                 </span>
               </label>
             </div>
-            <div className="self-end mt-3">
-              <button className="btn btn-primary text-white rounded-3xl w-fit mx-3">
+            <div className="mt-2 -ml-3">
+              <button className="btn btn-primary text-white rounded-xl w-fit mx-3">
                 Guardar
               </button>
               <button
-                className="btn btn-secondary text-white rounded-3xl w-fit"
+                className="btn btn-secondary text-white rounded-xl w-fit"
                 onClick={(e) => {
                   e.preventDefault();
                   navigate("/user");

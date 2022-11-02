@@ -5,7 +5,7 @@ import { useState } from "react";
 
 function Login() {
   //Contexto
-  const { setUser } = useUser();
+  const { userAuth } = useUser();
   //Estados
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -13,14 +13,10 @@ function Login() {
   //Otros
   const navigate = useNavigate();
   //Funciones
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const userValidation = users.find(
-      (user) => user.email === username && user.password === password
-    );
+    const userValidation = await userAuth(username, password);
     if (userValidation) {
-      const { name, role, unit } = userValidation;
-      setUser({ name, role, unit });
       navigate("/user", { relative: false });
     } else {
       setIncorrect("");
@@ -36,10 +32,7 @@ function Login() {
           src="/public/Logo_OpData.png"
           className="max-w-[400px] w-full mx-auto mb-0]"
         />
-        <form
-          onSubmit={handleSubmit}
-          className="grid grid-cols-1 mx-auto w-full max-w-[400px]"
-        >
+        <form className="grid grid-cols-1 mx-auto w-full max-w-[400px]">
           <div className={"alert alert-error shadow-lg" + incorrect}>
             <div>
               <svg
@@ -85,7 +78,10 @@ function Login() {
             id="user-password-login-input"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button className="btn btn-primary mt-3 max-w-xs mx-auto text-white border-white hover:border-white">
+          <button
+            onClick={handleSubmit}
+            className="btn btn-primary mt-3 max-w-xs mx-auto text-white border-white hover:border-white"
+          >
             Login
           </button>
         </form>

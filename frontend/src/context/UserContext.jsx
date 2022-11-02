@@ -10,16 +10,24 @@ export const useUser = () => {
 
 export function UserContextProvider({ children }) {
   const [projects, setProjects] = useState([]);
+  const [token, setToken] = useState("");
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [user, setUser] = useState(null);
   const [allStatus, setAllStatus] = useState([]);
   const [unit, setUnit] = useState("");
-  const opDataRestApi = "http://localhost:8090/opData/API/V1";
+  const opDataRestApi = "http://localhost:8090/opData/API/V2";
   const [alert, setAlert] = useState(" hidden");
 
   const clearFilters = () => {
     setFilteredProjects(() => [...projects]);
     console.log(filteredProjects);
+  };
+
+  const formatDate = (fecha) => {
+    const formatedDate = new Date(
+      `${fecha.slice(0, 4)}/${fecha.slice(5, 7)}/${fecha.slice(8)}`
+    );
+    return formatedDate;
   };
 
   const filterProjectsByDate = (dateType, dateFilter, order) => {
@@ -111,6 +119,10 @@ export function UserContextProvider({ children }) {
     console.log(filteredProjects);
   };
 
+  const filterProjectsBySingleStatus = (status) => {
+    setFilteredProjects(projects.filter((item) => item.id_estado === status));
+  };
+
   const orderProjectsByStatus = (order) => {
     const sortedArray = [...filteredProjects];
     sortedArray.sort((a, b) =>
@@ -154,9 +166,29 @@ export function UserContextProvider({ children }) {
 
   const getProjectsByUnit = async () => {
     try {
-      const { data } = await axios.get(
-        `${opDataRestApi}/proyectos/unidad/${user.unit}`
-      );
+      const { data } = await axios({
+        method: "get",
+        url: `${opDataRestApi}/proyectos/unidad/${1}`,
+        headers: { Authorization: `Opdata ${token}` },
+      });
+      data.map((item) => {
+        item.fecha_reg = `${item.fecha_reg[0]}-${
+          item.fecha_reg[1] < 10 ? `0${item.fecha_reg[1]}` : item.fecha_reg[1]
+        }-${
+          item.fecha_reg[2] < 10 ? `0${item.fecha_reg[2]}` : item.fecha_reg[2]
+        }`;
+        item.fecha_ini = `${item.fecha_ini[0]}-${
+          item.fecha_ini[1] < 10 ? `0${item.fecha_ini[1]}` : item.fecha_ini[1]
+        }-${
+          item.fecha_ini[2] < 10 ? `0${item.fecha_ini[2]}` : item.fecha_ini[2]
+        }`;
+        item.fecha_fin = `${item.fecha_fin[0]}-${
+          item.fecha_fin[1] < 10 ? `0${item.fecha_fin[1]}` : item.fecha_fin[1]
+        }-${
+          item.fecha_fin[2] < 10 ? `0${item.fecha_fin[2]}` : item.fecha_fin[2]
+        }`;
+      });
+      console.log(data);
       setProjects([...data]);
       setFilteredProjects(
         [...data].sort((a, b) => (a.id_estado > b.id_estado ? 1 : -1))
@@ -166,7 +198,12 @@ export function UserContextProvider({ children }) {
 
   const getAllStatus = async () => {
     try {
-      const { data } = await axios.get(`${opDataRestApi}/proyectos/estado/all`);
+      const { data } = await axios({
+        method: "get",
+        url: `${opDataRestApi}/proyectos/estado/all`,
+        headers: { Authorization: `Opdata ${token}` },
+      });
+      console.log(data);
       setAllStatus(data);
     } catch (error) {}
   };
@@ -196,9 +233,12 @@ export function UserContextProvider({ children }) {
       } else {
         observacionesSend = observaciones;
       }
-      const { data } = await axios.post(
-        `${opDataRestApi}/proyectos/${user.unit}/${fecha_reg}/${fecha_ini}/${fecha_fin}/${desc_pro}/${id_estado}/${observacionesSend}`
-      );
+      console.log(user);
+      const { data } = await axios({
+        method: "post",
+        url: `${opDataRestApi}/proyectos/${user.id_unidad}/${fecha_reg}/${fecha_ini}/${fecha_fin}/${desc_pro}/${id_estado}/${observacionesSend}`,
+        headers: { Authorization: `Opdata ${token}` },
+      });
       setProjects([...projects, data]);
       setFilteredProjects([
         ...projects.filter((pro) => pro.id !== data.id),
@@ -240,9 +280,46 @@ export function UserContextProvider({ children }) {
     }
   };
 
+  const userAuth = async (user, password) => {
+    try {
+      const { data } = await axios({
+        method: "post",
+        url: `${opDataRestApi}/login`,
+        headers: {},
+        data: { username: user, password: password },
+      });
+      console.log(data);
+      setToken(data.token);
+      const userGet = await axios({
+        method: "get",
+        url: `${opDataRestApi}/users/username/${user}`,
+        headers: { Authorization: `Opdata ${data.token}` },
+      });
+      console.log(userGet.data);
+      const { nombre, apellido, rol, cod_ins } = userGet.data;
+      const unit = await axios({
+        method: "get",
+        url: `${opDataRestApi}/unidades/jefe/${cod_ins}`,
+        headers: { Authorization: `Opdata ${data.token}` },
+      });
+      console.log(unit.data);
+      setUser({
+        nombre: nombre,
+        apellido: apellido,
+        rol: rol,
+        nombre_unidad: unit.data.nombre_unidad,
+        id_unidad: unit.data.id,
+      });
+      return true;
+    } catch (error) {
+      return false;
+    }
+  };
+
   return (
     <UserContext.Provider
       value={{
+        userAuth: userAuth,
         projects: projects,
         filteredProjects: filteredProjects,
         user: user,
@@ -263,6 +340,8 @@ export function UserContextProvider({ children }) {
         orderProjectsByStatus: orderProjectsByStatus,
         filterProjectsByName: filterProjectsByName,
         orderProjectsByName: orderProjectsByName,
+        filterProjectsBySingleStatus: filterProjectsBySingleStatus,
+        formatDate: formatDate,
         clearFilters: clearFilters,
         createProject: createProject,
         updateProject: updateProject,

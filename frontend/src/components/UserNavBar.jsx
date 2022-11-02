@@ -3,11 +3,7 @@ import { useUser } from "../context/UserContext";
 import { useEffect } from "react";
 function UserNavBar() {
   const navigation = useNavigate();
-  const { setUser, unit, getUnitById, user } = useUser();
-  useEffect(() => {
-    getUnitById();
-  }, []);
-
+  const { setUser, user } = useUser();
   return (
     <div className="navbar bg-primary shadow-lg">
       <div className="flex-1">
@@ -19,14 +15,14 @@ function UserNavBar() {
         </a>
 
         <div className="text-center text-2xl font-bold flex-1 text-white">
-          {unit}
+          {user.nombre_unidad}
         </div>
       </div>
       <div className="dropdown dropdown-end">
         <label tabIndex={0} className="m-1 btn btn-square btn-ghost">
           <div className="avatar placeholder">
             <div className="bg-secondary text-white rounded-full w-12">
-              <span>{user.name.slice(0, 2)}</span>
+              <span>{user.nombre.slice(0, 2)}</span>
             </div>
           </div>
         </label>

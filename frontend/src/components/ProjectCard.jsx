@@ -5,10 +5,15 @@ function ProjectCard({ project }) {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [color, setColor] = useState("");
-  const { allStatus } = useUser();
+  const { allStatus, formatDate } = useUser();
   const estado = allStatus.find(
     (status) => status.id === project.id_estado
   ).estado;
+  const options = {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  };
 
   useEffect(() => {
     if (project.id_estado == 1) {
@@ -40,11 +45,17 @@ function ProjectCard({ project }) {
       </p>
       <div className="grid grid-cols-2 px-3 bg-gray-300 rounded-lg mb-2 relative">
         <p className="font-bold">Registro:</p>
-        <p className="text-right">{project.fecha_reg}</p>
+        <p className="text-right">
+          {formatDate(project.fecha_reg).toLocaleString("es-SP", options)}
+        </p>
         <p className="font-bold">Inicio:</p>
-        <p className="text-right">{project.fecha_ini}</p>
+        <p className="text-right">
+          {formatDate(project.fecha_ini).toLocaleString("es-SP", options)}
+        </p>
         <p className="font-bold">Finalización:</p>
-        <p className="text-right">{project.fecha_fin}</p>
+        <p className="text-right">
+          {formatDate(project.fecha_fin).toLocaleString("es-SP", options)}
+        </p>
       </div>
       <div
         className={`border-primary border-2 overflow-auto rounded-xl p-2 text-justify ${

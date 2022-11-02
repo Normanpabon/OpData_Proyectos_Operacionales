@@ -1,22 +1,22 @@
 import { useUser } from "../context/UserContext";
 import { useRef } from "react";
-function ProjectFilterSearch({ setFilterApplied }) {
+function ProjectFilterSearch() {
   const { filterProjectsByName } = useUser();
   const searchBox = useRef(null);
   return (
-    <div className="form-control flex flex-row m-1">
+    <div className="form-control flex flex-row mt-2">
       <input
         ref={searchBox}
         type="text"
-        placeholder="Search…"
-        className="input input-sm input-bordered text-black"
+        placeholder="Buscar por nombre..."
+        className="input input-bordered text-black"
       />
       <button
         onClick={() => {
           filterProjectsByName(searchBox.current.value);
           setFilterApplied(true);
         }}
-        className="btn btn-square btn-sm btn-primary"
+        className="btn btn-square btn-primary"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

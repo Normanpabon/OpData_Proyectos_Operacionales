@@ -36,7 +36,7 @@ export function UserContextProvider({ children }) {
         const finDate = formatDate(project.fecha_fin);
         const today = new Date();
         const diff = (finDate - today) / (1000 * 60 * 60 * 24);
-        if (diff < 7) {
+        if (diff < 7 && diff >=0) {
           return true;
         }
         return false;

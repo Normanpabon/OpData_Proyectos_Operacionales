@@ -1,6 +1,11 @@
 import { useUser } from "../context/UserContext";
 function ProjectQuickFilterButtons({ open }) {
-  const { filterProjectsBySingleStatus, clearFilters } = useUser();
+  const {
+    filterProjectsBySingleStatus,
+    clearFilters,
+    filterProjectsSoonToExpire,
+    filterProjectsExpired,
+  } = useUser();
   return (
     <>
       <label
@@ -75,7 +80,7 @@ function ProjectQuickFilterButtons({ open }) {
       </label>
       <label
         onClick={() => {
-          clearFilters();
+          filterProjectsSoonToExpire();
         }}
         className={`btn btn-primary text-white w-full mt-2`}
       >
@@ -99,7 +104,7 @@ function ProjectQuickFilterButtons({ open }) {
       </label>
       <label
         onClick={() => {
-          clearFilters();
+          filterProjectsExpired();
         }}
         className={`btn btn-primary text-white w-full mt-2`}
       >

@@ -30,6 +30,34 @@ export function UserContextProvider({ children }) {
     return formatedDate;
   };
 
+  const filterProjectsSoonToExpire = () => {
+    setFilteredProjects(
+      projects.filter((project) => {
+        const finDate = formatDate(project.fecha_fin);
+        const today = new Date();
+        const diff = (finDate - today) / (1000 * 60 * 60 * 24);
+        if (diff < 7) {
+          return true;
+        }
+        return false;
+      })
+    );
+  };
+
+  const filterProjectsExpired = () => {
+    setFilteredProjects(
+      projects.filter((project) => {
+        const finDate = formatDate(project.fecha_fin);
+        const today = new Date();
+        const diff = (finDate - today) / (1000 * 60 * 60 * 24);
+        if (diff <= 0) {
+          return true;
+        }
+        return false;
+      })
+    );
+  };
+
   const filterProjectsByDate = (dateType, dateFilter, order) => {
     if (dateType === "reg") {
       setFilteredProjects(
@@ -188,7 +216,6 @@ export function UserContextProvider({ children }) {
           item.fecha_fin[2] < 10 ? `0${item.fecha_fin[2]}` : item.fecha_fin[2]
         }`;
       });
-      console.log(data);
       setProjects([...data]);
       setFilteredProjects(
         [...data].sort((a, b) => (a.id_estado > b.id_estado ? 1 : -1))
@@ -203,7 +230,6 @@ export function UserContextProvider({ children }) {
         url: `${opDataRestApi}/proyectos/estado/all`,
         headers: { Authorization: `Opdata ${token}` },
       });
-      console.log(data);
       setAllStatus(data);
     } catch (error) {}
   };
@@ -266,10 +292,11 @@ export function UserContextProvider({ children }) {
       } else {
         observacionesSend = observaciones;
       }
-      console.log(observaciones);
-      const { data } = await axios.put(
-        `${opDataRestApi}/proyectos/${id}/${user.unit}/${fecha_reg}/${fecha_ini}/${fecha_fin}/${desc_pro}/${id_estado}/${observacionesSend}`
-      );
+      const { data } = await axios({
+        method: "put",
+        url: `${opDataRestApi}/proyectos/${id}/${user.id_unidad}/${fecha_reg}/${fecha_ini}/${fecha_fin}/${desc_pro}/${id_estado}/${observacionesSend}`,
+        headers: { Authorization: `Opdata ${token}` },
+      });
       setProjects([...projects.filter((pro) => pro.id !== data.id), data]);
       setFilteredProjects([
         ...projects.filter((pro) => pro.id !== data.id),
@@ -288,21 +315,18 @@ export function UserContextProvider({ children }) {
         headers: {},
         data: { username: user, password: password },
       });
-      console.log(data);
       setToken(data.token);
       const userGet = await axios({
         method: "get",
         url: `${opDataRestApi}/users/username/${user}`,
         headers: { Authorization: `Opdata ${data.token}` },
       });
-      console.log(userGet.data);
       const { nombre, apellido, rol, cod_ins } = userGet.data;
       const unit = await axios({
         method: "get",
         url: `${opDataRestApi}/unidades/jefe/${cod_ins}`,
         headers: { Authorization: `Opdata ${data.token}` },
       });
-      console.log(unit.data);
       setUser({
         nombre: nombre,
         apellido: apellido,
@@ -334,6 +358,8 @@ export function UserContextProvider({ children }) {
         getProjectsByUnit: getProjectsByUnit,
         getAllStatus: getAllStatus,
         getUnitById: getUnitById,
+        filterProjectsSoonToExpire: filterProjectsSoonToExpire,
+        filterProjectsExpired: filterProjectsExpired,
         filterProjectsByDate: filterProjectsByDate,
         orderProjectsByDate: orderProjectsByDate,
         filterProjectsByStatus: filterProjectsByStatus,

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 import axios from "axios";
 
 export const UserContext = createContext();
@@ -9,12 +9,14 @@ export const useUser = () => {
 };
 
 export function UserContextProvider({ children }) {
-  const [projects, setProjects] = useState([]);
   const [token, setToken] = useState("");
-  const [filteredProjects, setFilteredProjects] = useState([]);
   const [user, setUser] = useState(null);
+  const [users, setUsers] = useState([]);
+  const [projects, setProjects] = useState([]);
+  const [filteredProjects, setFilteredProjects] = useState([]);
   const [allStatus, setAllStatus] = useState([]);
   const [unit, setUnit] = useState("");
+  const [units, setUnits] = useState([]);
   const opDataRestApi = "http://localhost:8090/opData/API/V2";
   const [alert, setAlert] = useState(" hidden");
 
@@ -30,13 +32,57 @@ export function UserContextProvider({ children }) {
     return formatedDate;
   };
 
+  const userAuth = async (user, password) => {
+    try {
+      const { data } = await axios({
+        method: "post",
+        url: `${opDataRestApi}/login`,
+        headers: {},
+        data: { username: user, password: password },
+      });
+      setToken(data.token);
+      const userGet = await axios({
+        method: "get",
+        url: `${opDataRestApi}/users/username/${user}`,
+        headers: { Authorization: `Opdata ${data.token}` },
+      });
+      const { nombre, apellido, rol, cod_ins } = userGet.data;
+      const unit = await axios({
+        method: "get",
+        url: `${opDataRestApi}/unidades/jefe/${cod_ins}`,
+        headers: { Authorization: `Opdata ${data.token}` },
+      });
+      setUser({
+        nombre: nombre,
+        apellido: apellido,
+        rol: rol,
+        nombre_unidad: unit.data.nombre_unidad,
+        id_unidad: unit.data.id,
+        cod_ins: cod_ins,
+      });
+      return rol;
+    } catch (error) {
+      return false;
+    }
+  };
+
+  const getUnitById = async () => {
+    try {
+      const { data } = await axios.get(
+        `${opDataRestApi}/unidades/${user.id_unidad}`
+      );
+      setUnit(data.nombre_unidad);
+    } catch (error) {}
+  };
+
+  //Projects
   const filterProjectsSoonToExpire = () => {
     setFilteredProjects(
       projects.filter((project) => {
         const finDate = formatDate(project.fecha_fin);
         const today = new Date();
         const diff = (finDate - today) / (1000 * 60 * 60 * 24);
-        if (diff < 7 && diff >=0) {
+        if (diff < 7 && diff >= 0) {
           return true;
         }
         return false;
@@ -223,26 +269,6 @@ export function UserContextProvider({ children }) {
     } catch (error) {}
   };
 
-  const getAllStatus = async () => {
-    try {
-      const { data } = await axios({
-        method: "get",
-        url: `${opDataRestApi}/proyectos/estado/all`,
-        headers: { Authorization: `Opdata ${token}` },
-      });
-      setAllStatus(data);
-    } catch (error) {}
-  };
-
-  const getUnitById = async () => {
-    try {
-      const { data } = await axios.get(
-        `${opDataRestApi}/unidades/${user.unit}`
-      );
-      setUnit(data.nombre_unidad);
-    } catch (error) {}
-  };
-
   const createProject = async (project) => {
     try {
       const {
@@ -307,37 +333,69 @@ export function UserContextProvider({ children }) {
     }
   };
 
-  const userAuth = async (user, password) => {
+  const getAllStatus = async () => {
     try {
       const { data } = await axios({
-        method: "post",
-        url: `${opDataRestApi}/login`,
-        headers: {},
-        data: { username: user, password: password },
-      });
-      setToken(data.token);
-      const userGet = await axios({
         method: "get",
-        url: `${opDataRestApi}/users/username/${user}`,
-        headers: { Authorization: `Opdata ${data.token}` },
+        url: `${opDataRestApi}/proyectos/estado/all`,
+        headers: { Authorization: `Opdata ${token}` },
       });
-      const { nombre, apellido, rol, cod_ins } = userGet.data;
-      const unit = await axios({
+      setAllStatus(data);
+    } catch (error) {}
+  };
+
+  //Admin only
+  const getUsers = async () => {
+    try {
+      const { data } = await axios({
         method: "get",
-        url: `${opDataRestApi}/unidades/jefe/${cod_ins}`,
-        headers: { Authorization: `Opdata ${data.token}` },
+        url: `${opDataRestApi}/users/all`,
+        headers: { Authorization: `Opdata ${token}` },
       });
-      setUser({
-        nombre: nombre,
-        apellido: apellido,
-        rol: rol,
-        nombre_unidad: unit.data.nombre_unidad,
-        id_unidad: unit.data.id,
+      setUsers(data);
+    } catch (error) {}
+  };
+
+  const getUnits = async () => {
+    try {
+      const { data } = await axios({
+        method: "get",
+        url: `${opDataRestApi}/unidades/`,
+        headers: { Authorization: `Opdata ${token}` },
       });
-      return true;
-    } catch (error) {
-      return false;
-    }
+      setUnits(data);
+    } catch (error) {}
+  };
+
+  const getProjects = async () => {
+    try {
+      const { data } = await axios({
+        method: "get",
+        url: `${opDataRestApi}/proyectos/`,
+        headers: { Authorization: `Opdata ${token}` },
+      });
+      data.map((item) => {
+        item.fecha_reg = `${item.fecha_reg[0]}-${
+          item.fecha_reg[1] < 10 ? `0${item.fecha_reg[1]}` : item.fecha_reg[1]
+        }-${
+          item.fecha_reg[2] < 10 ? `0${item.fecha_reg[2]}` : item.fecha_reg[2]
+        }`;
+        item.fecha_ini = `${item.fecha_ini[0]}-${
+          item.fecha_ini[1] < 10 ? `0${item.fecha_ini[1]}` : item.fecha_ini[1]
+        }-${
+          item.fecha_ini[2] < 10 ? `0${item.fecha_ini[2]}` : item.fecha_ini[2]
+        }`;
+        item.fecha_fin = `${item.fecha_fin[0]}-${
+          item.fecha_fin[1] < 10 ? `0${item.fecha_fin[1]}` : item.fecha_fin[1]
+        }-${
+          item.fecha_fin[2] < 10 ? `0${item.fecha_fin[2]}` : item.fecha_fin[2]
+        }`;
+      });
+      setProjects([...data]);
+      setFilteredProjects(
+        [...data].sort((a, b) => (a.id_estado > b.id_estado ? 1 : -1))
+      );
+    } catch (error) {}
   };
 
   return (
@@ -348,6 +406,10 @@ export function UserContextProvider({ children }) {
         filteredProjects: filteredProjects,
         user: user,
         unit: unit,
+        units: units,
+        users: users,
+        setUsers: setUsers,
+        setUnits: setUnits,
         allStatus: allStatus,
         alert: alert,
         setProjects: setProjects,
@@ -358,6 +420,8 @@ export function UserContextProvider({ children }) {
         getProjectsByUnit: getProjectsByUnit,
         getAllStatus: getAllStatus,
         getUnitById: getUnitById,
+        getUsers: getUsers,
+        getUnits: getUnits,
         filterProjectsSoonToExpire: filterProjectsSoonToExpire,
         filterProjectsExpired: filterProjectsExpired,
         filterProjectsByDate: filterProjectsByDate,
@@ -371,6 +435,7 @@ export function UserContextProvider({ children }) {
         clearFilters: clearFilters,
         createProject: createProject,
         updateProject: updateProject,
+        getProjects: getProjects,
       }}
     >
       {children}

@@ -28,11 +28,12 @@ function ProjectCard({ project }) {
   }, [color]);
   return (
     <div
-      className={`shadow-lg border-2 border-gray-100 rounded-xl py-2 px-3 m-3 flex flex-col h-fit relative`}
+      className={`shadow-lg border-2 border-gray-100 rounded-xl py-2 px-3 m-3 flex flex-col h-fit relative
+      }`}
       onClick={() => setOpen(~open)}
     >
       <h3
-        className={`text-lg font-bold mb-1 text-white bg-primary rounded-lg py-1 px-2 text-justify ${
+        className={`text-lg font-bold mb-1 text-white bg-primary rounded-lg py-1 px-2 text-justify overflow-hidden ${
           open ? "" : "max-h-9"
         }`}
       >

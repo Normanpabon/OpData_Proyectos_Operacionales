@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../context/UserContext";
-import { useEffect } from "react";
+import { useUser } from "../../context/UserContext";
 function UserNavBar() {
   const navigation = useNavigate();
   const { setUser, user } = useUser();

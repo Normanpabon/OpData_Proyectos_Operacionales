@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useUser } from "../context/UserContext";
 import ProjectCard from "./ProjectCard";
-import ProjectFilterBar from "./ProjectFilterBar";
 function ProjectList() {
   const { filteredProjects, getProjectsByUnit, getAllStatus } = useUser();
   useEffect(() => {

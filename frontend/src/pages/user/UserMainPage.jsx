@@ -1,12 +1,13 @@
 import ProjectList from "../../components/ProjectList";
 import { useUser } from "../../context/UserContext";
 import { Outlet } from "react-router-dom";
-import UserNavBar from "../../components/UserNavBar";
+import UserNavBar from "../../components/user/UserNavBar";
 import { useNavigate } from "react-router-dom";
 import ProjectFilterBar from "../../components/ProjectFilterBar";
+import Footer from "../../components/common/Footer";
 
 function UserMainPage() {
-  const { user, alert } = useUser();
+  const { alert } = useUser();
   const navigate = useNavigate();
   return (
     <div className="flex flex-col h-screen">
@@ -44,14 +45,7 @@ function UserMainPage() {
           </label>
         </section>
       </main>
-      <footer className="footer footer-center p-4 bg-accent h-12 text-white ">
-        <div className="-mt-2">
-          <p className="inline">
-            <img src="/logonuevo.png" className="w-10 inline" />
-            Copyright © 2022 - All right reserved by QRO
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { useUser } from "../context/UserContext";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 function ProjectFilterStatus({ open }) {
   const { allStatus, filterProjectsByStatus, orderProjectsByStatus } =
@@ -29,69 +29,64 @@ function ProjectFilterStatus({ open }) {
             <path d="M2.5 0A2.5 2.5 0 0 0 0 2.5v11A2.5 2.5 0 0 0 2.5 16h11a2.5 2.5 0 0 0 2.5-2.5v-11A2.5 2.5 0 0 0 13.5 0h-11ZM1 2.5A1.5 1.5 0 0 1 2.5 1h11A1.5 1.5 0 0 1 15 2.5v11a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 13.5v-11Z" />
           </svg>
           {open ? (
-            <p className="my-auto text-left col-span-3">filtrar por fecha</p>
+            <p className="my-auto text-left col-span-3">filtrar por estado</p>
           ) : (
             ""
           )}
         </div>
       </label>
-      <ul
-        tabIndex={0}
-        className="dropdown-content menu p-2 shadow bg-secondary rounded-box w-fit"
-      >
-        <li>
-          <p
-            onClick={() => {
-              orderProjectsByStatus("asc");
-            }}
-          >
-            Ascendente
-          </p>
-        </li>
-        <li>
-          <p
-            onClick={() => {
-              orderProjectsByStatus("des");
-            }}
-          >
-            Descendente
-          </p>
-        </li>
-        <li>
-          <div className="flex flex-col">
-            {allStatus.map((state) => {
-              return (
-                <div className="form-control " key={state.id}>
-                  <label className="label cursor-pointer">
-                    <span className="label-text text-white">
-                      {state.estado}
-                    </span>
-                    <input
-                      type="checkbox"
-                      name={state.id}
-                      className="checkbox checkbox-primary ml-2"
-                      onChange={(e) => {
-                        setStatusArray({
-                          ...statusArray,
-                          [e.target.name]: e.target.checked,
-                        });
-                      }}
-                    />
-                  </label>
-                </div>
-              );
-            })}
-            <button
+      <div className="dropdown-content bg-secondary rounded-box w-fit">
+        <ul tabIndex={0} className="menu p-2">
+          <li>
+            <p
               onClick={() => {
-                filterProjectsByStatus(statusArray);
+                orderProjectsByStatus("asc");
               }}
-              className="btn btn-primary btn-sm text-white"
             >
-              Aplicar
-            </button>
-          </div>
-        </li>
-      </ul>
+              Ascendente
+            </p>
+          </li>
+          <li>
+            <p
+              onClick={() => {
+                orderProjectsByStatus("des");
+              }}
+            >
+              Descendente
+            </p>
+          </li>
+        </ul>
+        <div className="flex flex-col p-3">
+          {allStatus.map((state) => {
+            return (
+              <div className="form-control " key={state.id}>
+                <label className="label cursor-pointer">
+                  <span className="label-text text-white">{state.estado}</span>
+                  <input
+                    type="checkbox"
+                    name={state.id}
+                    className="checkbox checkbox-primary ml-2"
+                    onChange={(e) => {
+                      setStatusArray({
+                        ...statusArray,
+                        [e.target.name]: e.target.checked,
+                      });
+                    }}
+                  />
+                </label>
+              </div>
+            );
+          })}
+          <button
+            onClick={() => {
+              filterProjectsByStatus(statusArray);
+            }}
+            className="btn btn-primary btn-sm text-white"
+          >
+            Aplicar
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

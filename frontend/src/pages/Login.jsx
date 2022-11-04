@@ -1,29 +1,27 @@
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
-import { users } from "../test-data/users";
 import { useState } from "react";
 
 function Login() {
-  //Contexto
   const { userAuth } = useUser();
-  //Estados
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [incorrect, setIncorrect] = useState(" hidden");
-  //Otros
   const navigate = useNavigate();
-  //Funciones
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userValidation = await userAuth(username, password);
     if (userValidation) {
-      navigate("/user", { relative: false });
+      if (userValidation === "ROLE_Administrador") {
+        navigate("/admin/units", { relative: false });
+      } else if (userValidation === "ROLE_JefeUnidad") {
+        navigate("/user", { relative: false });
+      }
     } else {
       setIncorrect("");
       setTimeout(() => setIncorrect(" hidden"), 5000);
     }
   };
-  //Render
   return (
     <main className="grid grid-cols-2 w-full h-screen" id="root-login">
       <div className=""></div>
@@ -79,8 +77,8 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button
-            onClick={handleSubmit}
             className="btn btn-primary mt-3 max-w-xs mx-auto text-white border-white hover:border-white"
+            onClick={handleSubmit}
           >
             Login
           </button>

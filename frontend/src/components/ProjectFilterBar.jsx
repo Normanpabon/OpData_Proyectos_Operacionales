@@ -1,9 +1,8 @@
+import { useState, useEffect } from "react";
 import ProjectFilterDate from "./ProjectFilterDate";
 import ProjectFilterName from "./ProjectFilterName";
 import ProjectFilterStatus from "./ProjectFilterStatus";
 import ProjectFilterSearch from "./ProjectFilterSearch";
-import { useState } from "react";
-import { useEffect } from "react";
 import ProjectQuickFilterButtons from "./ProjectQuickFilterButtons";
 function ProjectFilterBar() {
   const [open, setOpen] = useState(true);

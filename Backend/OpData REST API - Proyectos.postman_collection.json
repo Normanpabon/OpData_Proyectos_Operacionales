@@ -27,12 +27,18 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "OpdataKey eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSmVmZVVuaWRhZCIsInN1YiI6Imp1YW4uZ2FsbGVnbyIsImlhdCI6MTY2NzE1MjQxMywiZXhwIjoxNjY3MTU3NDEzfQ.MXAz5p6wn9jvKfQuIakO7yf2MVe8N1RLcvA66OjNkDM",
+						"value": "Opdata eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9BZG1pbmlzdHJhZG9yIiwic3ViIjoiQWRtaW4ub3BkYXRhIiwiaWF0IjoxNjY3NjY4MDk4LCJleHAiOjE2Njc2NzMwOTh9.HSMoUTCRTxRNg6Qm0yk50WX5FUZ3T_QqI_V7QFy39MU",
 						"type": "default"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "default",
+						"disabled": true
 					}
 				],
 				"url": {
-					"raw": "localhost:8090/opData/API/V1/proyectos/",
+					"raw": "localhost:8090/opData/API/V2/proyectos/",
 					"host": [
 						"localhost"
 					],
@@ -40,7 +46,7 @@
 					"path": [
 						"opData",
 						"API",
-						"V1",
+						"V2",
 						"proyectos",
 						""
 					]
@@ -52,9 +58,15 @@
 			"name": "Obtener proyectos de unidad",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "OpdataKey eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9KZWZlVW5pZGFkIiwic3ViIjoianVhbi5nYWxsZWdvIiwiaWF0IjoxNjY3NjY2NTk2LCJleHAiOjE2Njc2NzE1OTZ9.ONQDmSi-azWiCmxJf1N7PBdmRv4EKJg0gxXt47AiXUo",
+						"type": "default"
+					}
+				],
 				"url": {
-					"raw": "localhost:8090/opData/API/V1/proyectos/unidad/1",
+					"raw": "localhost:8090/opData/API/V2/proyectos/unidad/1",
 					"host": [
 						"localhost"
 					],
@@ -62,7 +74,7 @@
 					"path": [
 						"opData",
 						"API",
-						"V1",
+						"V2",
 						"proyectos",
 						"unidad",
 						"1"
@@ -232,7 +244,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"username\": \"juan.gallego\",\r\n  \"password\": \"juan123\"\r\n}",
+					"raw": "{\r\n  \"username\": \"Admin.opdata\",\r\n  \"password\": \"toor\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -253,6 +265,14 @@
 						"login"
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener datos usuario",
+			"request": {
+				"method": "GET",
+				"header": []
 			},
 			"response": []
 		}

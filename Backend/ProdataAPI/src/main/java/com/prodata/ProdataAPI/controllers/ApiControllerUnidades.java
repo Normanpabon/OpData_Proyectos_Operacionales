@@ -54,9 +54,9 @@ public class ApiControllerUnidades {
     @PostMapping("/{nombre}/{uid_jefe}")
     @PreAuthorize("hasRole('Administrador')")
     @ResponseStatus(HttpStatus.CREATED)
-    void saveUnidad(@PathVariable @NotBlank(message ="La unidad debe tener un nombre valido" ) String nombre, @PathVariable @Positive(message = "El id debe ser positivo mayor a 0") int uid_jefe){
+    Mono<Unidad> saveUnidad(@PathVariable @NotBlank(message ="La unidad debe tener un nombre valido" ) String nombre, @PathVariable @Positive(message = "El id debe ser positivo mayor a 0") int uid_jefe){
 
-        unidadesServiceClient.saveUnidad(nombre, uid_jefe);
+        return unidadesServiceClient.saveUnidad(nombre, uid_jefe);
     }
 
     // UPDATE's

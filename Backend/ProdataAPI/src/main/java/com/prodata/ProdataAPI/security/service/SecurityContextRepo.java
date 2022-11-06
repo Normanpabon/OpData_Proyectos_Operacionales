@@ -16,6 +16,7 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 @AllArgsConstructor
+
 @Component
 public class SecurityContextRepo implements ServerSecurityContextRepository {
 

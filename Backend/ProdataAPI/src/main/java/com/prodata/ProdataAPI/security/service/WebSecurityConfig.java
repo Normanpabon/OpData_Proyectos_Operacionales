@@ -35,7 +35,8 @@ public class WebSecurityConfig {
                         Mono.fromRunnable(() -> swe.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED))
                 ).accessDeniedHandler((swe, e) ->
                         Mono.fromRunnable(() -> swe.getResponse().setStatusCode(HttpStatus.FORBIDDEN))
-                ).and()
+                )
+                .and()
                 .csrf().disable()
                 .formLogin().disable()
                 .httpBasic().disable()

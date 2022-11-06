@@ -13,10 +13,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.reactive.function.client.WebClientRequestException;
 import reactor.core.publisher.Mono;
 
 @AllArgsConstructor
@@ -42,6 +40,15 @@ public class ApiControllerAuth {
                 .filter(userDetails -> passEncoder.encode(request.getPassword()).equals(userDetails.getPassword()))
                 .map(userDetails -> ResponseEntity.ok(new AuthResponse(jwtUtil.generateToken(userDetails))))
                 .switchIfEmpty(Mono.just(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build()));
+    }
+
+    // Excepcion si el micorservicio no responde la peticion de la API
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)
+    public Mono<String> handleDownService(WebClientRequestException ex){
+        String errMsg = "El servidor no responde, porfavor intentelo mas tarde";
+        // Todo : Llamar a ms de logs para registrar fallo
+        return Mono.just(errMsg);
     }
 
 

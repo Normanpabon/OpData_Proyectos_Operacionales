@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.reactive.function.client.WebClientRequestException;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -144,5 +145,12 @@ public class ApiControllerUsuarios {
     }
 
 
-    // Todo: Manejo de excepcion para servidor caido (MS) ?
+    // Excepcion si el micorservicio no responde la peticion de la API
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)
+    public Mono<String> handleDownService(WebClientRequestException ex){
+        String errMsg = "El servidor no responde, porfavor intentelo mas tarde";
+        // Todo : Llamar a ms de logs para registrar fallo
+        return Mono.just(errMsg);
+    }
 }

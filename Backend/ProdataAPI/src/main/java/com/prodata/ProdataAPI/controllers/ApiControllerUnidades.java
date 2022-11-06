@@ -3,12 +3,16 @@ package com.prodata.ProdataAPI.controllers;
 
 import com.prodata.ProdataAPI.dto.msUnidades.Unidad;
 import com.prodata.ProdataAPI.services.UnidadesServiceClient;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.security.SignatureException;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientRequestException;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -82,8 +86,34 @@ public class ApiControllerUnidades {
         return Mono.just(errMsg);
     }
 
+    // JWT Vencido
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public Mono<String> handleExpiredJwt(ExpiredJwtException ex){
+        String errMsg = "El JWT suministrado se encuentra expirado" + ex.getMessage();
 
-    // Todo: Manejo de excepcion para servidor caido (MS) ?
+        return Mono.just(errMsg);
+
+    }
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public Mono<String> handleAuthSignatureException(SignatureException ex){
+        String errMsg = "El JWT sumistrado es invalido" + ex.getMessage();
+
+        return Mono.just(errMsg);
+    }
+
+    // Excepcion si el micorservicio no responde la peticion de la API
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)
+    public Mono<String> handleDownService(WebClientRequestException ex){
+        String errMsg = "El servidor no responde, porfavor intentelo mas tarde";
+        // Todo : Llamar a ms de logs para registrar fallo
+        return Mono.just(errMsg);
+    }
+
+
+
 
 
 }

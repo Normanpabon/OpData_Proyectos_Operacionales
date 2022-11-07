@@ -4,6 +4,7 @@ package com.opdata.MSUsuarios.controllers;
 import com.opdata.MSUsuarios.dto.Usuario;
 import com.opdata.MSUsuarios.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.TransientDataAccessResourceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -170,5 +171,8 @@ public class UsuarioController {
     // DELETE
 
     // TODO: Implementar
+
+    // Manejo excepciones
+
 
 }

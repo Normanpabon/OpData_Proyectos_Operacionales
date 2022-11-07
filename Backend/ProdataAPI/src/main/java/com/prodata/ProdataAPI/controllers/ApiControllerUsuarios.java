@@ -72,7 +72,7 @@ public class ApiControllerUsuarios {
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Usuario> createUser(@PathVariable int cod_ins, @PathVariable String nombre,
                                     @PathVariable String apellido, @PathVariable String username,
-                                    @PathVariable String correo, @PathVariable int rol,
+                                    @PathVariable String correo, @PathVariable String rol,
                                     @PathVariable String pass, @PathVariable int habilitado) {
 
         return usuariosServiceClient.postUsuario(cod_ins, nombre, apellido, username, correo, rol, pass, habilitado );
@@ -85,7 +85,7 @@ public class ApiControllerUsuarios {
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Usuario> updateUser(@PathVariable int id, @PathVariable int cod_ins, @PathVariable String nombre,
                                     @PathVariable String apellido, @PathVariable String username,
-                                    @PathVariable String correo, @PathVariable int rol,
+                                    @PathVariable String correo, @PathVariable String rol,
                                     @PathVariable String pass, @PathVariable int habilitado) {
 
         return usuariosServiceClient.updateUsuario(id,cod_ins, nombre, apellido, username, correo, rol, pass, habilitado );

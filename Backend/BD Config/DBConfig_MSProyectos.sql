@@ -5,7 +5,7 @@ CREATE DATABASE proyectos;
 USE proyectos;
 
 /*CREATE TABLE estado(id int NOT NULL AUTO_INCREMENT, estado VARCHAR(18), PRIMARY KEY(id));*/
-CREATE TABLE estado(id int AUTO_INCREMENT, estado VARCHAR(18), PRIMARY KEY(id));
+CREATE TABLE estado(id int AUTO_INCREMENT, estado VARCHAR(128), PRIMARY KEY(id));
 
 CREATE TABLE proyecto(id int NOT NULL AUTO_INCREMENT, unidad_p int, fecha_reg DATE, fecha_ini DATE, fecha_fin DATE, desc_pro VARCHAR(500),id_estado int , observaciones VARCHAR(12000) default 'NA', PRIMARY KEY(id), FOREIGN KEY (id_estado) REFERENCES estado(id));
 

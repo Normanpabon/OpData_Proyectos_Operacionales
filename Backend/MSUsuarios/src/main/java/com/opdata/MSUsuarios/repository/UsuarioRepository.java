@@ -28,8 +28,8 @@ public interface UsuarioRepository extends R2dbcRepository<Usuario, Long> {
 
     // Devuelve id del rol del usuario
     @Query("SELECT usuario.rol FROM usuario WHERE usuario.id=:id")
-    Mono<Long> getRolByUserId(Long id);
+    Mono<String> getRolByUserId(Long id);
 
     @Query("SELECT usuario.rol FROM usuario WHERE usuario.username=:user")
-    Mono<Long> getRolByUsername(String user);
+    Mono<String> getRolByUsername(String user);
 }

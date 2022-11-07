@@ -31,9 +31,9 @@ public class ProyectosServiceClient {
                 .bodyToFlux(Estado.class);
     }
 
-    public void saveEstado(String estado){
-        this.webClient.post().uri("estado/add/{estado}", estado)
-                .retrieve();
+    public Mono<Estado> saveEstado(String estado){
+        return this.webClient.post().uri("estado/add/{estado}", estado)
+                .retrieve().bodyToMono(Estado.class);
     }
 
     // Proyectos

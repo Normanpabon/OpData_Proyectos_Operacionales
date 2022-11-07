@@ -189,8 +189,12 @@ public class ApiControllerProyectos {
     @PostMapping("/estado/{est}")
     @PreAuthorize("hasRole('Administrador')")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createEstado(@PathVariable  @NotBlank(message = "El estado debe tener un nombre.") String est){
-        proyectosServiceClient.saveEstado(est);
+    public Mono<Estado> createEstado(@PathVariable  @NotBlank(message = "El estado debe tener un nombre.") String est){
+
+
+
+        return proyectosServiceClient.saveEstado(est);
+
     }
 
     // PUT Proyectos y estado

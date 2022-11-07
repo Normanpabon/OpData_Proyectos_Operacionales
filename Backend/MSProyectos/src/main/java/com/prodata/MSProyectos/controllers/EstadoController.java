@@ -34,10 +34,12 @@ public class EstadoController {
 
     @PostMapping("add/{estado}")
     @ResponseStatus(HttpStatus.CREATED)
-    void createEstado(@PathVariable String estado){
+    Mono<Estado> createEstado(@PathVariable String estado){
         Estado tmpEstado = new Estado();
         tmpEstado.setEstado(estado);
         estadoRepository.save(tmpEstado).subscribe();
+
+        return estadoRepository.getLastEstadoAdded();
     }
 
     // PUT

@@ -49,7 +49,7 @@ public class UsuariosServiceClient {
     // POSTs
 
     public Mono<Usuario> postUsuario(int cod_ins, String nombre, String apellido, String username,
-                                     String correo, int rol, String pass, int habilitado){
+                                     String correo, String rol, String pass, int habilitado){
         return this.webClient.post().uri("/usuario/{cod_ins}/{nombre}/{apellido}/{username}/{correo}/{rol}/{pass}/{habilitado}",
                 cod_ins, nombre, apellido, username, correo, rol, pass, habilitado).retrieve().bodyToMono(Usuario.class);
 
@@ -58,8 +58,8 @@ public class UsuariosServiceClient {
     // Updates
 
     public Mono<Usuario> updateUsuario(int id,int cod_ins, String nombre, String apellido, String username,
-                                       String correo, int rol, String pass, int habilitado){
-        return this.webClient.post().uri("/usuario/{id}/{cod_ins}/{nombre}/{apellido}/{username}/{correo}/{rol}/{pass}/{habilitado}", id,
+                                       String correo, String rol, String pass, int habilitado){
+        return this.webClient.put().uri("/usuario/{id}/{cod_ins}/{nombre}/{apellido}/{username}/{correo}/{rol}/{pass}/{habilitado}", id,
                 cod_ins, nombre, apellido, username, correo, rol, pass, habilitado).retrieve().bodyToMono(Usuario.class);
 
     }

@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 function UserCard({ user }) {
   const [open, setOpen] = useState(false);
   const [visible, setVisible] = useState(false);
+  const navigate = useNavigate();
   return (
     <div
       className={`shadow-lg border-2 border-gray-100 rounded-xl py-2 px-3 m-3 flex flex-col h-fit relative
@@ -73,7 +75,7 @@ function UserCard({ user }) {
         className={`btn btn-primary modal-button text-white rounded-3xl w-fit self-end mt-3 ${
           open ? "" : "hidden"
         }`}
-        onClick={(e) => navigate(`/user/edit/${project.id}`)}
+        onClick={(e) => navigate(`/admin/users/edit/${user.id}`)}
       >
         Editar
       </label>

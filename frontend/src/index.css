@@ -4,7 +4,7 @@
 
 #root-login {
   background-color: white;
-  background-image: url(/Background.png);
+  background-image: url(./assets/Background.svg);
   background-repeat: no-repeat;
   background-size: cover;
 }

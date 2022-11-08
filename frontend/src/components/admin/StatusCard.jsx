@@ -1,4 +1,6 @@
+import { useNavigate } from "react-router-dom";
 function StatusCard({ status }) {
+  const navigate = useNavigate();
   return (
     <div
       className={`shadow-lg border-2 border-gray-100 rounded-xl py-2 px-3 m-3 flex flex-col h-fit
@@ -13,7 +15,7 @@ function StatusCard({ status }) {
       <label
         htmlFor="my-modal"
         className={`btn btn-primary modal-button text-white rounded-3xl w-fit self-end mt-3`}
-        onClick={(e) => navigate(`/user/edit/${project.id}`)}
+        onClick={(e) => navigate(`/admin/status/edit/${status.id}`)}
       >
         Editar
       </label>

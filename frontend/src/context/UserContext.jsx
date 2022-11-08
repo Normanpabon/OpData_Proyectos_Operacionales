@@ -242,7 +242,7 @@ export function UserContextProvider({ children }) {
     try {
       const { data } = await axios({
         method: "get",
-        url: `${opDataRestApi}/proyectos/unidad/${1}`,
+        url: `${opDataRestApi}/proyectos/unidad/${user.id_unidad}`,
         headers: { Authorization: `Opdata ${token}` },
       });
       data.map((item) => {
@@ -285,7 +285,6 @@ export function UserContextProvider({ children }) {
       } else {
         observacionesSend = observaciones;
       }
-      console.log(user);
       const { data } = await axios({
         method: "post",
         url: `${opDataRestApi}/proyectos/${user.id_unidad}/${fecha_reg}/${fecha_ini}/${fecha_fin}/${desc_pro}/${id_estado}/${observacionesSend}`,
@@ -296,9 +295,7 @@ export function UserContextProvider({ children }) {
         ...projects.filter((pro) => pro.id !== data.id),
         data,
       ]);
-    } catch (error) {
-      console.log(error.response.data);
-    }
+    } catch (error) {}
   };
 
   const updateProject = async (project) => {
@@ -356,6 +353,40 @@ export function UserContextProvider({ children }) {
     } catch (error) {}
   };
 
+  const createUser = async (newUser) => {
+    try {
+      const { cod_ins, nombre, apellido, username, correo, rol, hashed_pass } =
+        newUser;
+      const { data } = await axios({
+        method: "post",
+        url: `${opDataRestApi}/users/${cod_ins}/${nombre}/${apellido}/${username}/${correo}/${rol}/${hashed_pass}/${1}`,
+        headers: { Authorization: `Opdata ${token}` },
+      });
+      setUsers([...users.filter((us) => us.id !== data.id), data]);
+    } catch (error) {}
+  };
+
+  const updateUser = async (newUser) => {
+    try {
+      const {
+        id,
+        cod_ins,
+        nombre,
+        apellido,
+        username,
+        correo,
+        rol,
+        hashed_pass,
+      } = newUser;
+      const { data } = await axios({
+        method: "put",
+        url: `${opDataRestApi}/users/${id}/${cod_ins}/${nombre}/${apellido}/${username}/${correo}/${rol}/${hashed_pass}/${1}`,
+        headers: { Authorization: `Opdata ${token}` },
+      });
+      setUsers([...users.filter((us) => us.id !== data.id), data]);
+    } catch (error) {}
+  };
+
   const getUnits = async () => {
     try {
       const { data } = await axios({
@@ -364,6 +395,56 @@ export function UserContextProvider({ children }) {
         headers: { Authorization: `Opdata ${token}` },
       });
       setUnits(data);
+    } catch (error) {}
+  };
+
+  const createUnit = async (newUnit) => {
+    try {
+      const { nombre_unidad, uid_jefe } = newUnit;
+      const { data } = await axios({
+        method: "post",
+        url: `${opDataRestApi}/unidades/${nombre_unidad}/${uid_jefe}`,
+        headers: { Authorization: `Opdata ${token}` },
+      });
+      setUnits([...units.filter((un) => un.id !== data.id), data]);
+    } catch (error) {}
+  };
+
+  const updateUnit = async (newUnit) => {
+    try {
+      const { id, nombre_unidad, uid_jefe } = newUnit;
+      const { data } = await axios({
+        method: "put",
+        url: `${opDataRestApi}/unidades/${id}/${nombre_unidad}/${uid_jefe}`,
+        headers: { Authorization: `Opdata ${token}` },
+      });
+      setUnits([...units.filter((un) => un.id !== data.id), data]);
+    } catch (error) {}
+  };
+
+  const createStatus = async (newStatus) => {
+    try {
+      const { estado } = newStatus;
+      const { data } = await axios({
+        method: "post",
+        url: `${opDataRestApi}/proyectos/estado/${estado}`,
+        headers: { Authorization: `Opdata ${token}` },
+      });
+      console.log(data);
+      setAllStatus([...allStatus.filter((st) => st.id !== data.id), data]);
+    } catch (error) {}
+  };
+
+  const updateStatus = async (newStatus) => {
+    try {
+      const { id, estado } = newStatus;
+      const { data } = await axios({
+        method: "put",
+        url: `${opDataRestApi}/proyectos/estado/${id}/${estado}`,
+        headers: { Authorization: `Opdata ${token}` },
+      });
+      console.log(data);
+      setAllStatus([...allStatus.filter((st) => st.id !== data.id), data]);
     } catch (error) {}
   };
 
@@ -435,6 +516,12 @@ export function UserContextProvider({ children }) {
         clearFilters: clearFilters,
         createProject: createProject,
         updateProject: updateProject,
+        createUser: createUser,
+        updateUser: updateUser,
+        createUnit: createUnit,
+        updateUnit: updateUnit,
+        createStatus: createStatus,
+        updateStatus: updateStatus,
         getProjects: getProjects,
       }}
     >

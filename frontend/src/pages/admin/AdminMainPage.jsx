@@ -14,14 +14,12 @@ function AdminMainPage() {
         })
       )
     );
-
-    console.log(loading);
   }, []);
 
   return (
     <div className="flex flex-col h-screen">
       <AdminNavBar />
-      <main className="flex flex-row flex-1">
+      <main className="flex flex-row flex-1 relative">
         <section className="w-full px-10 pt-2 pb-5 flex flex-col grow">
           {loading ? "Loading" : <Outlet />}
         </section>

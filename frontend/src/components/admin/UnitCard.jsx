@@ -1,6 +1,8 @@
 import { useUser } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 function UnitCard({ unit }) {
   const { users } = useUser();
+  const navigate = useNavigate();
   const jefe = users.find((user) => unit.uid_jefe === user.cod_ins);
   return (
     <div
@@ -29,7 +31,7 @@ function UnitCard({ unit }) {
         className={`btn btn-primary modal-button text-white rounded-3xl w-fit self-end mt-3 ${
           open ? "" : "hidden"
         }`}
-        onClick={(e) => navigate(`/user/edit/${project.id}`)}
+        onClick={(e) => navigate(`/admin/units/edit/${unit.id}`)}
       >
         Editar
       </label>

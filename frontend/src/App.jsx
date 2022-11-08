@@ -9,6 +9,9 @@ import AdminUnitsPage from "./pages/admin/AdminUnitsPage";
 import AdminLogsPage from "./pages/admin/AdminLogsPage";
 import AdminUsersPage from "./pages/admin/AdminUsersPage";
 import AdminStatusPage from "./pages/admin/AdminStatusPage";
+import UnitForm from "./components/admin/UnitForm";
+import StatusForm from "./components/admin/StatusForm";
+import UserForm from "./components/admin/UserForm";
 
 function App() {
   const { user } = useUser();
@@ -41,16 +44,16 @@ function App() {
               <Route path="create" />
             </Route> */}
             <Route path="users" element={<AdminUsersPage />}>
-              <Route path="edit/:id" />
-              <Route path="create" />
+              <Route path="edit/:id" element={<UserForm />} />
+              <Route path="create" element={<UserForm />} />
             </Route>
             <Route path="units" element={<AdminUnitsPage />}>
-              <Route path="edit/:id" />
-              <Route path="create" />
+              <Route path="edit/:id" element={<UnitForm />} />
+              <Route path="create" element={<UnitForm />} />
             </Route>
             <Route path="status" element={<AdminStatusPage />}>
-              <Route path="edit/:id" />
-              <Route path="create" />
+              <Route path="edit/:id" element={<StatusForm />} />
+              <Route path="create" element={<StatusForm />} />
             </Route>
             <Route path="logs" element={<AdminLogsPage />} />
           </Route>

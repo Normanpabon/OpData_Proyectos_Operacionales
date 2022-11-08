@@ -39,7 +39,6 @@ function ProjectForm() {
     }
   }, []);
   const handleChange = (e) => {
-    console.log(e.target.value);
     setProject({
       ...project,
       [e.target.name]: e.target.value,
@@ -143,7 +142,7 @@ function ProjectForm() {
     <>
       <input type="checkbox" id="my-modal" className="modal-toggle" />
       <div className="modal">
-        <div className="modal-box w-11/12 h-11/12 bg bg-secondary over">
+        <div className="modal-box w-11/12 h-11/12 bg-secondary">
           <form
             onSubmit={handleSubmit}
             className="flex flex-col p-3 h-full bg-white rounded-xl border-black border-2 overflow-auto"

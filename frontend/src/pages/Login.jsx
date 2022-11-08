@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 import { useState } from "react";
+import Logo from "../assets/Logo_OpData.png";
 
 function Login() {
   const { userAuth } = useUser();
@@ -23,13 +24,13 @@ function Login() {
     }
   };
   return (
-    <main className="grid grid-cols-2 w-full h-screen" id="root-login">
+    <main
+      className="grid grid-cols-1 md:grid-cols-2 w-full h-screen"
+      id="root-login"
+    >
       <div className=""></div>
-      <div className="p-10 bg-white content-center grid grid-cols-1">
-        <img
-          src="/public/Logo_OpData.png"
-          className="max-w-[400px] w-full mx-auto mb-0]"
-        />
+      <div className="p-10 bg-white content-center grid grid-cols-1 h-screen md:h-full">
+        <img src={Logo} className="max-w-[400px] w-full mx-auto mb-0]" />
         <form className="grid grid-cols-1 mx-auto w-full max-w-[400px]">
           <div className={"alert alert-error shadow-lg" + incorrect}>
             <div>

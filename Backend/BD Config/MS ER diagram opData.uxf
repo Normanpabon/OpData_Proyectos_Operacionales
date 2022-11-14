@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.0.0">
-  <zoom_level>9</zoom_level>
+  <zoom_level>11</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1008</x>
-      <y>576</y>
-      <w>198</w>
-      <h>99</h>
+      <x>1320</x>
+      <y>638</y>
+      <w>242</w>
+      <h>121</h>
     </coordinates>
     <panel_attributes>*unidad*
 bg=pink
@@ -15,7 +15,6 @@ bg=pink
 *id               INT    &lt;PK&gt;*
 nombre_unidad    varchar(128)
 *uid_jefe      INT    &lt;FK&gt;*
-estado      Varchar&lt;32&gt;
 habilitado     TinyInt(1)
 </panel_attributes>
     <additional_attributes/>
@@ -23,10 +22,10 @@ habilitado     TinyInt(1)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>999</x>
-      <y>216</y>
-      <w>180</w>
-      <h>153</h>
+      <x>1309</x>
+      <y>198</y>
+      <w>220</w>
+      <h>187</h>
     </coordinates>
     <panel_attributes>*usuario*
 bg=pink
@@ -45,10 +44,10 @@ habilitado     TinyInt(1)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>603</x>
-      <y>558</y>
-      <w>189</w>
-      <h>153</h>
+      <x>825</x>
+      <y>616</y>
+      <w>231</w>
+      <h>187</h>
     </coordinates>
     <panel_attributes>*proyecto*
 bg=pink
@@ -68,10 +67,10 @@ observaciones Varchar(12000)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>567</x>
-      <y>198</y>
-      <w>189</w>
-      <h>108</h>
+      <x>781</x>
+      <y>176</y>
+      <w>231</w>
+      <h>132</h>
     </coordinates>
     <panel_attributes>*preferencias*
 bg=pink
@@ -87,10 +86,10 @@ fuente         INT
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>855</x>
-      <y>414</y>
-      <w>243</w>
-      <h>72</h>
+      <x>1133</x>
+      <y>440</y>
+      <w>297</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>Se coloca relacion de 0 a muchos,
 puesto que si el usuario es admin
@@ -103,10 +102,10 @@ bg=yellow
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>783</x>
-      <y>585</y>
-      <w>243</w>
-      <h>45</h>
+      <x>1045</x>
+      <y>649</y>
+      <w>297</w>
+      <h>55</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..n
@@ -117,10 +116,10 @@ estan asignados a &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>747</x>
-      <y>225</y>
-      <w>270</w>
-      <h>45</h>
+      <x>1001</x>
+      <y>209</y>
+      <w>330</w>
+      <h>55</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..1
@@ -131,10 +130,10 @@ personaliza la interfaz de &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1098</x>
-      <y>360</y>
-      <w>99</w>
-      <h>234</h>
+      <x>1430</x>
+      <y>374</y>
+      <w>121</w>
+      <h>286</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -145,10 +144,10 @@ administra &gt;</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>549</x>
-      <y>63</y>
-      <w>243</w>
-      <h>63</h>
+      <x>759</x>
+      <y>11</y>
+      <w>297</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>Un usuario nuevo se le aplica la 
 preferencia con id:1, la cual seria
@@ -159,10 +158,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>585</x>
-      <y>711</y>
-      <w>243</w>
-      <h>63</h>
+      <x>803</x>
+      <y>803</y>
+      <w>297</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>Los jefes de unidad solo pueden mod
 proyectos asignados a la unidad que
@@ -173,10 +172,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>261</x>
-      <y>216</y>
-      <w>171</w>
-      <h>135</h>
+      <x>407</x>
+      <y>198</y>
+      <w>209</w>
+      <h>165</h>
     </coordinates>
     <panel_attributes>*log*
 bg=blue
@@ -192,10 +191,10 @@ usuario       Varchar()</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>549</x>
-      <y>153</y>
-      <w>729</w>
-      <h>252</h>
+      <x>759</x>
+      <y>121</y>
+      <w>891</w>
+      <h>308</h>
     </coordinates>
     <panel_attributes>Servicio usuarios
 --
@@ -207,10 +206,10 @@ fg=red</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>198</x>
-      <y>504</y>
-      <w>711</w>
-      <h>270</h>
+      <x>330</x>
+      <y>550</y>
+      <w>869</w>
+      <h>330</h>
     </coordinates>
     <panel_attributes>Servicio proyectos
 --
@@ -224,10 +223,10 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>972</x>
-      <y>504</y>
-      <w>279</w>
-      <h>270</h>
+      <x>1276</x>
+      <y>550</y>
+      <w>341</w>
+      <h>330</h>
     </coordinates>
     <panel_attributes>Servicio unidades
 --
@@ -240,10 +239,10 @@ fg=red</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>216</x>
-      <y>144</y>
-      <w>279</w>
-      <h>270</h>
+      <x>352</x>
+      <y>110</y>
+      <w>341</w>
+      <h>330</h>
     </coordinates>
     <panel_attributes>Servicio log
 --
@@ -256,10 +255,10 @@ fg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>261</x>
-      <y>549</y>
-      <w>189</w>
-      <h>135</h>
+      <x>407</x>
+      <y>605</y>
+      <w>231</w>
+      <h>165</h>
     </coordinates>
     <panel_attributes>*estado*
 bg=pink
@@ -274,10 +273,10 @@ habilitado     TinyInt(1)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>441</x>
-      <y>603</y>
-      <w>180</w>
-      <h>45</h>
+      <x>627</x>
+      <y>671</y>
+      <w>220</w>
+      <h>55</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -288,10 +287,10 @@ m2=0..1
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>963</x>
-      <y>54</y>
-      <w>315</w>
-      <h>99</h>
+      <x>1265</x>
+      <y>0</y>
+      <w>385</w>
+      <h>121</h>
     </coordinates>
     <panel_attributes>El aplicativo inicia con 3 roles por defecto
 - Administrador. 
@@ -305,10 +304,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>261</x>
-      <y>684</y>
-      <w>198</w>
-      <h>81</h>
+      <x>407</x>
+      <y>770</y>
+      <w>242</w>
+      <h>99</h>
     </coordinates>
     <panel_attributes>El aplicativo inicia con 4 estados 
 - Activo
@@ -323,13 +322,14 @@ layer=5
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>972</x>
-      <y>783</y>
-      <w>243</w>
-      <h>45</h>
+      <x>1276</x>
+      <y>891</y>
+      <w>308</w>
+      <h>66</h>
     </coordinates>
-    <panel_attributes>El estado que puede tomar una unidad
-seria: Habilitada / Deshabilitada.
+    <panel_attributes>Habilitado representa si la unidad se
+encuentra activa o no, siendo 0: false 
+1: true
 
 bg=yellow
 </panel_attributes>

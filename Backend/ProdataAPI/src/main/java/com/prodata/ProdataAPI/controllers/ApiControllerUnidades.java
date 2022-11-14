@@ -19,6 +19,7 @@ import reactor.core.publisher.Mono;
 import javax.validation.ConstraintViolationException;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 
 
 @RestController
@@ -55,24 +56,27 @@ public class ApiControllerUnidades {
 
     // POST's
 
-    @PostMapping("/{nombre}/{uid_jefe}")
+    @PostMapping("/{nombre}/{uid_jefe}/{habilitado}")
     @PreAuthorize("hasRole('Administrador')")
     @ResponseStatus(HttpStatus.CREATED)
-    Mono<Unidad> saveUnidad(@PathVariable @NotBlank(message ="La unidad debe tener un nombre valido" ) String nombre, @PathVariable @Positive(message = "El id debe ser positivo mayor a 0") int uid_jefe){
+    Mono<Unidad> saveUnidad(@PathVariable @NotBlank(message ="La unidad debe tener un nombre valido" ) String nombre,
+                            @PathVariable @Positive(message = "El id debe ser positivo mayor a 0") int uid_jefe,
+                            @PathVariable @NotBlank(message = "debe especificarse un estado 0: deshabilitado, 1: habilitado") @PositiveOrZero(message = "El campo habilitado puede tomar solo valor 0 o 1") int habilitado){
 
-        return unidadesServiceClient.saveUnidad(nombre, uid_jefe);
+        return unidadesServiceClient.saveUnidad(nombre, uid_jefe, habilitado);
     }
 
     // UPDATE's
 
-    @PutMapping("/{id}/{nombre}/{new_uid}")
+    @PutMapping("/{id}/{nombre}/{new_uid}/{habilitado}")
     @PreAuthorize("hasRole('Administrador')")
     @ResponseStatus(HttpStatus.ACCEPTED)
     Mono<Unidad> updateUnidad(@PathVariable @Positive(message = "El id debe ser positivo mayor a 0") int id,
                               @PathVariable @NotBlank(message ="La unidad debe tener un nombre valido" ) String
-                              nombre, @PathVariable @Positive(message = "El id debe ser positivo mayor a 0") int new_uid){
+                              nombre, @PathVariable @Positive(message = "El id debe ser positivo mayor a 0") int new_uid,
+                              @PathVariable @NotBlank(message = "debe especificarse un estado 0: deshabilitado, 1: habilitado") @PositiveOrZero(message = "El campo habilitado puede tomar solo valor 0 o 1") int habilitado){
 
-        return unidadesServiceClient.updateUnidad(id, nombre, new_uid);
+        return unidadesServiceClient.updateUnidad(id, nombre, new_uid, habilitado);
     }
 
     // Todo : Metodos de eliminacion (invisibilizacion)

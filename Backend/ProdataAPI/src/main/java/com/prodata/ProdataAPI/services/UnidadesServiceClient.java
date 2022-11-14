@@ -38,15 +38,15 @@ public class UnidadesServiceClient {
 
     // POSTs
 
-    public Mono<Unidad> saveUnidad(String nombreUnidad, int UidJefe){
-        return this.webClient.post().uri("/{nombreUnidad}/{UidJefe}", nombreUnidad, UidJefe)
+    public Mono<Unidad> saveUnidad(String nombreUnidad, int UidJefe, int habilitado){
+        return this.webClient.post().uri("/{nombreUnidad}/{UidJefe}/{habilitado}", nombreUnidad, UidJefe, habilitado)
                 .retrieve().bodyToMono(Unidad.class);
     }
 
     // PUTs
 
-    public Mono<Unidad> updateUnidad(int id, String nombreUnidad, int uidJefe){
-        return this.webClient.put().uri("/{id}/{nombre}/{new_uid}", id, nombreUnidad, uidJefe)
+    public Mono<Unidad> updateUnidad(int id, String nombreUnidad, int uidJefe, int habilitado){
+        return this.webClient.put().uri("/{id}/{nombre}/{new_uid}/{habilitado}", id, nombreUnidad, uidJefe, habilitado)
                 .retrieve()
                 .bodyToMono(Unidad.class);
     }

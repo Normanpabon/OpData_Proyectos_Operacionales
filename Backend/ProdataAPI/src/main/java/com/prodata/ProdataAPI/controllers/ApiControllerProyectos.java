@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.parameters.P;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -186,14 +187,15 @@ public class ApiControllerProyectos {
 
     }
 
-    @PostMapping("/estado/{est}")
+    @PostMapping("/estado/{est}/{habilitado}")
     @PreAuthorize("hasRole('Administrador')")
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<Estado> createEstado(@PathVariable  @NotBlank(message = "El estado debe tener un nombre.") String est){
+    public Mono<Estado> createEstado(@PathVariable  @NotBlank(message = "El estado debe tener un nombre.") String est,
+                                     @PathVariable @NotNull(message = "debe especificarse un estado 0: deshabilitado, 1: habilitado")  @PositiveOrZero(message = "El campo habilitado puede tomar solo valor 0 o 1") int habilitado){
 
 
 
-        return proyectosServiceClient.saveEstado(est);
+        return proyectosServiceClient.saveEstado(est, habilitado);
 
     }
 
@@ -280,13 +282,14 @@ public class ApiControllerProyectos {
         return proyectosServiceClient.updateProyecto(id, unidad, feReg, feIni, feEnd, desc, id_estado, obs);
     }
 
-    @PutMapping("/estado/{id}/{estado}")
+    @PutMapping("/estado/{id}/{estado}/{habilitado}")
     @PreAuthorize("hasRole('Administrador')")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Mono<Estado> updateEstado(@PathVariable @Positive(message = "El id debe ser mayor a 0 ") @NotNull int id,
-                                     @PathVariable  @NotBlank(message = "El estado debe tener un nombre.") String estado){
+                                     @PathVariable  @NotBlank(message = "El estado debe tener un nombre.") String estado,
+                                     @PathVariable @NotNull(message = "debe especificarse un estado 0: deshabilitado, 1: habilitado")  @PositiveOrZero(message = "El campo habilitado puede tomar solo valor 0 o 1") int habilitado){
 
-        return proyectosServiceClient.updateEstado(id, estado);
+        return proyectosServiceClient.updateEstado(id, estado, habilitado);
     }
 
     @ExceptionHandler

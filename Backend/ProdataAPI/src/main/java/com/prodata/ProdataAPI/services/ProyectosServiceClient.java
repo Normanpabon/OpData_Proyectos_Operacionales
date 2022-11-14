@@ -31,8 +31,8 @@ public class ProyectosServiceClient {
                 .bodyToFlux(Estado.class);
     }
 
-    public Mono<Estado> saveEstado(String estado){
-        return this.webClient.post().uri("estado/add/{estado}", estado)
+    public Mono<Estado> saveEstado(String estado, int habilitado){
+        return this.webClient.post().uri("estado/add/{estado}/{habilitado}", estado, habilitado)
                 .retrieve().bodyToMono(Estado.class);
     }
 
@@ -86,8 +86,8 @@ public class ProyectosServiceClient {
                 .bodyToMono(Proyecto.class);
     }
 
-    public Mono<Estado> updateEstado(int id, String estado){
-        return this.webClient.put().uri("estado/{id}/{estado}", id, estado)
+    public Mono<Estado> updateEstado(int id, String estado, int habilitado){
+        return this.webClient.put().uri("estado/{id}/{estado}/{habilitado}", id, estado, habilitado)
                 .retrieve()
                 .bodyToMono(Estado.class);
     }

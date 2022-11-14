@@ -38,13 +38,24 @@ public class UnidadController {
 
     // POST
 
-    @PostMapping("/{nombre}/{uid_jefe}")
+    @PostMapping("/{nombre}/{uid_jefe}/{habilitado}")
     @ResponseStatus(HttpStatus.CREATED)
-    void saveUnidad(@PathVariable String nombre, @PathVariable int uid_jefe){
+    Mono<Unidad> saveUnidad(@PathVariable String nombre, @PathVariable int uid_jefe, @PathVariable int habilitado){
         Unidad tmpUnidad = new Unidad();
         tmpUnidad.setNombre_unidad(nombre);
         tmpUnidad.setUid_jefe(uid_jefe);
+
+        boolean activo = false;
+
+        if(habilitado == 1){
+            activo = true;
+        }
+
+        tmpUnidad.setHabilitado(activo);
+
         unidadRepository.save(tmpUnidad).subscribe();
+
+        return unidadRepository.getLastUnidadAdded();
     }
 
 
@@ -52,10 +63,18 @@ public class UnidadController {
 
     // todo: Implementar actualizacion de unidad
 
-    @PutMapping("/{id}/{nombre}/{new_uid}")
+    @PutMapping("/{id}/{nombre}/{new_uid}/{habilitado}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    Mono<Unidad> updateUnidad(@PathVariable int id, @PathVariable String nombre, @PathVariable int new_uid){
-        Unidad tmpUnidad = new Unidad(id, nombre, new_uid);
+    Mono<Unidad> updateUnidad(@PathVariable int id, @PathVariable String nombre, @PathVariable int new_uid, @PathVariable int habilitado){
+
+
+        boolean activo = false;
+
+        if(habilitado == 1){
+            activo = true;
+        }
+
+        Unidad tmpUnidad = new Unidad(id, nombre, new_uid, activo);
         unidadRepository.save(tmpUnidad).subscribe();
         // todo: revisar si devuelve es la version actualizada o la version anterior
         return unidadRepository.findById((long)id);

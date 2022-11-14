@@ -6,6 +6,7 @@ import com.prodata.ProdataAPI.services.UnidadesServiceClient;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.security.SignatureException;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -18,6 +19,7 @@ import reactor.core.publisher.Mono;
 
 import javax.validation.ConstraintViolationException;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 
@@ -59,9 +61,9 @@ public class ApiControllerUnidades {
     @PostMapping("/{nombre}/{uid_jefe}/{habilitado}")
     @PreAuthorize("hasRole('Administrador')")
     @ResponseStatus(HttpStatus.CREATED)
-    Mono<Unidad> saveUnidad(@PathVariable @NotBlank(message ="La unidad debe tener un nombre valido" ) String nombre,
+    Mono<Unidad> saveUnidad(@PathVariable @NotBlank(message ="La unidad debe tener un nombre valido" )  @Length(min=2, max=128, message = "La longitud mininma del nombre de unidad son minimo 2 y maximo 128 caracteres.") String nombre,
                             @PathVariable @Positive(message = "El id debe ser positivo mayor a 0") int uid_jefe,
-                            @PathVariable @NotBlank(message = "debe especificarse un estado 0: deshabilitado, 1: habilitado") @PositiveOrZero(message = "El campo habilitado puede tomar solo valor 0 o 1") int habilitado){
+                            @PathVariable @NotNull(message = "debe especificarse un estado 0: deshabilitado, 1: habilitado") @PositiveOrZero(message = "El campo habilitado puede tomar solo valor 0 o 1") int habilitado){
 
         return unidadesServiceClient.saveUnidad(nombre, uid_jefe, habilitado);
     }
@@ -72,9 +74,9 @@ public class ApiControllerUnidades {
     @PreAuthorize("hasRole('Administrador')")
     @ResponseStatus(HttpStatus.ACCEPTED)
     Mono<Unidad> updateUnidad(@PathVariable @Positive(message = "El id debe ser positivo mayor a 0") int id,
-                              @PathVariable @NotBlank(message ="La unidad debe tener un nombre valido" ) String
+                              @PathVariable @NotBlank(message ="La unidad debe tener un nombre valido" ) @Length(min=2, max=128, message = "La longitud mininma del nombre de unidad son minimo 2 y maximo 128 caracteres.") String
                               nombre, @PathVariable @Positive(message = "El id debe ser positivo mayor a 0") int new_uid,
-                              @PathVariable @NotBlank(message = "debe especificarse un estado 0: deshabilitado, 1: habilitado") @PositiveOrZero(message = "El campo habilitado puede tomar solo valor 0 o 1") int habilitado){
+                              @PathVariable @NotNull(message = "debe especificarse un estado 0: deshabilitado, 1: habilitado") @PositiveOrZero(message = "El campo habilitado puede tomar solo valor 0 o 1") int habilitado){
 
         return unidadesServiceClient.updateUnidad(id, nombre, new_uid, habilitado);
     }

@@ -69,7 +69,7 @@ public class ApiControllerProyectos {
 
     @GetMapping("/estado/all")
     @PreAuthorize("hasRole('Administrador') or hasRole('JefeUnidad')")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     public Flux<Estado> getAllEstados(){
         return proyectosServiceClient.getEstados();
     }
@@ -99,7 +99,7 @@ public class ApiControllerProyectos {
                                          @PathVariable @NotBlank(message = "La fecha de registro es obligatoria.") String feReg,
                                          @PathVariable @NotBlank(message = "La fecha de inicio es obligatoria.") String feIni,
                                          @PathVariable @NotBlank(message = "La fecha de fin es obligatoria.")  String feEnd,
-                                         @PathVariable @NotBlank(message = "El nombre del proyecto es obligatorio.")  @Length(min=2, max=500, message = "La longitud maxima del nombre son 500 caracteres.") String desc,
+                                         @PathVariable @NotBlank(message = "El nombre del proyecto es obligatorio.")  @Length(min=4, max=500, message = "La longitud maxima del nombre son 500 caracteres.") String desc,
                                          @PathVariable @Positive(message = "El id debe ser mayor a 0 ") @NotNull(message = "El id de estado es obligatorio.") int id_estado,
                                          @PathVariable @Length(max=12000, message = "La longitud maxima de las observaciones son 12000 caracteres.") String obs){
 
@@ -150,7 +150,7 @@ public class ApiControllerProyectos {
                                          @PathVariable @NotBlank(message = "La fecha de registro es obligatoria.") String feReg,
                                          @PathVariable @NotBlank(message = "La fecha de inicio es obligatoria.") String feIni,
                                          @PathVariable @NotBlank(message = "La fecha de fin es obligatoria.")  String feEnd,
-                                         @PathVariable @NotBlank(message = "El nombre del proyecto es obligatorio.")  @Length(min=2, max=500, message = "La longitud maxima del nombre son 500 caracteres.") String desc,
+                                         @PathVariable @NotBlank(message = "El nombre del proyecto es obligatorio.")  @Length(min=4, max=500, message = "La longitud maxima del nombre son 500 caracteres.") String desc,
                                          @PathVariable @Positive(message = "El id debe ser mayor a 0 ") @NotNull(message = "El id de estado es obligatorio.") int id_estado){
 
         // TODO: Abstraer a un validador externo
@@ -190,7 +190,7 @@ public class ApiControllerProyectos {
     @PostMapping("/estado/{est}/{habilitado}")
     @PreAuthorize("hasRole('Administrador')")
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<Estado> createEstado(@PathVariable  @NotBlank(message = "El estado debe tener un nombre.") String est,
+    public Mono<Estado> createEstado(@PathVariable  @NotBlank(message = "El estado debe tener un nombre.") @Length(min=1, max=32, message = "La longitud maxima del nombre son 32 caracteres.")String est,
                                      @PathVariable @NotNull(message = "debe especificarse un estado 0: deshabilitado, 1: habilitado")  @PositiveOrZero(message = "El campo habilitado puede tomar solo valor 0 o 1") int habilitado){
 
 
@@ -208,7 +208,7 @@ public class ApiControllerProyectos {
                                          @PathVariable @NotBlank(message = "La fecha de registro es obligatoria.") String feReg,
                                          @PathVariable @NotBlank(message = "La fecha de inicio es obligatoria.") String feIni,
                                          @PathVariable @NotBlank(message = "La fecha de fin es obligatoria.") String feEnd,
-                                         @PathVariable @NotBlank(message = "El nombre del proyecto es obligatorio.") @Length(min=1, max=500, message = "La longitud mininma del nombre son minimo 2 y maximo 500 caracteres.") String desc,
+                                         @PathVariable @NotBlank(message = "El nombre del proyecto es obligatorio y claro.") @Length(min=4, max=500, message = "La longitud mininma del nombre son minimo 2 y maximo 500 caracteres.") String desc,
                                          @PathVariable @Positive(message = "El id debe ser mayor a 0 ") @NotNull(message = "El id de estado es obligatorio.") int id_estado){
 
         // TODO: Abstraer a un validador externo
@@ -247,7 +247,7 @@ public class ApiControllerProyectos {
                                          @PathVariable @NotBlank(message = "La fecha de registro es obligatoria.") String feReg,
                                          @PathVariable @NotBlank(message = "La fecha de inicio es obligatoria.") String feIni,
                                          @PathVariable @NotBlank(message = "La fecha de fin es obligatoria.") String feEnd,
-                                         @PathVariable @NotBlank(message = "El nombre del proyecto es obligatorio.") @Length(min=1, max=500, message = "La longitud mininma del nombre son minimo 2 y maximo 500 caracteres.") String desc,
+                                         @PathVariable @NotBlank(message = "El nombre del proyecto es obligatorio.") @Length(min=4, max=500, message = "La longitud mininma del nombre son minimo 2 y maximo 500 caracteres.") String desc,
                                          @PathVariable @Positive(message = "El id debe ser mayor a 0 ") @NotNull(message = "El id de estado es obligatorio.") int id_estado,
                                          @PathVariable @Length(max=12000, message = "La longitud maxima de las observaciones son 12000 caracteres.") String obs){
 
@@ -286,7 +286,7 @@ public class ApiControllerProyectos {
     @PreAuthorize("hasRole('Administrador')")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Mono<Estado> updateEstado(@PathVariable @Positive(message = "El id debe ser mayor a 0 ") @NotNull int id,
-                                     @PathVariable  @NotBlank(message = "El estado debe tener un nombre.") String estado,
+                                     @PathVariable  @NotBlank(message = "El estado debe tener un nombre.") @Length(min=1, max=32, message = "La longitud maxima del nombre son 32 caracteres.") String estado,
                                      @PathVariable @NotNull(message = "debe especificarse un estado 0: deshabilitado, 1: habilitado")  @PositiveOrZero(message = "El campo habilitado puede tomar solo valor 0 o 1") int habilitado){
 
         return proyectosServiceClient.updateEstado(id, estado, habilitado);

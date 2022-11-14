@@ -21,4 +21,6 @@ public class Unidad {
     private String nombre_unidad;
 
     private int uid_jefe;
+
+    private Boolean habilitado;
 }

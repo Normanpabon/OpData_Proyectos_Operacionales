@@ -32,11 +32,20 @@ public class EstadoController {
 
     // POST
 
-    @PostMapping("add/{estado}")
+    @PostMapping("add/{estado}/{habilitado}")
     @ResponseStatus(HttpStatus.CREATED)
-    Mono<Estado> createEstado(@PathVariable String estado){
+    Mono<Estado> createEstado(@PathVariable String estado, @PathVariable int habilitado){
         Estado tmpEstado = new Estado();
         tmpEstado.setEstado(estado);
+
+        boolean activo = false;
+
+        if(habilitado == 1){
+            activo = true;
+        }
+
+        tmpEstado.setHabilitado(activo);
+
         estadoRepository.save(tmpEstado).subscribe();
 
         return estadoRepository.getLastEstadoAdded();
@@ -44,10 +53,16 @@ public class EstadoController {
 
     // PUT
 
-    @PutMapping("/{id}/{estado}")
+    @PutMapping("/{id}/{estado}/{habilitado}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    Mono<Estado> updateEstado(@PathVariable int id, @PathVariable String estado){
-        Estado tmpEstado = new Estado(id, estado);
+    Mono<Estado> updateEstado(@PathVariable int id, @PathVariable String estado, @PathVariable int habilitado){
+        boolean activo = false;
+
+        if(habilitado == 1){
+            activo = true;
+        }
+
+        Estado tmpEstado = new Estado(id, estado, activo);
         estadoRepository.save(tmpEstado).subscribe();
 
         return estadoRepository.findById((long) id);

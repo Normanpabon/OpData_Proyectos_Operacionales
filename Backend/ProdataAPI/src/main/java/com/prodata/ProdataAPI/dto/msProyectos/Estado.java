@@ -24,6 +24,8 @@ public class Estado {
     @NotBlank(message = "El estado debe tener un nombre.")
     private String estado;
 
+    private Boolean habilitado;
+
 
 
 }

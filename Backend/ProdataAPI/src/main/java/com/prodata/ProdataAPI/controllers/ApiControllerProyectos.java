@@ -91,6 +91,7 @@ public class ApiControllerProyectos {
 
  */
 
+    @Deprecated
     @PostMapping("/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}")
     @PreAuthorize("hasRole('Administrador') or hasRole('JefeUnidad')")
     @ResponseStatus(HttpStatus.CREATED)
@@ -140,7 +141,56 @@ public class ApiControllerProyectos {
 
     }
 
+    @PostMapping("/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/")
+    @PreAuthorize("hasRole('Administrador') or hasRole('JefeUnidad')")
+    @ResponseStatus(HttpStatus.CREATED)
+    @Validated
+    public Mono<Proyecto> createProyectoV2(@PathVariable @Positive(message = "El id debe ser mayor a 0 ") @NotNull(message = "La unidad asociada es obligatoria.") int unidad,
+                                         @PathVariable @NotBlank(message = "La fecha de registro es obligatoria.") String feReg,
+                                         @PathVariable @NotBlank(message = "La fecha de inicio es obligatoria.") String feIni,
+                                         @PathVariable @NotBlank(message = "La fecha de fin es obligatoria.")  String feEnd,
+                                         @PathVariable @NotBlank(message = "El nombre del proyecto es obligatorio.")  @Length(min=4, max=500, message = "La longitud maxima del nombre son 500 caracteres.") String desc,
+                                         @PathVariable @Positive(message = "El id debe ser mayor a 0 ") @NotNull(message = "El id de estado es obligatorio.") int id_estado,
+                                         @RequestBody @Length(max=12000, message = "La longitud maxima de las observaciones son 12000 caracteres.") String obs){
 
+        // TODO: Abstraer a un validador externo
+
+        // si la primera fecha es mayor devuelve 0 > 1, si es igual 0
+        // Validar que la fecha de inicio sea mayor o igual a la de registro
+        /*
+        if (!((LocalDate.parse(feIni, DATEFORMATTER)).compareTo(LocalDate.parse(feReg, DATEFORMATTER)) >= 0)) {
+
+            throw new ConstraintViolationException("La fecha de inicio debe ser mayor a la fecha de registro.", null);
+        }*/
+
+        // Validar que la fecha de fin sea mayor o igual a la de inicio
+        if(!((LocalDate.parse(feEnd, DATEFORMATTER)).compareTo(LocalDate.parse(feIni, DATEFORMATTER)) >= 0)){
+            throw new ConstraintViolationException("La fecha de finalizacion debe ser mayor a la fecha de registro e inicio.", null);
+        }
+
+        // Todo : Validar que la unidad exista
+        // Todo : Validar que el estado exista
+
+        // Validar que si el estado es anulado tenga una observacion
+        // todo : cambiar logica
+        if (id_estado == 4) {
+            // Si no tiene observaciones para justificar la anulacion
+            if(obs.length() <= 2){
+                throw new ConstraintViolationException("Debe colocarse la justificacion de la anulacion", null);
+            }
+        }
+
+
+        // Si se cumple la validacion de las fechas, se crea el proyecto
+
+        return proyectosServiceClient.addProyecto(unidad, feReg, feIni, feEnd, desc, id_estado, obs);
+
+
+
+
+    }
+
+/*
     // Metodo post si no se envia observacion
     @PostMapping("/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}")
     @PreAuthorize("hasRole('Administrador') or hasRole('JefeUnidad')")
@@ -162,6 +212,7 @@ public class ApiControllerProyectos {
 
             throw new ConstraintViolationException("La fecha de inicio debe ser mayor a la fecha de registro.", null);
         }*/
+    /*
 
         // Validar que la fecha de fin sea mayor o igual a la de inicio
         if(!((LocalDate.parse(feEnd, DATEFORMATTER)).compareTo(LocalDate.parse(feIni, DATEFORMATTER)) >= 0)){
@@ -185,7 +236,7 @@ public class ApiControllerProyectos {
 
 
 
-    }
+    }*/
 
     @PostMapping("/estado/{est}/{habilitado}")
     @PreAuthorize("hasRole('Administrador')")
@@ -200,7 +251,7 @@ public class ApiControllerProyectos {
     }
 
     // PUT Proyectos y estado
-
+/*
     @PutMapping("/{id}/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}")
     @PreAuthorize("hasRole('Administrador') or hasRole('JefeUnidad')")
     @ResponseStatus(HttpStatus.CREATED)
@@ -226,6 +277,7 @@ public class ApiControllerProyectos {
         // Todo : Validar que el estado exista
 
         // Validar que la fecha de fin sea mayor o igual a la de registro e inicio
+    /*
         if(!((LocalDate.parse(feEnd, DATEFORMATTER)).compareTo(LocalDate.parse(feIni, DATEFORMATTER)) >= 0)){
             throw new ConstraintViolationException("La fecha de finalizacion debe ser mayor a la fecha de registro e inicio.", null);
         }
@@ -239,7 +291,7 @@ public class ApiControllerProyectos {
 
         return proyectosServiceClient.updateProyecto(id, unidad, feReg, feIni, feEnd, desc, id_estado, "NA");
     }
-
+    */@Deprecated
     @PutMapping("/{id}/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}")
     @PreAuthorize("hasRole('Administrador') or hasRole('JefeUnidad')")
     @ResponseStatus(HttpStatus.CREATED)
@@ -250,6 +302,48 @@ public class ApiControllerProyectos {
                                          @PathVariable @NotBlank(message = "El nombre del proyecto es obligatorio.") @Length(min=4, max=500, message = "La longitud mininma del nombre son minimo 2 y maximo 500 caracteres.") String desc,
                                          @PathVariable @Positive(message = "El id debe ser mayor a 0 ") @NotNull(message = "El id de estado es obligatorio.") int id_estado,
                                          @PathVariable @Length(max=12000, message = "La longitud maxima de las observaciones son 12000 caracteres.") String obs){
+
+        // TODO: Abstraer a un validador externo
+
+
+        // si la primera fecha es mayor devuelve 0 > 1, si es igual 0
+        // Validar que la fecha de inicio sea mayor o igual a la de registro
+        /*
+        if (!((LocalDate.parse(feIni, DATEFORMATTER)).compareTo(LocalDate.parse(feReg, DATEFORMATTER)) >= 0)) {
+
+            throw new ConstraintViolationException("La fecha de inicio debe ser mayor a la fecha de registro.", null);
+        }*/
+
+        // Todo : Validar que la unidad exista
+        // Todo : Validar que el estado exista
+
+        // Validar que la fecha de fin sea mayor o igual a la de registro e inicio
+        if(!((LocalDate.parse(feEnd, DATEFORMATTER)).compareTo(LocalDate.parse(feIni, DATEFORMATTER)) >= 0)){
+            throw new ConstraintViolationException("La fecha de finalizacion debe ser mayor a la fecha de registro e inicio.", null);
+        }
+
+        // Validar que si el estado es anulado tenga una observacion
+        // todo : cambiar logica
+        if (id_estado == 4) {
+            // Si no tiene observaciones para justificar la anulacion
+            if(obs.length() <= 2){
+                throw new ConstraintViolationException("Debe colocarse la justificacion de la anulacion", null);
+            }
+        }
+
+        return proyectosServiceClient.updateProyecto(id, unidad, feReg, feIni, feEnd, desc, id_estado, obs);
+    }
+
+    @PutMapping("/{id}/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}")
+    @PreAuthorize("hasRole('Administrador') or hasRole('JefeUnidad')")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Mono<Proyecto> updateProyectoV2(@PathVariable @Positive(message = "El id debe ser mayor a 0 ") @NotNull int id, @PathVariable  @NotNull(message = "La unidad asociada es obligatoria.") int unidad,
+                                         @PathVariable @NotBlank(message = "La fecha de registro es obligatoria.") String feReg,
+                                         @PathVariable @NotBlank(message = "La fecha de inicio es obligatoria.") String feIni,
+                                         @PathVariable @NotBlank(message = "La fecha de fin es obligatoria.") String feEnd,
+                                         @PathVariable @NotBlank(message = "El nombre del proyecto es obligatorio.") @Length(min=4, max=500, message = "La longitud mininma del nombre son minimo 2 y maximo 500 caracteres.") String desc,
+                                         @PathVariable @Positive(message = "El id debe ser mayor a 0 ") @NotNull(message = "El id de estado es obligatorio.") int id_estado,
+                                         @RequestBody @Length(max=12000, message = "La longitud maxima de las observaciones son 12000 caracteres.") String obs){
 
         // TODO: Abstraer a un validador externo
 

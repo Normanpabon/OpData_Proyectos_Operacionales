@@ -327,7 +327,192 @@
 							"response": []
 						},
 						{
+							"name": "Agregar nuevo proyecto body descripcion",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var responsJson = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Tiempo de respuesta menor a 200ms\", function(){\r",
+											"    \r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);  \r",
+											"\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Codigo 201 created esperado\", function(){\r",
+											"    // Comprobamos con assert\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Se reciben los datos del proyecto creado\", function(){\r",
+											"\r",
+											"    // Validamos unidad enviada en peticion\r",
+											"    pm.expect(responsJson.unidad_p).to.be.eql(2);\r",
+											"\r",
+											"    // Validamos respuesta de fecha reg enviada\r",
+											"    pm.expect(responsJson.fecha_reg).to.be.eql([\r",
+											"        2020,\r",
+											"        10,\r",
+											"        5\r",
+											"    ]);\r",
+											"\r",
+											"    // Validamos respuesta fecha inicio enviada\r",
+											"    pm.expect(responsJson.fecha_ini).to.be.eql([\r",
+											"        2021,\r",
+											"        10,\r",
+											"        5\r",
+											"    ]);\r",
+											"\r",
+											"    // Validamos respuesta fecha fin enviada\r",
+											"    pm.expect(responsJson.fecha_fin).to.be.eql([\r",
+											"        2023,\r",
+											"        12,\r",
+											"        5\r",
+											"    ]);\r",
+											"\r",
+											"    // Validamos Id estado enviado\r",
+											"    pm.expect(responsJson.id_estado).to.be.eql(2);\r",
+											"\r",
+											"    // Validamos descripcion enviada\r",
+											"\r",
+											"    pm.expect(responsJson.desc_pro).to.be.eql(\"V2 test postman\");\r",
+											"\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Opdata {{AuthKeyApi}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "Esta es la descripcion de prueba que se espera en el proyecto xdñ"
+								},
+								"url": {
+									"raw": "{{ApiURL}}/API/V2/proyectos/2/2020-10-05/2021-10-05/2023-12-05/V5 test body descripcion /2/",
+									"host": [
+										"{{ApiURL}}"
+									],
+									"path": [
+										"API",
+										"V2",
+										"proyectos",
+										"2",
+										"2020-10-05",
+										"2021-10-05",
+										"2023-12-05",
+										"V5 test body descripcion ",
+										"2",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Actualizar datos de un proyecto",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var responsJson = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Tiempo de respuesta menor a 200ms\", function(){\r",
+											"    \r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);  \r",
+											"\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Codigo 201 created esperado\", function(){\r",
+											"    // Comprobamos con assert\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Se reciben los datos del proyecto modificado\", function(){\r",
+											"\r",
+											"    // Validamos unidad enviada en peticion\r",
+											"    pm.expect(responsJson.unidad_p).to.be.eql(3);\r",
+											"\r",
+											"    // Validamos respuesta de fecha reg enviada\r",
+											"    pm.expect(responsJson.fecha_reg).to.be.eql([\r",
+											"        2020,\r",
+											"        10,\r",
+											"        5\r",
+											"    ]);\r",
+											"\r",
+											"    // Validamos respuesta fecha inicio enviada\r",
+											"    pm.expect(responsJson.fecha_ini).to.be.eql([\r",
+											"        2021,\r",
+											"        10,\r",
+											"        5\r",
+											"    ]);\r",
+											"\r",
+											"    // Validamos respuesta fecha fin enviada\r",
+											"    pm.expect(responsJson.fecha_fin).to.be.eql([\r",
+											"        2023,\r",
+											"        12,\r",
+											"        5\r",
+											"    ]);\r",
+											"\r",
+											"    // Validamos Id estado enviado\r",
+											"    pm.expect(responsJson.id_estado).to.be.eql(3);\r",
+											"\r",
+											"    // Validamos descripcion enviada\r",
+											"    pm.expect(responsJson.desc_pro).to.be.eql(\"Proyecto modificado test body\");\r",
+											"\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Opdata {{AuthKeyApi}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "Este proyecto fue modificado desde el body pasando el body como descripcion"
+								},
+								"url": {
+									"raw": "{{ApiURL}}/API/V2/proyectos/19/3/2020-10-05/2021-10-05/2023-12-05/Proyecto modificado test body/3",
+									"host": [
+										"{{ApiURL}}"
+									],
+									"path": [
+										"API",
+										"V2",
+										"proyectos",
+										"19",
+										"3",
+										"2020-10-05",
+										"2021-10-05",
+										"2023-12-05",
+										"Proyecto modificado test body",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar datos de un proyecto body descripcion",
 							"event": [
 								{
 									"listen": "test",

@@ -183,7 +183,8 @@ public class ApiControllerProyectos {
 
         // Si se cumple la validacion de las fechas, se crea el proyecto
 
-        return proyectosServiceClient.addProyecto(unidad, feReg, feIni, feEnd, desc, id_estado, obs);
+        //return proyectosServiceClient.addProyecto(unidad, feReg, feIni, feEnd, desc, id_estado, obs);
+        return proyectosServiceClient.saveProyecto(unidad, feReg, feIni, feEnd, desc, id_estado, obs);
 
 
 
@@ -373,7 +374,7 @@ public class ApiControllerProyectos {
             }
         }
 
-        return proyectosServiceClient.updateProyecto(id, unidad, feReg, feIni, feEnd, desc, id_estado, obs);
+        return proyectosServiceClient.updateProyectoV2(id, unidad, feReg, feIni, feEnd, desc, id_estado, obs);
     }
 
     @PutMapping("/estado/{id}/{estado}/{habilitado}")

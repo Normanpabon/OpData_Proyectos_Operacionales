@@ -86,13 +86,11 @@ public class ProyectoController {
 
     }
 
-    // Metodo viejo, borrar en proxima revision
-    @Deprecated
-    @PostMapping("/add/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}")
+    @PostMapping("/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addProyecto(@PathVariable int unidad, @PathVariable String feReg, @PathVariable String feIni, @PathVariable String feEnd,
-                     @PathVariable String desc, @PathVariable int id_estado,
-                     @PathVariable String obs){
+    public Mono<Proyecto> addProyecto(@PathVariable int unidad, @PathVariable String feReg, @PathVariable String feIni, @PathVariable String feEnd,
+                                       @PathVariable String desc, @PathVariable int id_estado,
+                                       @RequestBody String obs){
 
         Proyecto tmpProyecto =  new Proyecto();
         tmpProyecto.setUnidad_p(unidad);
@@ -116,6 +114,8 @@ public class ProyectoController {
 
         proyectoRepository.save(tmpProyecto).subscribe();
 
+        return proyectoRepository.getLastProyectAdded();
+
 
 
     }
@@ -137,6 +137,23 @@ public class ProyectoController {
         proyectoRepository.save(tmpProyecto).subscribe();
 
         return proyectoRepository.findById((long) id);
+
+    }
+
+    @PutMapping("/{id}/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Mono<Proyecto> updateProyectov2(@PathVariable int id, @PathVariable int unidad, @PathVariable String feReg, @PathVariable String feIni, @PathVariable String feEnd,
+                                      @PathVariable String desc, @PathVariable int id_estado,
+                                      @RequestBody String obs){
+
+        Proyecto tmpProyecto =  new Proyecto(id, unidad, LocalDate.parse(feReg, DATEFORMATTER), LocalDate.parse(feIni, DATEFORMATTER),
+                LocalDate.parse(feEnd, DATEFORMATTER), desc, id_estado, obs);
+
+        proyectoRepository.save(tmpProyecto).subscribe();
+
+        return proyectoRepository.findById((long) id);
+
+
 
     }
 

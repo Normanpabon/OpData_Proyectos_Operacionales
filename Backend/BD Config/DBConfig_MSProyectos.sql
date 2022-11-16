@@ -1,3 +1,6 @@
+DROP DATABASE proyectos;
+DROP USER 'opdataProyectos';
+
 /* Creacion BD y tablas */
 
 CREATE DATABASE proyectos;

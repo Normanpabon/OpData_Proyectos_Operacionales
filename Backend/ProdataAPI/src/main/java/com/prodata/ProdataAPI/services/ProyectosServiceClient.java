@@ -2,7 +2,10 @@ package com.prodata.ProdataAPI.services;
 
 import com.prodata.ProdataAPI.dto.msProyectos.Estado;
 import com.prodata.ProdataAPI.dto.msProyectos.Proyecto;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.BodyInserter;
+import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -58,17 +61,17 @@ public class ProyectosServiceClient {
     //post
 
     // TODO : Verificar porque no se esta creando en el ms (no llega la peticion al controlador del ms)
-    @Deprecated
-    public void saveProyecto(int unidad, String feReg,String feIni, String feEnd, String desc, int id_estado, String obs){
-        this.webClient.post().uri("proyecto/add/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}/",
-                        unidad, feReg, feIni, feEnd, desc, id_estado, obs)
-                        .retrieve();
+    public Mono<Proyecto> saveProyecto(int unidad, String feReg,String feIni, String feEnd, String desc, int id_estado, String obs){
+        String valObs= obs;
+        return this.webClient.post().uri("proyecto/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/",
+                        unidad, feReg, feIni, feEnd, desc, id_estado).accept(MediaType.ALL).contentType(MediaType.TEXT_PLAIN).body(BodyInserters.fromObject(obs))
+                        .retrieve().bodyToMono(Proyecto.class);
 
 
     }
 
     // Prueba con return
-
+    @Deprecated
     public Mono<Proyecto> addProyecto(int unidad, String feReg,String feIni, String feEnd, String desc, int id_estado, String obs){
         return this.webClient.post().uri("proyecto/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}/",
                         unidad, feReg, feIni, feEnd, desc, id_estado, obs)
@@ -84,6 +87,14 @@ public class ProyectosServiceClient {
                         unidad, feReg, feIni, feEnd, desc, id_estado, obs)
                 .retrieve()
                 .bodyToMono(Proyecto.class);
+    }
+
+    public Mono<Proyecto> updateProyectoV2(int id, int unidad, String feReg,String feIni, String feEnd, String desc, int id_estado, String obs){
+        String obsVal = obs;
+
+        return this.webClient.put().uri("proyecto/{id}/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/",id,
+                        unidad, feReg, feIni, feEnd, desc, id_estado).accept(MediaType.ALL).contentType(MediaType.TEXT_PLAIN).body(BodyInserters.fromObject(obsVal))
+                .retrieve().bodyToMono(Proyecto.class);
     }
 
     public Mono<Estado> updateEstado(int id, String estado, int habilitado){

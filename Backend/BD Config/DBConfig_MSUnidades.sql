@@ -1,3 +1,6 @@
+DROP DATABASE unidades;
+DROP USER 'opdataUnidades';
+
 /* Creacion BD y tablas */
 
 CREATE DATABASE unidades;

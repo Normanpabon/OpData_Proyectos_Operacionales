@@ -294,16 +294,23 @@ export function UserContextProvider({ children }) {
       const { data } = await axios({
         method: "post",
         url: `${opDataRestApi}/proyectos/${user.id_unidad}/${fecha_reg}/${fecha_ini}/${fecha_fin}/${desc_pro}/${id_estado}/`,
-        headers: { Authorization: `Opdata ${token}` },
-        data: {
-          observaciones: observacionesSend,
+        headers: {
+          Authorization: `Opdata ${token}`,
+          "Content-Type": "text/plain",
         },
+        data: observacionesSend,
       });
       setProjects([...projects, data]);
-      setFilteredProjects([
-        ...projects.filter((pro) => pro.id !== data.id),
-        data,
-      ]);
+      if (data.id_estado == 1) {
+        setFilteredProjects([
+          ...projects.filter((pro) => pro.id !== data.id && pro.id_estado == 1),
+          data,
+        ]);
+      } else {
+        setFilteredProjects([
+          ...projects.filter((pro) => pro.id !== data.id && pro.id_estado == 1),
+        ]);
+      }
       return true;
     } catch (error) {
       return error;
@@ -330,16 +337,23 @@ export function UserContextProvider({ children }) {
       const { data } = await axios({
         method: "put",
         url: `${opDataRestApi}/proyectos/${id}/${user.id_unidad}/${fecha_reg}/${fecha_ini}/${fecha_fin}/${desc_pro}/${id_estado}/`,
-        headers: { Authorization: `Opdata ${token}` },
-        data: {
-          observaciones: observacionesSend,
+        headers: {
+          Authorization: `Opdata ${token}`,
+          "Content-Type": "text/plain",
         },
+        data: observacionesSend,
       });
       setProjects([...projects.filter((pro) => pro.id !== data.id), data]);
-      setFilteredProjects([
-        ...projects.filter((pro) => pro.id !== data.id),
-        data,
-      ]);
+      if (data.id_estado == 1) {
+        setFilteredProjects([
+          ...projects.filter((pro) => pro.id !== data.id && pro.id_estado == 1),
+          data,
+        ]);
+      } else {
+        setFilteredProjects([
+          ...projects.filter((pro) => pro.id !== data.id && pro.id_estado == 1),
+        ]);
+      }
       return true;
     } catch (error) {
       return error;

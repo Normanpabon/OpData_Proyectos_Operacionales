@@ -9,6 +9,7 @@ function ProjectForm() {
     createProject,
     setAlert,
     setUser,
+    setUserTitle,
   } = useUser();
   const [validation, setValidation] = useState({});
   const navigate = useNavigate();
@@ -111,6 +112,7 @@ function ProjectForm() {
         });
         if (res) {
           navigate(`/user`);
+          setUserTitle("Proyectos activos");
           setAlert("");
           setTimeout(() => {
             setAlert(" hidden");
@@ -126,6 +128,7 @@ function ProjectForm() {
         });
         if (res) {
           navigate(`/user`);
+          setUserTitle("Proyectos activos");
           setAlert("");
           setTimeout(() => {
             setAlert(" hidden");

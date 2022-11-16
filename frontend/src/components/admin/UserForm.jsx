@@ -303,7 +303,7 @@ function UserForm() {
                 </span>
               </label>
               <input
-                type="text"
+                type="password"
                 name="hashed_pass"
                 id="hashed_pass"
                 className={`input input-bordered${

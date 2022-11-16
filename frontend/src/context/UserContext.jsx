@@ -32,9 +32,15 @@ export function UserContextProvider({ children }) {
   };
 
   const formatDate = (fecha) => {
-    const formatedDate = new Date(
-      `${fecha.slice(0, 4)}/${fecha.slice(5, 7)}/${fecha.slice(8)}`
-    );
+    let formatedDate;
+    if (typeof fecha == "object") {
+      formatedDate = new Date(`${fecha[0]}/${fecha[1]}/${fecha[2]}`);
+    } else {
+      formatedDate = new Date(
+        `${fecha.slice(0, 4)}/${fecha.slice(5, 7)}/${fecha.slice(8)}`
+      );
+    }
+
     return formatedDate;
   };
 
@@ -300,31 +306,15 @@ export function UserContextProvider({ children }) {
         },
         data: observacionesSend,
       });
-      let item = data;
-      item.fecha_reg = `${item.fecha_reg[0]}-${
-        item.fecha_reg[1] < 10 ? `0${item.fecha_reg[1]}` : item.fecha_reg[1]
-      }-${
-        item.fecha_reg[2] < 10 ? `0${item.fecha_reg[2]}` : item.fecha_reg[2]
-      }`;
-      item.fecha_ini = `${item.fecha_ini[0]}-${
-        item.fecha_ini[1] < 10 ? `0${item.fecha_ini[1]}` : item.fecha_ini[1]
-      }-${
-        item.fecha_ini[2] < 10 ? `0${item.fecha_ini[2]}` : item.fecha_ini[2]
-      }`;
-      item.fecha_fin = `${item.fecha_fin[0]}-${
-        item.fecha_fin[1] < 10 ? `0${item.fecha_fin[1]}` : item.fecha_fin[1]
-      }-${
-        item.fecha_fin[2] < 10 ? `0${item.fecha_fin[2]}` : item.fecha_fin[2]
-      }`;
-      setProjects([...projects, item]);
-      if (item.id_estado == 1) {
+      setProjects([...projects, data]);
+      if (data.id_estado == 1) {
         setFilteredProjects([
-          ...projects.filter((pro) => pro.id !== item.id && pro.id_estado == 1),
-          item,
+          ...projects.filter((pro) => pro.id !== data.id && pro.id_estado == 1),
+          data,
         ]);
       } else {
         setFilteredProjects([
-          ...projects.filter((pro) => pro.id !== item.id && pro.id_estado == 1),
+          ...projects.filter((pro) => pro.id !== data.id && pro.id_estado == 1),
         ]);
       }
       return true;

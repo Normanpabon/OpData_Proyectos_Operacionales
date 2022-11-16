@@ -52,14 +52,12 @@ function UnitForm() {
     if (params.id) {
       if (actualChief == unit.uid_jefe) {
         validationTemp = { ...validationTemp, jefe_taken: false };
-        validationPass = true;
       } else {
         const exist = units.find((unitFound) => {
           return unitFound.uid_jefe == unit.uid_jefe;
         });
         if (exist == undefined) {
           validationTemp = { ...validationTemp, jefe_taken: false };
-          validationPass = true;
         } else {
           validationTemp = { ...validationTemp, jefe_taken: true };
           validationPass = false;
@@ -68,14 +66,12 @@ function UnitForm() {
     } else {
       if (unit.uid_jefe == 1) {
         validationTemp = { ...validationTemp, jefe_taken: false };
-        validationPass = true;
       } else {
         const exist = units.find((unitFound) => {
           return unitFound.uid_jefe == unit.uid_jefe;
         });
         if (exist == undefined) {
           validationTemp = { ...validationTemp, jefe_taken: false };
-          validationPass = true;
         } else {
           validationTemp = { ...validationTemp, jefe_taken: true };
           validationPass = false;

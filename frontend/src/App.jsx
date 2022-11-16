@@ -12,6 +12,7 @@ import AdminStatusPage from "./pages/admin/AdminStatusPage";
 import UnitForm from "./components/admin/UnitForm";
 import StatusForm from "./components/admin/StatusForm";
 import UserForm from "./components/admin/UserForm";
+import ServerDown from "./pages/ServerDown";
 
 function App() {
   const { user } = useUser();
@@ -19,6 +20,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/serverDown" element={<ServerDown />} />
         <Route
           element={
             <ProtectedRoute

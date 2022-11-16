@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { useUser } from "../context/UserContext";
 function ProjectFilterDate({ open }) {
-  const { filterProjectsByDate, orderProjectsByDate } = useUser();
+  const { filterProjectsByDate, orderProjectsByDate, setUserTitle } = useUser();
   const order = useRef(null);
   const dateFilter = useRef(null);
   const [dateType, setDateType] = useState("");
@@ -130,6 +130,7 @@ function ProjectFilterDate({ open }) {
           />
           <button
             onClick={() => {
+              setUserTitle("Proyectos filtrados por fecha");
               filterProjectsByDate(
                 dateType,
                 dateFilter.current.value,

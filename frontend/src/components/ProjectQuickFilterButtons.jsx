@@ -5,6 +5,7 @@ function ProjectQuickFilterButtons({ open }) {
     clearFilters,
     filterProjectsSoonToExpire,
     filterProjectsExpired,
+    setUserTitle,
   } = useUser();
   return (
     <>
@@ -14,6 +15,7 @@ function ProjectQuickFilterButtons({ open }) {
       >
         <label
           onClick={() => {
+            setUserTitle("Proyectos activos");
             filterProjectsBySingleStatus(1);
           }}
           className={`btn btn-primary text-white w-full mt-2`}
@@ -43,6 +45,7 @@ function ProjectQuickFilterButtons({ open }) {
       >
         <label
           onClick={() => {
+            setUserTitle("Proyectos en espera");
             filterProjectsBySingleStatus(2);
           }}
           className={`btn btn-primary text-white w-full mt-2`}
@@ -73,6 +76,7 @@ function ProjectQuickFilterButtons({ open }) {
       >
         <label
           onClick={() => {
+            setUserTitle("Todos los proyectos");
             clearFilters();
           }}
           className={`btn btn-primary text-white w-full mt-2`}
@@ -103,6 +107,7 @@ function ProjectQuickFilterButtons({ open }) {
       >
         <label
           onClick={() => {
+            setUserTitle("Proyectos próximos a vencer");
             filterProjectsSoonToExpire();
           }}
           className={`btn btn-primary text-white w-full mt-2`}
@@ -132,6 +137,7 @@ function ProjectQuickFilterButtons({ open }) {
       >
         <label
           onClick={() => {
+            setUserTitle("Proyectos vencidos");
             filterProjectsExpired();
           }}
           className={`btn btn-primary text-white w-full mt-2`}

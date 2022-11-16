@@ -2,8 +2,12 @@ import { useUser } from "../context/UserContext";
 import { useEffect, useState } from "react";
 
 function ProjectFilterStatus({ open }) {
-  const { allStatus, filterProjectsByStatus, orderProjectsByStatus } =
-    useUser();
+  const {
+    allStatus,
+    filterProjectsByStatus,
+    orderProjectsByStatus,
+    setUserTitle,
+  } = useUser();
   const [statusArray, setStatusArray] = useState();
   useEffect(() => {
     var statusArrayTemp = {};
@@ -84,6 +88,7 @@ function ProjectFilterStatus({ open }) {
           })}
           <button
             onClick={() => {
+              setUserTitle("Proyectos filtrados por estado");
               filterProjectsByStatus(statusArray);
             }}
             className="btn btn-primary btn-sm text-white"

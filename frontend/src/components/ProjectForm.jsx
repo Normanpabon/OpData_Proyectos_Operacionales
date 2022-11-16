@@ -2,8 +2,14 @@ import { useEffect, useState } from "react";
 import { useUser } from "../context/UserContext";
 import { useParams, useNavigate } from "react-router-dom";
 function ProjectForm() {
-  const { projects, allStatus, updateProject, createProject, setAlert } =
-    useUser();
+  const {
+    projects,
+    allStatus,
+    updateProject,
+    createProject,
+    setAlert,
+    setUser,
+  } = useUser();
   const [validation, setValidation] = useState({});
   const navigate = useNavigate();
   const params = useParams();
@@ -45,7 +51,7 @@ function ProjectForm() {
     });
   };
 
-  function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const fecha = new Date();
     const fechaFormateada = fecha.toISOString().slice(0, 10);
@@ -99,30 +105,45 @@ function ProjectForm() {
 
     if (validationPass) {
       if (params.id) {
-        updateProject({
+        const res = await updateProject({
           ...project,
           id: params.id,
         });
-        navigate(`/user`);
+        if (res) {
+          navigate(`/user`);
+          setAlert("");
+          setTimeout(() => {
+            setAlert(" hidden");
+          }, 3000);
+        } else {
+          setUser(null);
+          navigate("/serverDown");
+        }
       } else {
-        createProject({
+        const res = await createProject({
           ...project,
-          id: params.id,
           fecha_reg: fechaFormateada,
         });
-        navigate("/user");
+        if (res) {
+          navigate(`/user`);
+          setAlert("");
+          setTimeout(() => {
+            setAlert(" hidden");
+          }, 3000);
+        } else {
+          setUser(null);
+          navigate("/serverDown");
+        }
       }
-      setAlert("");
-      setTimeout(() => {
-        setAlert(" hidden");
-      }, 5000);
     }
-  }
+  };
 
   const fechaRegistroComponente = (
     <div className="form-control">
       <label htmlFor="" className="label">
-        <span className="label-text font-bold">Fecha de registro</span>
+        <span className="label-text font-bold">
+          Fecha de registro <span className="text-red-600">*</span>
+        </span>
       </label>
       <input
         type="date"
@@ -153,7 +174,8 @@ function ProjectForm() {
             <div className="form-control">
               <label htmlFor="desc_pro" className="label">
                 <span className="label-text font-bold">
-                  Nombre/Descripción del proyecto
+                  Nombre/Descripción del proyecto{" "}
+                  <span className="text-red-600">*</span>
                 </span>
               </label>
               <input
@@ -183,7 +205,9 @@ function ProjectForm() {
               {params.id ? fechaRegistroComponente : <></>}
               <div className="form-control">
                 <label htmlFor="" className="label">
-                  <span className="label-text font-bold">Fecha de inicio</span>
+                  <span className="label-text font-bold">
+                    Fecha de inicio <span className="text-red-600">*</span>
+                  </span>
                 </label>
                 <input
                   type="date"
@@ -210,7 +234,9 @@ function ProjectForm() {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text font-bold">Fecha de fin</span>
+                  <span className="label-text font-bold">
+                    Fecha de fin <span className="text-red-600">*</span>
+                  </span>
                 </label>
                 <input
                   type="date"
@@ -237,7 +263,9 @@ function ProjectForm() {
               </div>
               <div className="form-control">
                 <label htmlFor="" className="label">
-                  <span className="label-text font-bold">Estado</span>
+                  <span className="label-text font-bold">
+                    Estado <span className="text-red-600">*</span>
+                  </span>
                 </label>
                 <select
                   name="id_estado"
@@ -298,6 +326,9 @@ function ProjectForm() {
                 </span>
               </label>
             </div>
+            <p className="text-xs">
+              <span className="text-red-600">*</span> Campos Obligatorios
+            </p>
             <div className="mt-2 -ml-3">
               <button className="btn btn-primary text-white rounded-xl w-fit mx-3">
                 Guardar

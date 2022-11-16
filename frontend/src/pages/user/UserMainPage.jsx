@@ -7,7 +7,7 @@ import ProjectFilterBar from "../../components/ProjectFilterBar";
 import Footer from "../../components/common/Footer";
 
 function UserMainPage() {
-  const { alert } = useUser();
+  const { alert, userTitle } = useUser();
   const navigate = useNavigate();
   return (
     <div className="flex flex-col h-screen">
@@ -15,7 +15,7 @@ function UserMainPage() {
       <main className="flex flex-row flex-1 relative">
         <ProjectFilterBar />
         <section className="shadow-2xl mx-auto w-full px-10 pt-2 pb-5 flex flex-col grow">
-          <h2 className="text-black font-bold text-2xl">Todos los proyectos</h2>
+          <h2 className="text-black font-bold text-2xl">{userTitle}</h2>
           <div className={`alert alert-success shadow-lg ${alert}`}>
             <div>
               <svg

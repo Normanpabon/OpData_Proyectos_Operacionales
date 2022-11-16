@@ -1,20 +1,19 @@
-import { useUser } from "../context/UserContext";
+import { useUser } from "../../context/UserContext";
 import { useRef } from "react";
-function ProjectFilterSearch() {
-  const { filterProjectsByName, setUserTitle } = useUser();
+function UsersFilterSearch() {
+  const { searchUserByUsername } = useUser();
   const searchBox = useRef(null);
   return (
     <div className="form-control flex flex-row mt-2">
       <input
         ref={searchBox}
         type="text"
-        placeholder="Buscar por nombre..."
-        className="input input-bordered text-black"
+        placeholder="Buscar por nombre de usuario..."
+        className="input input-bordered text-black w-full"
       />
       <button
         onClick={() => {
-          setUserTitle(`Resultado de la busqueda: ${searchBox.current.value}`);
-          filterProjectsByName(searchBox.current.value);
+          searchUserByUsername(searchBox.current.value);
         }}
         className="btn btn-square btn-primary"
       >
@@ -37,4 +36,4 @@ function ProjectFilterSearch() {
   );
 }
 
-export default ProjectFilterSearch;
+export default UsersFilterSearch;

@@ -3,7 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 function StatusForm() {
-  const { allStatus, updateStatus, createStatus, setAlert, users } = useUser();
+  const { allStatus, updateStatus, createStatus, setAlert, setUser } =
+    useUser();
   const [validation, setValidation] = useState({});
   const navigate = useNavigate();
   const params = useParams();
@@ -25,7 +26,7 @@ function StatusForm() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let validationTemp = {};
     let validationPass = true;
@@ -44,19 +45,36 @@ function StatusForm() {
     setValidation(validationTemp);
     if (validationPass) {
       if (params.id) {
-        updateStatus({
+        const res = await updateStatus({
           ...status,
           id: params.id,
         });
+        console.log(res);
+        if (res === true) {
+          navigate("/admin/status");
+          setAlert("");
+          setTimeout(() => {
+            setAlert(" hidden");
+          }, 3000);
+        } else {
+          setUser(null);
+          navigate("/serverDown");
+        }
       } else {
-        createStatus(status);
+        const res = await createStatus(status);
+        console.log(res);
+        if (res === true) {
+          navigate("/admin/status");
+          setAlert("");
+          setTimeout(() => {
+            setAlert(" hidden");
+          }, 3000);
+        } else {
+          setUser(null);
+          navigate("/serverDown");
+        }
       }
     }
-    navigate("/admin/status");
-    setAlert("");
-    setTimeout(() => {
-      setAlert(" hidden");
-    }, 5000);
   };
 
   return (
@@ -73,7 +91,9 @@ function StatusForm() {
             </h2>
             <div className="form-control">
               <label htmlFor="nombre_estado" className="label">
-                <span className="label-text font-bold">Nombre del estado</span>
+                <span className="label-text font-bold">
+                  Nombre del estado <span className="text-red-600">*</span>
+                </span>
               </label>
               <input
                 type="text"
@@ -114,6 +134,9 @@ function StatusForm() {
                 />
               </label>
             </div>
+            <p className="text-xs">
+              <span className="text-red-600">*</span> Campos Obligatorios
+            </p>
             <div className="mt-2 -ml-3">
               <button className="btn btn-primary text-white rounded-xl w-fit mx-3">
                 Guardar

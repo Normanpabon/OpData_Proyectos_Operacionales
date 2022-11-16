@@ -31,7 +31,7 @@ function UserForm() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let validationTemp = {};
     let validationPass = true;
@@ -110,13 +110,30 @@ function UserForm() {
     setValidation(validationTemp);
     if (validationPass) {
       if (params.id) {
-        updateUser({ ...user, id: params.id });
-        navigate("/admin/users");
+        const res = await updateUser({ ...user, id: params.id });
+        if (res === true) {
+          navigate("/admin/users");
+          setAlert("");
+          setTimeout(() => {
+            setAlert(" hidden");
+          }, 3000);
+        } else {
+          setUser(null);
+          navigate("/serverDown");
+        }
+      } else {
+        const res = await createUser(user);
+        if (res === true) {
+          navigate("/admin/users");
+          setAlert("");
+          setTimeout(() => {
+            setAlert(" hidden");
+          }, 3000);
+        } else {
+          setUser(null);
+          navigate("/serverDown");
+        }
       }
-      setAlert("");
-      setTimeout(() => {
-        setAlert(" hidden");
-      }, 5000);
     }
   };
 
@@ -135,7 +152,7 @@ function UserForm() {
             <div className="form-control">
               <label htmlFor="cod_ins" className="label">
                 <span className="label-text font-bold">
-                  Código Institucional
+                  Código Institucional <span className="text-red-600">*</span>
                 </span>
               </label>
               <input
@@ -164,7 +181,9 @@ function UserForm() {
             <div className="grid grid-cols-2">
               <div className="form-control">
                 <label htmlFor="nombre" className="label">
-                  <span className="label-text font-bold">Nombre</span>
+                  <span className="label-text font-bold">
+                    Nombre <span className="text-red-600">*</span>
+                  </span>
                 </label>
                 <input
                   type="text"
@@ -191,7 +210,9 @@ function UserForm() {
               </div>
               <div className="form-control">
                 <label htmlFor="apellido" className="label">
-                  <span className="label-text font-bold">Apellido</span>
+                  <span className="label-text font-bold">
+                    Apellido <span className="text-red-600">*</span>
+                  </span>
                 </label>
                 <input
                   type="text"
@@ -219,7 +240,9 @@ function UserForm() {
             </div>
             <div className="form-control">
               <label htmlFor="username" className="label">
-                <span className="label-text font-bold">Nombre de Usuario</span>
+                <span className="label-text font-bold">
+                  Nombre de Usuario <span className="text-red-600">*</span>
+                </span>
               </label>
               <input
                 type="text"
@@ -246,7 +269,9 @@ function UserForm() {
             </div>
             <div className="form-control">
               <label htmlFor="correo" className="label">
-                <span className="label-text font-bold">Correo</span>
+                <span className="label-text font-bold">
+                  Correo <span className="text-red-600">*</span>
+                </span>
               </label>
               <input
                 type="text"
@@ -273,7 +298,9 @@ function UserForm() {
             </div>
             <div className="form-control">
               <label htmlFor="hashed_pass" className="label">
-                <span className="label-text font-bold">Contraseña</span>
+                <span className="label-text font-bold">
+                  Contraseña <span className="text-red-600">*</span>
+                </span>
               </label>
               <input
                 type="text"
@@ -314,6 +341,9 @@ function UserForm() {
                 />
               </label>
             </div>
+            <p className="text-xs">
+              <span className="text-red-600">*</span> Campos Obligatorios
+            </p>
             <div className="mt-2 -ml-3">
               <button className="btn btn-primary text-white rounded-xl w-fit mx-3">
                 Guardar

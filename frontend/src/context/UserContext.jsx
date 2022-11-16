@@ -12,13 +12,20 @@ export function UserContextProvider({ children }) {
   const [token, setToken] = useState("");
   const [user, setUser] = useState(null);
   const [users, setUsers] = useState([]);
+  const [disabledUsers, setDisabledUsers] = useState(false);
+  const [disabledUnits, setDisabledUnits] = useState(false);
+  const [disabledStatus, setDisabledStatus] = useState(false);
+  const [filteredUsers, setFilteredUsers] = useState([]);
   const [projects, setProjects] = useState([]);
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [allStatus, setAllStatus] = useState([]);
+  const [filteredStatus, setFilteredStatus] = useState([]);
   const [unit, setUnit] = useState("");
   const [units, setUnits] = useState([]);
+  const [filteredUnits, setFilteredUnits] = useState([]);
   const opDataRestApi = "http://localhost:8090/opData/API/V2";
   const [alert, setAlert] = useState(" hidden");
+  const [userTitle, setUserTitle] = useState("Proyectos Activos");
 
   const clearFilters = () => {
     setFilteredProjects(() => [...projects]);
@@ -51,7 +58,6 @@ export function UserContextProvider({ children }) {
         url: `${opDataRestApi}/unidades/jefe/${cod_ins}`,
         headers: { Authorization: `Opdata ${data.token}` },
       });
-      console.log(unit);
       setUser({
         nombre: nombre,
         apellido: apellido,
@@ -75,7 +81,7 @@ export function UserContextProvider({ children }) {
     } catch (error) {}
   };
 
-  //Projects
+  //Projects filters
   const filterProjectsSoonToExpire = () => {
     setFilteredProjects(
       projects.filter((project) => {
@@ -83,7 +89,7 @@ export function UserContextProvider({ children }) {
         const today = new Date();
         const diff = (finDate - today) / (1000 * 60 * 60 * 24);
         if (diff < 7 && diff >= 0) {
-          return true;
+          return true && (project.id_estado == 1 || project.id_estado == 2);
         }
         return false;
       })
@@ -97,7 +103,7 @@ export function UserContextProvider({ children }) {
         const today = new Date();
         const diff = (finDate - today) / (1000 * 60 * 60 * 24);
         if (diff <= 0) {
-          return true;
+          return true && (project.id_estado == 1 || project.id_estado == 2);
         }
         return false;
       })
@@ -151,7 +157,6 @@ export function UserContextProvider({ children }) {
         orderProjectDateOperation(a.fecha_fin, b.fecha_fin, order)
       );
     }
-    console.log(sortedArray);
     setFilteredProjects(sortedArray);
   };
 
@@ -262,12 +267,14 @@ export function UserContextProvider({ children }) {
         }`;
       });
       setProjects([...data]);
-      setFilteredProjects(
-        [...data].sort((a, b) => (a.id_estado > b.id_estado ? 1 : -1))
-      );
-    } catch (error) {}
+      setFilteredProjects([...data].filter((proy) => proy.id_estado == 1));
+      return true;
+    } catch (error) {
+      throw error;
+    }
   };
 
+  //Projects crud
   const createProject = async (project) => {
     try {
       const {
@@ -286,8 +293,11 @@ export function UserContextProvider({ children }) {
       }
       const { data } = await axios({
         method: "post",
-        url: `${opDataRestApi}/proyectos/${user.id_unidad}/${fecha_reg}/${fecha_ini}/${fecha_fin}/${desc_pro}/${id_estado}/${observacionesSend}`,
+        url: `${opDataRestApi}/proyectos/${user.id_unidad}/${fecha_reg}/${fecha_ini}/${fecha_fin}/${desc_pro}/${id_estado}/`,
         headers: { Authorization: `Opdata ${token}` },
+        data: {
+          observaciones: observacionesSend,
+        },
       });
       setProjects([...projects, data]);
       setFilteredProjects([
@@ -319,8 +329,11 @@ export function UserContextProvider({ children }) {
       }
       const { data } = await axios({
         method: "put",
-        url: `${opDataRestApi}/proyectos/${id}/${user.id_unidad}/${fecha_reg}/${fecha_ini}/${fecha_fin}/${desc_pro}/${id_estado}/${observacionesSend}`,
+        url: `${opDataRestApi}/proyectos/${id}/${user.id_unidad}/${fecha_reg}/${fecha_ini}/${fecha_fin}/${desc_pro}/${id_estado}/`,
         headers: { Authorization: `Opdata ${token}` },
+        data: {
+          observaciones: observacionesSend,
+        },
       });
       setProjects([...projects.filter((pro) => pro.id !== data.id), data]);
       setFilteredProjects([
@@ -341,9 +354,10 @@ export function UserContextProvider({ children }) {
         headers: { Authorization: `Opdata ${token}` },
       });
       setAllStatus(data);
+      setFilteredStatus(data.filter((s) => s.habilitado == 1));
       return true;
     } catch (error) {
-      return error;
+      throw error;
     }
   };
 
@@ -356,9 +370,10 @@ export function UserContextProvider({ children }) {
         headers: { Authorization: `Opdata ${token}` },
       });
       setUsers(data);
+      setFilteredUsers(data.filter((u) => u.habilitado == 1));
       return true;
     } catch (error) {
-      return error;
+      throw error;
     }
   };
 
@@ -382,6 +397,20 @@ export function UserContextProvider({ children }) {
         headers: { Authorization: `Opdata ${token}` },
       });
       setUsers([...users.filter((us) => us.id !== data.id), data]);
+      if (disabledUsers) {
+        setFilteredUsers([...users.filter((us) => us.id !== data.id), data]);
+      } else {
+        if (data.habilitado == 1) {
+          setFilteredUsers([
+            ...users.filter((us) => us.id !== data.id && us.habilitado == true),
+            data,
+          ]);
+        } else {
+          setFilteredUsers([
+            ...users.filter((us) => un.id !== data.id && un.habilitado == true),
+          ]);
+        }
+      }
       return true;
     } catch (error) {
       return error;
@@ -409,6 +438,21 @@ export function UserContextProvider({ children }) {
         headers: { Authorization: `Opdata ${token}` },
       });
       setUsers([...users.filter((us) => us.id !== data.id), data]);
+
+      if (disabledUsers) {
+        setFilteredUsers([...users.filter((us) => us.id !== data.id), data]);
+      } else {
+        if (data.habilitado == 1) {
+          setFilteredUsers([
+            ...users.filter((us) => us.id !== data.id && us.habilitado == true),
+            data,
+          ]);
+        } else {
+          setFilteredUsers([
+            ...users.filter((us) => us.id !== data.id && us.habilitado == true),
+          ]);
+        }
+      }
       return true;
     } catch (error) {
       return error;
@@ -423,9 +467,10 @@ export function UserContextProvider({ children }) {
         headers: { Authorization: `Opdata ${token}` },
       });
       setUnits(data);
+      setFilteredUnits(data.filter((u) => u.habilitado == 1));
       return true;
     } catch (error) {
-      return error;
+      throw error;
     }
   };
 
@@ -440,6 +485,20 @@ export function UserContextProvider({ children }) {
         headers: { Authorization: `Opdata ${token}` },
       });
       setUnits([...units.filter((un) => un.id !== data.id), data]);
+      if (disabledUnits) {
+        setFilteredUnits([...units.filter((un) => un.id !== data.id), data]);
+      } else {
+        if (data.habilitado == 1) {
+          setFilteredUnits([
+            ...units.filter((un) => un.id !== data.id && un.habilitado == true),
+            data,
+          ]);
+        } else {
+          setFilteredUnits([
+            ...units.filter((un) => un.id !== data.id && un.habilitado == true),
+          ]);
+        }
+      }
       return true;
     } catch (error) {
       return error;
@@ -457,6 +516,20 @@ export function UserContextProvider({ children }) {
         headers: { Authorization: `Opdata ${token}` },
       });
       setUnits([...units.filter((un) => un.id !== data.id), data]);
+      if (disabledUnits) {
+        setFilteredUnits([...units.filter((un) => un.id !== data.id), data]);
+      } else {
+        if (data.habilitado == 1) {
+          setFilteredUnits([
+            ...units.filter((un) => un.id !== data.id && un.habilitado == true),
+            data,
+          ]);
+        } else {
+          setFilteredUnits([
+            ...units.filter((un) => un.id !== data.id && un.habilitado == true),
+          ]);
+        }
+      }
       return true;
     } catch (error) {
       return error;
@@ -474,6 +547,27 @@ export function UserContextProvider({ children }) {
         headers: { Authorization: `Opdata ${token}` },
       });
       setAllStatus([...allStatus.filter((st) => st.id !== data.id), data]);
+      if (disabledStatus) {
+        setFilteredStatus([
+          ...allStatus.filter((st) => st.id !== data.id),
+          data,
+        ]);
+      } else {
+        if (data.habilitado == 1) {
+          setFilteredStatus([
+            ...allStatus.filter(
+              (st) => st.id !== data.id && st.habilitado == true
+            ),
+            data,
+          ]);
+        } else {
+          setFilteredStatus([
+            ...allStatus.filter(
+              (st) => st.id !== data.id && st.habilitado == true
+            ),
+          ]);
+        }
+      }
       return true;
     } catch (error) {
       return error;
@@ -491,9 +585,148 @@ export function UserContextProvider({ children }) {
         headers: { Authorization: `Opdata ${token}` },
       });
       setAllStatus([...allStatus.filter((st) => st.id !== data.id), data]);
+      if (disabledStatus) {
+        setFilteredStatus([
+          ...allStatus.filter((st) => st.id !== data.id),
+          data,
+        ]);
+      } else {
+        if (data.habilitado == 1) {
+          setFilteredStatus([
+            ...allStatus.filter(
+              (st) => st.id !== data.id && st.habilitado == true
+            ),
+            data,
+          ]);
+        } else {
+          setFilteredStatus([
+            ...allStatus.filter(
+              (st) => st.id !== data.id && st.habilitado == true
+            ),
+          ]);
+        }
+      }
       return true;
     } catch (error) {
       return error;
+    }
+  };
+
+  //Admin filters
+  const conmuteDisabledStatus = () => {
+    setDisabledStatus(!disabledStatus);
+    if (!disabledStatus) {
+      setFilteredStatus(allStatus);
+    } else {
+      setFilteredStatus([...allStatus.filter((s) => s.habilitado == true)]);
+    }
+  };
+
+  const conmuteDisabledUsers = () => {
+    setDisabledUsers(!disabledUsers);
+    if (!disabledUsers) {
+      setFilteredUsers(users);
+    } else {
+      setFilteredUsers([...users.filter((u) => u.habilitado == true)]);
+    }
+  };
+
+  const conmuteDisabledUnits = () => {
+    setDisabledUnits(!disabledUnits);
+    if (!disabledUnits) {
+      setFilteredUnits(units);
+    } else {
+      setFilteredUnits([...units.filter((u) => u.habilitado == true)]);
+    }
+  };
+
+  const sortStatusByName = (order) => {
+    let sortedArray;
+    if (!disabledStatus) {
+      sortedArray = [...allStatus.filter((status) => status.habilitado == 1)];
+    } else {
+      sortedArray = [...allStatus];
+    }
+    sortedArray.sort((a, b) =>
+      sortStatusOperation(a.estado.toLowerCase(), b.estado.toLowerCase(), order)
+    );
+    setFilteredStatus(sortedArray);
+  };
+
+  const sortUnitsByName = (order) => {
+    let sortedArray;
+    if (!disabledUnits) {
+      sortedArray = [...units.filter((u) => u.habilitado == 1)];
+    } else {
+      sortedArray = [...units];
+    }
+    sortedArray.sort((a, b) =>
+      sortStatusOperation(
+        a.nombre_unidad.toLowerCase(),
+        b.nombre_unidad.toLowerCase(),
+        order
+      )
+    );
+    setFilteredUnits(sortedArray);
+  };
+
+  const sortUsersByCode = (order) => {
+    let sortedArray;
+    if (!disabledUsers) {
+      sortedArray = [...users.filter((u) => u.habilitado == 1)];
+    } else {
+      sortedArray = [...users];
+    }
+    sortedArray.sort((a, b) =>
+      sortStatusOperation(a.cod_ins, b.cod_ins, order)
+    );
+    setFilteredUsers(sortedArray);
+  };
+
+  const sortUsersByLastName = (order) => {
+    let sortedArray;
+    if (!disabledUsers) {
+      sortedArray = [...users.filter((u) => u.habilitado == 1)];
+    } else {
+      sortedArray = [...users];
+    }
+    sortedArray.sort((a, b) =>
+      sortStatusOperation(
+        a.apellido.toLowerCase(),
+        b.apellido.toLowerCase(),
+        order
+      )
+    );
+    setFilteredUsers(sortedArray);
+  };
+
+  const searchUserByUsername = (name) => {
+    setFilteredUsers(users.filter((item) => item.username.includes(name)));
+  };
+
+  const sortStatusOperation = (a, b, order) => {
+    if (order == "asc") {
+      if (a > b) {
+        return 1;
+      } else if (a < b) {
+        return -1;
+      }
+      return 0;
+    } else if (order == "des") {
+      if (a > b) {
+        return -1;
+      } else if (a < b) {
+        return 1;
+      }
+      return 0;
+    }
+  };
+
+  const resetSearchUser = () => {
+    if (disabledUsers) {
+      setFilteredUsers([...users]);
+    } else {
+      setFilteredUsers([...users.filter((us) => us.habilitado == true)]);
     }
   };
 
@@ -571,6 +804,23 @@ export function UserContextProvider({ children }) {
         updateUnit: updateUnit,
         createStatus: createStatus,
         updateStatus: updateStatus,
+        filteredUnits: filteredUnits,
+        filteredStatus: filteredStatus,
+        filteredUsers: filteredUsers,
+        setFilteredUnits: setFilteredUnits,
+        setFilteredStatus: setFilteredStatus,
+        setFilteredUsers: setFilteredUsers,
+        conmuteDisabledStatus: conmuteDisabledStatus,
+        conmuteDisabledUnits: conmuteDisabledUnits,
+        conmuteDisabledUsers: conmuteDisabledUsers,
+        sortStatusByName: sortStatusByName,
+        sortUnitsByName: sortUnitsByName,
+        sortUsersByCode: sortUsersByCode,
+        sortUsersByLastName: sortUsersByLastName,
+        searchUserByUsername: searchUserByUsername,
+        resetSearchUser: resetSearchUser,
+        userTitle: userTitle,
+        setUserTitle: setUserTitle,
       }}
     >
       {children}

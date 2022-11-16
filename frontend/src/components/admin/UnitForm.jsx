@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useUser } from "../../context/UserContext";
 import { useParams, useNavigate } from "react-router-dom";
 function UnitForm() {
-  const { units, updateUnit, createUnit, setAlert, users } = useUser();
+  const { units, updateUnit, createUnit, setAlert, users, setUser } = useUser();
   const [validation, setValidation] = useState({});
   const navigate = useNavigate();
   const params = useParams();
@@ -27,7 +27,7 @@ function UnitForm() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let validationTemp = {};
     let validationPass = true;
@@ -66,33 +66,53 @@ function UnitForm() {
         }
       }
     } else {
-      const exist = units.find((unitFound) => {
-        return unitFound.uid_jefe == unit.uid_jefe;
-      });
-      if (exist == undefined) {
+      if (unit.uid_jefe == 1) {
         validationTemp = { ...validationTemp, jefe_taken: false };
         validationPass = true;
       } else {
-        validationTemp = { ...validationTemp, jefe_taken: true };
-        validationPass = false;
+        const exist = units.find((unitFound) => {
+          return unitFound.uid_jefe == unit.uid_jefe;
+        });
+        if (exist == undefined) {
+          validationTemp = { ...validationTemp, jefe_taken: false };
+          validationPass = true;
+        } else {
+          validationTemp = { ...validationTemp, jefe_taken: true };
+          validationPass = false;
+        }
       }
     }
     setValidation(validationTemp);
     if (validationPass) {
       if (params.id) {
-        updateUnit({
+        const res = await updateUnit({
           ...unit,
           id: params.id,
         });
-        navigate("/admin/units");
+        console.log(res);
+        if (res == true) {
+          navigate("/admin/units");
+          setAlert("");
+          setTimeout(() => {
+            setAlert(" hidden");
+          }, 3000);
+        } else {
+          setUser(null);
+          navigate("/serverDown");
+        }
       } else {
-        createUnit(unit);
-        navigate("/admin/units");
+        const res = await createUnit(unit);
+        if (res === true) {
+          navigate("/admin/units");
+          setAlert("");
+          setTimeout(() => {
+            setAlert(" hidden");
+          }, 3000);
+        } else {
+          setUser(null);
+          navigate("/serverDown");
+        }
       }
-      setAlert("");
-      setTimeout(() => {
-        setAlert(" hidden");
-      }, 5000);
     }
   };
 

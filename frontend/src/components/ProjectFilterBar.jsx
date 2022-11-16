@@ -18,7 +18,7 @@ function ProjectFilterBar() {
     >
       <div
         className="tooltip tooltip-right"
-        data-tip="Abrir/Cerrar la barra de navegación"
+        data-tip="Abrir/Cerrar la barra de filtros"
       >
         <button
           className="btn btn-primary btn-square w-full"

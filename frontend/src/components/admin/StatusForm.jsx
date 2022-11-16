@@ -18,7 +18,11 @@ function StatusForm() {
   }, []);
 
   const handleChange = (e) => {
-    setStatus({ ...status, [e.target.name]: e.target.value });
+    if (e.target.name === "habilitado") {
+      setStatus({ ...status, habilitado: e.target.checked });
+    } else {
+      setStatus({ ...status, [e.target.name]: e.target.value });
+    }
   };
 
   const handleSubmit = (e) => {
@@ -92,6 +96,22 @@ function StatusForm() {
                     ? "El campo no debe sobrepasar los 100 carácteres"
                     : ""}
                 </span>
+              </label>
+            </div>
+            <div className="form-control w-1/2">
+              <label htmlFor="habilitado" className="label">
+                <span className="label-text font-bold text-lg">
+                  ¿Habilitar?
+                </span>
+
+                <input
+                  type="checkbox"
+                  name="habilitado"
+                  id="habilitado"
+                  className={`checkbox checkbox-primary checkbox-lg`}
+                  checked={status.habilitado}
+                  onChange={handleChange}
+                />
               </label>
             </div>
             <div className="mt-2 -ml-3">

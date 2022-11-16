@@ -10,6 +10,13 @@ function UserCard({ user }) {
   }`}
       onClick={() => setOpen(~open)}
     >
+      <p
+        className={`badge mt-1 mb-3 absolute -top-3 -right-2 text-white ${
+          user.habilitado ? "badge-success" : "badge-error"
+        }`}
+      >
+        {user.habilitado ? "Habilitado" : "No Habilitado"}
+      </p>
       <h3
         className={`text-lg font-bold mb-1 text-white bg-primary rounded-lg py-1 px-2 text-justify overflow-hidden ${
           open ? "" : "max-h-9"
@@ -30,7 +37,7 @@ function UserCard({ user }) {
         <p className={`col-span-2`}>{user.username}</p>
         <p className={`font-bold`}>Contraseña:</p>
         <p
-          className={`col-span-2 cursor-pointer`}
+          className={`w-fit col-span-2 cursor-pointer`}
           onClick={(e) => {
             e.stopPropagation();
             setVisible(!visible);

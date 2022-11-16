@@ -7,27 +7,32 @@ function ProjectFilterDate({ open }) {
   const [dateType, setDateType] = useState("");
   return (
     <div className="dropdown dropdown-right dropdown-end">
-      <label tabIndex={0} className="btn btn-primary text-white w-full mt-2">
-        <div className={`${open ? "grid grid-cols-4 w-full" : ""}`}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="currentColor"
-            className=""
-            viewBox="0 0 16 16"
-          >
-            <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
-            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-          </svg>
+      <div
+        className="tooltip tooltip-right w-full"
+        data-tip="Mostrar filtros por fecha"
+      >
+        <label tabIndex={0} className="btn btn-primary text-white w-full mt-2">
+          <div className={`${open ? "grid grid-cols-4 w-full" : ""}`}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="currentColor"
+              className=""
+              viewBox="0 0 16 16"
+            >
+              <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
+              <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+            </svg>
 
-          {open ? (
-            <p className="my-auto text-left col-span-3">filtrar por fecha</p>
-          ) : (
-            ""
-          )}
-        </div>
-      </label>
+            {open ? (
+              <p className="my-auto text-left col-span-3">filtrar por fecha</p>
+            ) : (
+              ""
+            )}
+          </div>
+        </label>
+      </div>
       <div className="dropdown-content p-2 shadow bg-secondary rounded-box w-fit flex flex-col">
         <div className="p-2 border-white border-2 rounded-xl mb-2 bg-secondary">
           <div className="form-control">

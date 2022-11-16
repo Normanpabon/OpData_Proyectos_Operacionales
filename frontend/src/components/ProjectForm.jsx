@@ -255,7 +255,11 @@ function ProjectForm() {
                   </option>
                   {allStatus.map((state) => {
                     return (
-                      <option value={state.id} key={state.id}>
+                      <option
+                        disabled={!state.habilitado}
+                        value={state.id}
+                        key={state.id}
+                      >
                         {state.estado}
                       </option>
                     );

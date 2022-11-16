@@ -36,13 +36,18 @@ function UserMainPage() {
           </div>
           <Outlet />
           <ProjectList />
-          <label
-            htmlFor="my-modal"
-            className="btn btn-primary btn-circle btn-lg modal-button fixed bottom-14 right-2 text-white text-5xl"
-            onClick={(e) => navigate(`/user/create/`)}
+          <div
+            className="tooltip tooltip-left fixed bottom-14 right-2"
+            data-tip="Crear un nuevo proyecto"
           >
-            +
-          </label>
+            <label
+              htmlFor="my-modal"
+              className="btn btn-primary btn-circle btn-lg modal-button  text-white text-5xl"
+              onClick={(e) => navigate(`/user/create/`)}
+            >
+              +
+            </label>
+          </div>
         </section>
       </main>
       <Footer />

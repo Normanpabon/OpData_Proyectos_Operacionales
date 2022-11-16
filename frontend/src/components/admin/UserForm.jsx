@@ -12,7 +12,6 @@ function UserForm() {
     apellido: "",
     username: "",
     correo: "",
-    rol: "ROLE_JefeUnidad",
     hashed_pass: "",
     habilitado: true,
   });
@@ -310,7 +309,7 @@ function UserForm() {
                   name="habilitado"
                   id="habilitado"
                   className={`checkbox checkbox-primary checkbox-lg`}
-                  checked={user.habilitado}
+                  checked={!!user.habilitado}
                   onChange={handleChange}
                 />
               </label>

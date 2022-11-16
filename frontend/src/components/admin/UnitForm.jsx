@@ -8,16 +8,23 @@ function UnitForm() {
   const params = useParams();
   const [unit, setUnit] = useState({
     nombre_unidad: "",
+    habilitado: false,
   });
+  const [actualChief, setActualChief] = useState(0);
   useEffect(() => {
     if (params.id) {
       const temp = units.find((unitFound) => unitFound.id == params.id);
+      setActualChief(temp.uid_jefe);
       setUnit(temp);
     }
   }, []);
 
   const handleChange = (e) => {
-    setUnit({ ...unit, [e.target.name]: e.target.value });
+    if (e.target.name === "habilitado") {
+      setUnit({ ...unit, habilitado: e.target.checked });
+    } else {
+      setUnit({ ...unit, [e.target.name]: e.target.value });
+    }
   };
 
   const handleSubmit = (e) => {
@@ -41,6 +48,34 @@ function UnitForm() {
       validationPass = false;
     } else {
       validationTemp = { ...validationTemp, jefe_default: false };
+    }
+    if (params.id) {
+      if (actualChief == unit.uid_jefe) {
+        validationTemp = { ...validationTemp, jefe_taken: false };
+        validationPass = true;
+      } else {
+        const exist = units.find((unitFound) => {
+          return unitFound.uid_jefe == unit.uid_jefe;
+        });
+        if (exist == undefined) {
+          validationTemp = { ...validationTemp, jefe_taken: false };
+          validationPass = true;
+        } else {
+          validationTemp = { ...validationTemp, jefe_taken: true };
+          validationPass = false;
+        }
+      }
+    } else {
+      const exist = units.find((unitFound) => {
+        return unitFound.uid_jefe == unit.uid_jefe;
+      });
+      if (exist == undefined) {
+        validationTemp = { ...validationTemp, jefe_taken: false };
+        validationPass = true;
+      } else {
+        validationTemp = { ...validationTemp, jefe_taken: true };
+        validationPass = false;
+      }
     }
     setValidation(validationTemp);
     if (validationPass) {
@@ -76,7 +111,7 @@ function UnitForm() {
             <div className="form-control">
               <label htmlFor="nombre_estado" className="label">
                 <span className="label-text font-bold">
-                  Nombre de la unidad
+                  Nombre de la unidad <span className="text-red-600">*</span>
                 </span>
               </label>
               <input
@@ -105,12 +140,14 @@ function UnitForm() {
             </div>
             <div className="form-control">
               <label htmlFor="" className="label">
-                <span className="label-text font-bold">Jefe de unidad</span>
+                <span className="label-text font-bold">
+                  Jefe de unidad <span className="text-red-600">*</span>
+                </span>
               </label>
               <select
                 name="uid_jefe"
                 className={`select select-bordered${
-                  validation.jefe_default
+                  validation.jefe_default || validation.jefe_taken
                     ? " select-error"
                     : " select-secondary"
                 }`}
@@ -119,13 +156,17 @@ function UnitForm() {
                 defaultValue={-1}
               >
                 <option value={-1} disabled>
-                  Seleccione un jefe o No Asignado
+                  Seleccione un jefe o No Asignado*
                 </option>
                 <option value={1}>No Asignado</option>
                 {users.map((chief) => {
                   if (chief.rol == "ROLE_JefeUnidad") {
                     return (
-                      <option value={chief.cod_ins} key={chief.id}>
+                      <option
+                        value={chief.cod_ins}
+                        disabled={!chief.habilitado}
+                        key={chief.id}
+                      >
                         {`${chief.cod_ins} ${chief.nombre} ${chief.apellido}`}
                       </option>
                     );
@@ -137,9 +178,31 @@ function UnitForm() {
                   {validation.jefe_default
                     ? "Debe seleccionar un Jefe o No Asignado"
                     : ""}
+                  {validation.jefe_taken
+                    ? "Ese Jefe ya tiene una unidad asignada"
+                    : ""}
                 </span>
               </label>
             </div>
+            <div className="form-control w-1/2">
+              <label htmlFor="habilitado" className="label">
+                <span className="label-text font-bold text-lg">
+                  ¿Habilitar?
+                </span>
+
+                <input
+                  type="checkbox"
+                  name="habilitado"
+                  id="habilitado"
+                  className={`checkbox checkbox-primary checkbox-lg`}
+                  checked={!!unit.habilitado}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+            <p className="text-xs">
+              <span className="text-red-600">*</span> Campos Obligatorios
+            </p>
             <div className="mt-2 -ml-3">
               <button className="btn btn-primary text-white rounded-xl w-fit mx-3">
                 Guardar

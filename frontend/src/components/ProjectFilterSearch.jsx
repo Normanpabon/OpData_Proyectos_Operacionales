@@ -14,7 +14,6 @@ function ProjectFilterSearch() {
       <button
         onClick={() => {
           filterProjectsByName(searchBox.current.value);
-          setFilterApplied(true);
         }}
         className="btn btn-square btn-primary"
       >

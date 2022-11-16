@@ -19,7 +19,7 @@ function ProjectCard({ project }) {
     if (project.id_estado == 1) {
       setColor("badge-success");
     } else if (project.id_estado == 2) {
-      setColor("badge-warning");
+      setColor("badge-warning text-black");
     } else if (project.id_estado == 3) {
       setColor("badge-error");
     } else {
@@ -40,7 +40,9 @@ function ProjectCard({ project }) {
         {project.desc_pro}
       </h3>
       <p
-        className={`badge text-white mt-1 mb-3 absolute -top-5 -right-5 ${color}`}
+        className={`badge mt-1 mb-3 absolute -top-5 -right-5 ${color} ${
+          project.id_estado == 2 ? "text-black" : "text-white"
+        }`}
       >
         {estado}
       </p>

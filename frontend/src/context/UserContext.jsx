@@ -22,7 +22,6 @@ export function UserContextProvider({ children }) {
 
   const clearFilters = () => {
     setFilteredProjects(() => [...projects]);
-    console.log(filteredProjects);
   };
 
   const formatDate = (fecha) => {
@@ -52,6 +51,7 @@ export function UserContextProvider({ children }) {
         url: `${opDataRestApi}/unidades/jefe/${cod_ins}`,
         headers: { Authorization: `Opdata ${data.token}` },
       });
+      console.log(unit);
       setUser({
         nombre: nombre,
         apellido: apellido,
@@ -60,9 +60,9 @@ export function UserContextProvider({ children }) {
         id_unidad: unit.data.id,
         cod_ins: cod_ins,
       });
-      return rol;
+      return [rol, true];
     } catch (error) {
-      return false;
+      return error;
     }
   };
 
@@ -227,7 +227,6 @@ export function UserContextProvider({ children }) {
     setFilteredProjects(
       projects.filter((item) => item.desc_pro.includes(name))
     );
-    console.log(filteredProjects);
   };
 
   const orderProjectsByName = (order) => {
@@ -295,7 +294,10 @@ export function UserContextProvider({ children }) {
         ...projects.filter((pro) => pro.id !== data.id),
         data,
       ]);
-    } catch (error) {}
+      return true;
+    } catch (error) {
+      return error;
+    }
   };
 
   const updateProject = async (project) => {
@@ -325,8 +327,9 @@ export function UserContextProvider({ children }) {
         ...projects.filter((pro) => pro.id !== data.id),
         data,
       ]);
+      return true;
     } catch (error) {
-      console.log(error.response.data);
+      return error;
     }
   };
 
@@ -338,7 +341,10 @@ export function UserContextProvider({ children }) {
         headers: { Authorization: `Opdata ${token}` },
       });
       setAllStatus(data);
-    } catch (error) {}
+      return true;
+    } catch (error) {
+      return error;
+    }
   };
 
   //Admin only
@@ -350,20 +356,36 @@ export function UserContextProvider({ children }) {
         headers: { Authorization: `Opdata ${token}` },
       });
       setUsers(data);
-    } catch (error) {}
+      return true;
+    } catch (error) {
+      return error;
+    }
   };
 
   const createUser = async (newUser) => {
     try {
-      const { cod_ins, nombre, apellido, username, correo, rol, hashed_pass } =
-        newUser;
+      const {
+        cod_ins,
+        nombre,
+        apellido,
+        username,
+        correo,
+        rol,
+        hashed_pass,
+        habilitado,
+      } = newUser;
       const { data } = await axios({
         method: "post",
-        url: `${opDataRestApi}/users/${cod_ins}/${nombre}/${apellido}/${username}/${correo}/${rol}/${hashed_pass}/${1}`,
+        url: `${opDataRestApi}/users/${cod_ins}/${nombre}/${apellido}/${username}/${correo}/${
+          rol == undefined ? "ROLE_JefeUnidad" : rol
+        }/${hashed_pass}/${habilitado ? 1 : 0}`,
         headers: { Authorization: `Opdata ${token}` },
       });
       setUsers([...users.filter((us) => us.id !== data.id), data]);
-    } catch (error) {}
+      return true;
+    } catch (error) {
+      return error;
+    }
   };
 
   const updateUser = async (newUser) => {
@@ -377,14 +399,20 @@ export function UserContextProvider({ children }) {
         correo,
         rol,
         hashed_pass,
+        habilitado,
       } = newUser;
       const { data } = await axios({
         method: "put",
-        url: `${opDataRestApi}/users/${id}/${cod_ins}/${nombre}/${apellido}/${username}/${correo}/${rol}/${hashed_pass}/${1}`,
+        url: `${opDataRestApi}/users/${id}/${cod_ins}/${nombre}/${apellido}/${username}/${correo}/${
+          rol == undefined ? "ROLE_JefeUnidad" : rol
+        }/${hashed_pass}/${habilitado ? 1 : 0}`,
         headers: { Authorization: `Opdata ${token}` },
       });
       setUsers([...users.filter((us) => us.id !== data.id), data]);
-    } catch (error) {}
+      return true;
+    } catch (error) {
+      return error;
+    }
   };
 
   const getUnits = async () => {
@@ -395,89 +423,110 @@ export function UserContextProvider({ children }) {
         headers: { Authorization: `Opdata ${token}` },
       });
       setUnits(data);
-    } catch (error) {}
+      return true;
+    } catch (error) {
+      return error;
+    }
   };
 
   const createUnit = async (newUnit) => {
     try {
-      const { nombre_unidad, uid_jefe } = newUnit;
+      const { nombre_unidad, uid_jefe, habilitado } = newUnit;
       const { data } = await axios({
         method: "post",
-        url: `${opDataRestApi}/unidades/${nombre_unidad}/${uid_jefe}`,
+        url: `${opDataRestApi}/unidades/${nombre_unidad}/${uid_jefe}/${
+          habilitado ? 1 : 0
+        }`,
         headers: { Authorization: `Opdata ${token}` },
       });
       setUnits([...units.filter((un) => un.id !== data.id), data]);
-    } catch (error) {}
+      return true;
+    } catch (error) {
+      return error;
+    }
   };
 
   const updateUnit = async (newUnit) => {
     try {
-      const { id, nombre_unidad, uid_jefe } = newUnit;
+      const { id, nombre_unidad, uid_jefe, habilitado } = newUnit;
       const { data } = await axios({
         method: "put",
-        url: `${opDataRestApi}/unidades/${id}/${nombre_unidad}/${uid_jefe}`,
+        url: `${opDataRestApi}/unidades/${id}/${nombre_unidad}/${uid_jefe}/${
+          habilitado ? 1 : 0
+        }`,
         headers: { Authorization: `Opdata ${token}` },
       });
       setUnits([...units.filter((un) => un.id !== data.id), data]);
-    } catch (error) {}
+      return true;
+    } catch (error) {
+      return error;
+    }
   };
 
   const createStatus = async (newStatus) => {
     try {
-      const { estado } = newStatus;
+      const { estado, habilitado } = newStatus;
       const { data } = await axios({
         method: "post",
-        url: `${opDataRestApi}/proyectos/estado/${estado}`,
+        url: `${opDataRestApi}/proyectos/estado/${estado}/${
+          habilitado ? 1 : 0
+        }`,
         headers: { Authorization: `Opdata ${token}` },
       });
-      console.log(data);
       setAllStatus([...allStatus.filter((st) => st.id !== data.id), data]);
-    } catch (error) {}
+      return true;
+    } catch (error) {
+      return error;
+    }
   };
 
   const updateStatus = async (newStatus) => {
     try {
-      const { id, estado } = newStatus;
+      const { id, estado, habilitado } = newStatus;
       const { data } = await axios({
         method: "put",
-        url: `${opDataRestApi}/proyectos/estado/${id}/${estado}`,
+        url: `${opDataRestApi}/proyectos/estado/${id}/${estado}/${
+          habilitado ? 1 : 0
+        }`,
         headers: { Authorization: `Opdata ${token}` },
       });
-      console.log(data);
       setAllStatus([...allStatus.filter((st) => st.id !== data.id), data]);
-    } catch (error) {}
+      return true;
+    } catch (error) {
+      return error;
+    }
   };
 
-  const getProjects = async () => {
-    try {
-      const { data } = await axios({
-        method: "get",
-        url: `${opDataRestApi}/proyectos/`,
-        headers: { Authorization: `Opdata ${token}` },
-      });
-      data.map((item) => {
-        item.fecha_reg = `${item.fecha_reg[0]}-${
-          item.fecha_reg[1] < 10 ? `0${item.fecha_reg[1]}` : item.fecha_reg[1]
-        }-${
-          item.fecha_reg[2] < 10 ? `0${item.fecha_reg[2]}` : item.fecha_reg[2]
-        }`;
-        item.fecha_ini = `${item.fecha_ini[0]}-${
-          item.fecha_ini[1] < 10 ? `0${item.fecha_ini[1]}` : item.fecha_ini[1]
-        }-${
-          item.fecha_ini[2] < 10 ? `0${item.fecha_ini[2]}` : item.fecha_ini[2]
-        }`;
-        item.fecha_fin = `${item.fecha_fin[0]}-${
-          item.fecha_fin[1] < 10 ? `0${item.fecha_fin[1]}` : item.fecha_fin[1]
-        }-${
-          item.fecha_fin[2] < 10 ? `0${item.fecha_fin[2]}` : item.fecha_fin[2]
-        }`;
-      });
-      setProjects([...data]);
-      setFilteredProjects(
-        [...data].sort((a, b) => (a.id_estado > b.id_estado ? 1 : -1))
-      );
-    } catch (error) {}
-  };
+  // const getProjects = async () => {
+  //   try {
+  //     const { data } = await axios({
+  //       method: "get",
+  //       url: `${opDataRestApi}/proyectos/`,
+  //       headers: { Authorization: `Opdata ${token}` },
+  //     });
+  //     data.map((item) => {
+  //       item.fecha_reg = `${item.fecha_reg[0]}-${
+  //         item.fecha_reg[1] < 10 ? `0${item.fecha_reg[1]}` : item.fecha_reg[1]
+  //       }-${
+  //         item.fecha_reg[2] < 10 ? `0${item.fecha_reg[2]}` : item.fecha_reg[2]
+  //       }`;
+  //       item.fecha_ini = `${item.fecha_ini[0]}-${
+  //         item.fecha_ini[1] < 10 ? `0${item.fecha_ini[1]}` : item.fecha_ini[1]
+  //       }-${
+  //         item.fecha_ini[2] < 10 ? `0${item.fecha_ini[2]}` : item.fecha_ini[2]
+  //       }`;
+  //       item.fecha_fin = `${item.fecha_fin[0]}-${
+  //         item.fecha_fin[1] < 10 ? `0${item.fecha_fin[1]}` : item.fecha_fin[1]
+  //       }-${
+  //         item.fecha_fin[2] < 10 ? `0${item.fecha_fin[2]}` : item.fecha_fin[2]
+  //       }`;
+  //     });
+  //     setProjects([...data]);
+  //     setFilteredProjects(
+  //       [...data].sort((a, b) => (a.id_estado > b.id_estado ? 1 : -1))
+  //     );
+  //   } catch (error) {}
+  // };
 
   return (
     <UserContext.Provider
@@ -522,7 +571,6 @@ export function UserContextProvider({ children }) {
         updateUnit: updateUnit,
         createStatus: createStatus,
         updateStatus: updateStatus,
-        getProjects: getProjects,
       }}
     >
       {children}

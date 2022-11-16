@@ -4,7 +4,6 @@ import { useState } from "react";
 function ProjectCard({ project }) {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const [color, setColor] = useState("");
   const { allStatus, formatDate } = useUser();
   const estado = allStatus.find(
     (status) => status.id === project.id_estado

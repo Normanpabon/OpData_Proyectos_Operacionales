@@ -41,7 +41,7 @@ function UserForm() {
     } else {
       validationTemp = { ...validationTemp, cod_ins_empty: false };
     }
-    if (user.cod_ins > 20000000000) {
+    if (user.cod_ins > 0) {
       validationTemp = { ...validationTemp, cod_ins_length: true };
       validationPass = false;
     } else {
@@ -53,7 +53,7 @@ function UserForm() {
     } else {
       validationTemp = { ...validationTemp, nombre_empty: false };
     }
-    if (user.nombre.length > 100) {
+    if (user.nombre.length > 64) {
       validationTemp = { ...validationTemp, nombre_length: true };
       validationPass = false;
     } else {
@@ -65,7 +65,7 @@ function UserForm() {
     } else {
       validationTemp = { ...validationTemp, apellido_empty: false };
     }
-    if (user.apellido.length > 100) {
+    if (user.apellido.length > 64) {
       validationTemp = { ...validationTemp, apellido_length: true };
       validationPass = false;
     } else {
@@ -77,7 +77,7 @@ function UserForm() {
     } else {
       validationTemp = { ...validationTemp, username_empty: false };
     }
-    if (user.username.length > 100) {
+    if (user.username.length > 64) {
       validationTemp = { ...validationTemp, username_length: true };
       validationPass = false;
     } else {
@@ -89,7 +89,7 @@ function UserForm() {
     } else {
       validationTemp = { ...validationTemp, correo_empty: false };
     }
-    if (user.correo.length > 100) {
+    if (user.correo.length > 64) {
       validationTemp = { ...validationTemp, correo_length: true };
       validationPass = false;
     } else {
@@ -101,7 +101,7 @@ function UserForm() {
     } else {
       validationTemp = { ...validationTemp, hashed_pass_empty: false };
     }
-    if (user.hashed_pass.length > 100) {
+    if (user.hashed_pass.length > 1024) {
       validationTemp = { ...validationTemp, hashed_pass_length: true };
       validationPass = false;
     } else {
@@ -169,9 +169,7 @@ function UserForm() {
               />
               <label htmlFor="cod_ins" className="label">
                 <span className="label-text-alt text-error">
-                  {validation.cod_ins_empty
-                    ? "El campo no debe estar vacío"
-                    : ""}
+                  {validation.cod_ins_empty ? "El campo es obligatorio" : ""}
                   {validation.cod_ins_length
                     ? "El campo no debe sobrepasar los 100 carácteres"
                     : ""}
@@ -199,11 +197,9 @@ function UserForm() {
                 />
                 <label htmlFor="nombre" className="label">
                   <span className="label-text-alt text-error">
-                    {validation.nombre_empty
-                      ? "El campo no debe estar vacío"
-                      : ""}
+                    {validation.nombre_empty ? "El campo es obligatorio" : ""}
                     {validation.nombre_length
-                      ? "El campo no debe sobrepasar los 100 carácteres"
+                      ? "La longitud del nombre no debe ser mayor a 64 caracteres"
                       : ""}
                   </span>
                 </label>
@@ -228,11 +224,9 @@ function UserForm() {
                 />
                 <label htmlFor="apellido" className="label">
                   <span className="label-text-alt text-error">
-                    {validation.apellido_empty
-                      ? "El campo no debe estar vacío"
-                      : ""}
+                    {validation.apellido_empty ? "El campo es obligatorio" : ""}
                     {validation.apellido_length
-                      ? "El campo no debe sobrepasar los 100 carácteres"
+                      ? "La longitud del apellido no debe ser mayor a 64 caracteres"
                       : ""}
                   </span>
                 </label>
@@ -258,11 +252,9 @@ function UserForm() {
               />
               <label htmlFor="username" className="label">
                 <span className="label-text-alt text-error">
-                  {validation.username_empty
-                    ? "El campo no debe estar vacío"
-                    : ""}
+                  {validation.username_empty ? "El campo es obligatorio" : ""}
                   {validation.username_length
-                    ? "El campo no debe sobrepasar los 100 carácteres"
+                    ? "La longitud no debe ser mayor a 64 caracteres"
                     : ""}
                 </span>
               </label>
@@ -287,11 +279,9 @@ function UserForm() {
               />
               <label htmlFor="correo" className="label">
                 <span className="label-text-alt text-error">
-                  {validation.correo_empty
-                    ? "El campo no debe estar vacío"
-                    : ""}
+                  {validation.correo_empty ? "El campo es obligatorio" : ""}
                   {validation.correo_length
-                    ? "El campo no debe sobrepasar los 100 carácteres"
+                    ? "La longitud no debe ser mayor a 64 caracteres"
                     : ""}
                 </span>
               </label>
@@ -317,10 +307,10 @@ function UserForm() {
               <label htmlFor="hashed_pass" className="label">
                 <span className="label-text-alt text-error">
                   {validation.hashed_pass_empty
-                    ? "El campo no debe estar vacío"
+                    ? "El campo es obligatorio"
                     : ""}
                   {validation.hashed_pass_length
-                    ? "El campo no debe sobrepasar los 100 carácteres"
+                    ? "La longitud no debe ser mayor a 1024 caracteres"
                     : ""}
                 </span>
               </label>

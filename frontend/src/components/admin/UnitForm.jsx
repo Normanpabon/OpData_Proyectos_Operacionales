@@ -37,7 +37,7 @@ function UnitForm() {
     } else {
       validationTemp = { ...validationTemp, nombre_unidad_empty: false };
     }
-    if (unit.nombre_unidad.length > 100) {
+    if (unit.nombre_unidad.length > 128) {
       validationTemp = { ...validationTemp, nombre_unidad_length: true };
       validationPass = false;
     } else {
@@ -146,10 +146,10 @@ function UnitForm() {
               <label htmlFor="nombre_unidad" className="label">
                 <span className="label-text-alt text-error">
                   {validation.nombre_unidad_empty
-                    ? "El campo no debe estar vacío"
+                    ? "El campo es obligatorio"
                     : ""}
                   {validation.nombre_unidad_length
-                    ? "El campo no debe sobrepasar los 100 carácteres"
+                    ? "La longitud del nombre debe ser de máximo 128 caracteres"
                     : ""}
                 </span>
               </label>
@@ -192,10 +192,10 @@ function UnitForm() {
               <label htmlFor="" className="label">
                 <span className="label-text-alt text-error">
                   {validation.jefe_default
-                    ? "Debe seleccionar un Jefe o No Asignado"
+                    ? "Debe seleccionar un usuario o No Asignado"
                     : ""}
                   {validation.jefe_taken
-                    ? "Ese Jefe ya tiene una unidad asignada"
+                    ? "Ese usuario ya tiene una unidad asignada"
                     : ""}
                 </span>
               </label>

@@ -36,7 +36,7 @@ function StatusForm() {
     } else {
       validationTemp = { ...validationTemp, estado_empty: false };
     }
-    if (status.estado.length > 100) {
+    if (status.estado.length > 32) {
       validationTemp = { ...validationTemp, estado_length: true };
       validationPass = false;
     } else {
@@ -109,11 +109,9 @@ function StatusForm() {
               />
               <label htmlFor="nombre_unidad" className="label">
                 <span className="label-text-alt text-error">
-                  {validation.estado_empty
-                    ? "El campo no debe estar vacío"
-                    : ""}
+                  {validation.estado_empty ? "El campo es obligatorio" : ""}
                   {validation.estado_length
-                    ? "El campo no debe sobrepasar los 100 carácteres"
+                    ? "La longitud máxima son 32 caracteres"
                     : ""}
                 </span>
               </label>

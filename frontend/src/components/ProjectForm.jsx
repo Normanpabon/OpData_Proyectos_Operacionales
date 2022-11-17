@@ -96,7 +96,7 @@ function ProjectForm() {
     } else {
       validationTemp = { ...validationTemp, estado_default: false };
     }
-    if (project.observaciones.length > 1000) {
+    if (project.observaciones.length > 12000) {
       validationTemp = { ...validationTemp, obs: true };
       validationPass = false;
     } else {
@@ -199,7 +199,7 @@ function ProjectForm() {
                     ? "El campo no debe ser vacío"
                     : ""}
                   {validation.desc_pro_length
-                    ? "El campo no debe sobrepasar los 500 carácteres"
+                    ? "La longitud no debe sobrepasar los 500 caracteres"
                     : ""}
                 </span>
               </label>
@@ -324,7 +324,7 @@ function ProjectForm() {
               <label htmlFor="" className="label">
                 <span className="label-text-alt text-error">
                   {validation.obs
-                    ? "Alcanzó el máximo número de carácteres permitidos"
+                    ? "La longitud no debe sobrepasar los 12000 caracteres"
                     : ""}
                 </span>
               </label>

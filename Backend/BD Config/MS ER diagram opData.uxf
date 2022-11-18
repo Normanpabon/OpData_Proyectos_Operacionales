@@ -4,7 +4,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1320</x>
+      <x>1133</x>
       <y>638</y>
       <w>242</w>
       <h>121</h>
@@ -22,7 +22,7 @@ habilitado     TinyInt(1)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1309</x>
+      <x>1122</x>
       <y>198</y>
       <w>220</w>
       <h>187</h>
@@ -44,7 +44,7 @@ habilitado     TinyInt(1)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>825</x>
+      <x>638</x>
       <y>616</y>
       <w>231</w>
       <h>187</h>
@@ -67,7 +67,7 @@ observaciones Varchar(12000)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>781</x>
+      <x>594</x>
       <y>176</y>
       <w>231</w>
       <h>132</h>
@@ -86,7 +86,7 @@ fuente         INT
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1133</x>
+      <x>946</x>
       <y>440</y>
       <w>297</w>
       <h>88</h>
@@ -102,7 +102,7 @@ bg=yellow
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1045</x>
+      <x>858</x>
       <y>649</y>
       <w>297</w>
       <h>55</h>
@@ -116,7 +116,7 @@ estan asignados a &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1001</x>
+      <x>814</x>
       <y>209</y>
       <w>330</w>
       <h>55</h>
@@ -130,7 +130,7 @@ personaliza la interfaz de &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1430</x>
+      <x>1243</x>
       <y>374</y>
       <w>121</w>
       <h>286</h>
@@ -144,7 +144,7 @@ administra &gt;</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>759</x>
+      <x>572</x>
       <y>11</y>
       <w>297</w>
       <h>77</h>
@@ -158,7 +158,7 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>803</x>
+      <x>616</x>
       <y>803</y>
       <w>297</w>
       <h>77</h>
@@ -172,7 +172,7 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>407</x>
+      <x>220</x>
       <y>198</y>
       <w>209</w>
       <h>165</h>
@@ -191,7 +191,7 @@ usuario       Varchar()</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>759</x>
+      <x>572</x>
       <y>121</y>
       <w>891</w>
       <h>308</h>
@@ -206,7 +206,7 @@ fg=red</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>330</x>
+      <x>143</x>
       <y>550</y>
       <w>869</w>
       <h>330</h>
@@ -223,7 +223,7 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>1276</x>
+      <x>1089</x>
       <y>550</y>
       <w>341</w>
       <h>330</h>
@@ -239,7 +239,7 @@ fg=red</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>352</x>
+      <x>165</x>
       <y>110</y>
       <w>341</w>
       <h>330</h>
@@ -255,7 +255,7 @@ fg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>407</x>
+      <x>220</x>
       <y>605</y>
       <w>231</w>
       <h>165</h>
@@ -273,7 +273,7 @@ habilitado     TinyInt(1)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>627</x>
+      <x>440</x>
       <y>671</y>
       <w>220</w>
       <h>55</h>
@@ -287,7 +287,7 @@ m2=0..1
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1265</x>
+      <x>1078</x>
       <y>0</y>
       <w>385</w>
       <h>121</h>
@@ -304,7 +304,7 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>407</x>
+      <x>220</x>
       <y>770</y>
       <w>242</w>
       <h>99</h>
@@ -322,7 +322,7 @@ layer=5
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1276</x>
+      <x>1089</x>
       <y>891</y>
       <w>308</w>
       <h>66</h>

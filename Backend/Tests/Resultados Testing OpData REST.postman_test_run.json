@@ -1,0 +1,1216 @@
+{
+	"id": "df19bb8e-43c6-419a-af7b-2cf5de22f983",
+	"name": "Testing OpData REST",
+	"timestamp": "2022-11-18T16:43:48.339Z",
+	"collection_id": "0-f7f5c6e0-55c6-4645-8fa7-9d1cbddd42c2",
+	"folder_id": 0,
+	"environment_id": "545de944-5ff1-4259-aeda-73af478f752b",
+	"totalPass": 83,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "d0707137-f9b0-4ea4-838b-16cbd392c021",
+			"name": "Login credenciales validas",
+			"url": "http://localhost:8090/opData/API/V2/login",
+			"time": 12,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Login credenciales validas": true,
+				"Devuelve token JWT": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Login credenciales validas": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Devuelve token JWT": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				12
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Login credenciales validas": true,
+					"Devuelve token JWT": true
+				}
+			]
+		},
+		{
+			"id": "ad50669c-1cf5-4108-921f-565dc80493ff",
+			"name": "Login credenciales invalidas",
+			"url": "http://localhost:8090/opData/API/V2/login",
+			"time": 8,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Error 401 Unauthorized credenciales invalidas": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Error 401 Unauthorized credenciales invalidas": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Error 401 Unauthorized credenciales invalidas": true
+				}
+			]
+		},
+		{
+			"id": "0f3aea4a-51ba-4679-b17e-2187fe27280b",
+			"name": "Obtener todos los proyectos de OpData",
+			"url": "http://localhost:8090/opData/API/V2/proyectos/",
+			"time": 17,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Codigo http 200 valido": true,
+				"Devuelve body con proyectos": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Codigo http 200 valido": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Devuelve body con proyectos": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				17
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Codigo http 200 valido": true,
+					"Devuelve body con proyectos": true
+				}
+			]
+		},
+		{
+			"id": "2e58d125-fd56-42ba-ba73-0b74bb6634b9",
+			"name": "Obtener proyectos unidad existente",
+			"url": "http://localhost:8090/opData/API/V2/proyectos/unidad/1",
+			"time": 13,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Codigo valido http 200": true,
+				"Tiempo de respuesta menor a 200ms": true,
+				"JSON con proyectos unidad 1": true
+			},
+			"testPassFailCounts": {
+				"Codigo valido http 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"JSON con proyectos unidad 1": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				13
+			],
+			"allTests": [
+				{
+					"Codigo valido http 200": true,
+					"Tiempo de respuesta menor a 200ms": true,
+					"JSON con proyectos unidad 1": true
+				}
+			]
+		},
+		{
+			"id": "b123c432-19fc-49f2-89f0-ce516f5e7db2",
+			"name": "Agregar nuevo proyecto body descripcion",
+			"url": "http://localhost:8090/opData/API/V2/proyectos/2/2020-10-05/2021-10-05/2023-12-05/V5%20test%20body%20descripcion%20/2/",
+			"time": 15,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Codigo 201 created esperado": true,
+				"Se reciben los datos del proyecto creado": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Codigo 201 created esperado": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Se reciben los datos del proyecto creado": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				15
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Codigo 201 created esperado": true,
+					"Se reciben los datos del proyecto creado": true
+				}
+			]
+		},
+		{
+			"id": "0ac0fa3f-accf-4a02-9905-01296bff4ea2",
+			"name": "Actualizar datos de un proyecto body descripcion",
+			"url": "http://localhost:8090/opData/API/V2/proyectos/19/3/2020-10-05/2021-10-05/2023-12-05/Proyecto%20modificado%20test/3/",
+			"time": 14,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Codigo 201 created esperado": true,
+				"Se reciben los datos del proyecto modificado": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Codigo 201 created esperado": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Se reciben los datos del proyecto modificado": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				14
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Codigo 201 created esperado": true,
+					"Se reciben los datos del proyecto modificado": true
+				}
+			]
+		},
+		{
+			"id": "969c3474-753e-4272-99f3-03e7a8380747",
+			"name": "Obtener todos los estados de OpData",
+			"url": "http://localhost:8090/opData/API/V2/proyectos/estado/all",
+			"time": 12,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Codigo http 200 valido": true,
+				"JSON con estados disponibles": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Codigo http 200 valido": {
+					"pass": 1,
+					"fail": 0
+				},
+				"JSON con estados disponibles": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				12
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Codigo http 200 valido": true,
+					"JSON con estados disponibles": true
+				}
+			]
+		},
+		{
+			"id": "036a3c65-3d94-4a8a-bac5-e93b017133d5",
+			"name": "Obtener estado por id",
+			"url": "http://localhost:8090/opData/API/V2/proyectos/estado/3",
+			"time": 13,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Codigo http 200 valido": true,
+				"Estado esperado segun el id": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Codigo http 200 valido": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Estado esperado segun el id": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				13
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Codigo http 200 valido": true,
+					"Estado esperado segun el id": true
+				}
+			]
+		},
+		{
+			"id": "3293e720-074a-4bcb-9c32-367de735c5ac",
+			"name": "Crear un nuevo estado",
+			"url": "http://localhost:8090/opData/API/V2/proyectos/estado/TestPostman%20v2/0",
+			"time": 14,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Codigo 201 created esperado": true,
+				"Se reciben los datos del proyecto creado": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Codigo 201 created esperado": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Se reciben los datos del proyecto creado": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				14
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Codigo 201 created esperado": true,
+					"Se reciben los datos del proyecto creado": true
+				}
+			]
+		},
+		{
+			"id": "232ba012-cdd9-460d-8280-bc86943b51aa",
+			"name": "Actualizar datos de estado",
+			"url": "http://localhost:8090/opData/API/V2/proyectos/estado/7/TestPostman%20v2%20Mod/1",
+			"time": 14,
+			"responseCode": {
+				"code": 202,
+				"name": "Accepted"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Codigo 202 accepted esperado": true,
+				"Se reciben los datos del proyecto actualizado": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Codigo 202 accepted esperado": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Se reciben los datos del proyecto actualizado": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				14
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Codigo 202 accepted esperado": true,
+					"Se reciben los datos del proyecto actualizado": true
+				}
+			]
+		},
+		{
+			"id": "0a5af7e7-3fe7-461d-b24c-7ccb9d9acc14",
+			"name": "Obtener proyectos unidad invalida",
+			"url": "http://localhost:8090/opData/API/V2/proyectos/unidad/-1",
+			"time": 8,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Codigo de error 400 esperado": true,
+				"Se recibe mensaje de error esperado": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Codigo de error 400 esperado": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Se recibe mensaje de error esperado": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Codigo de error 400 esperado": true,
+					"Se recibe mensaje de error esperado": true
+				}
+			]
+		},
+		{
+			"id": "f9e70bb4-1a7f-416f-8603-ef9c20b5ba31",
+			"name": "Agregar proyecto cuyo nombre excede maximo de caracteres (500 > caracteres)",
+			"url": "http://localhost:8090/opData/API/V2/proyectos/2/2020-10-05/2021-10-05/2023-12-05/ygoe7gv5dgQHHDjDk5qsqtA514nPVwSn6GjGMl6GqT21pJXblsGGkoUZtYE4mVd7Na6UnDOPWrq9mKTiFH1JFCQDraPq5FAYXHqQuiGj0C9wMrhPl6CurhdT5442HdDf8fef0spz7hD8UmuPO81c2pEat0gfmdnZj6PKYM0vFi298KC0e4z34RWbKH3laoU4HIuZzleo5Vmb8og0gBrXraWFbbEyN7pPoB0qzHmKGyxXqSsxfa6Zy4F7TibnW5DNZD1z7GtiuGABtKG8wC9dDZzTYw4eT9n6uWO1q3IGOgcM4mNqnldN4UBWftWSXxRoCbOo1k3FdVdbNXIqK9Ut31LOW81QTVJWL9OZJH2U6kwiakRiKCR40XtWDatx9oTcc4r2peznhkqqMDsTdW7rI10NnkUcm1jAVy3seUvfCu4ebM7KZZUA2mAklfdWrkrpO7bX6qj3A5rXKdBPxww1ZZUy3j5ujL6ifl8biVlhz9JUHkVxssHf59/2/NA",
+			"time": 9,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Codigo 400 badrequest esperado": true,
+				"Mensaje de error esperado": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Codigo 400 badrequest esperado": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Mensaje de error esperado": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Codigo 400 badrequest esperado": true,
+					"Mensaje de error esperado": true
+				}
+			]
+		},
+		{
+			"id": "fc4e2dd8-1bee-4ae0-a954-bc8a4dca72eb",
+			"name": "Agregar proyecto cuya descripcion excede el maximo de caracteres ( 12000 > caracteres )",
+			"url": "http://localhost:8090/opData/API/V2/proyectos/2/2020-10-05/2021-10-05/2023-12-05/Proyecto%20de%20prueba%20excedente/2/",
+			"time": 9,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Codigo 400 badrequest esperado": true,
+				"Mensaje de error esperado": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Codigo 400 badrequest esperado": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Mensaje de error esperado": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Codigo 400 badrequest esperado": true,
+					"Mensaje de error esperado": true
+				}
+			]
+		},
+		{
+			"id": "51979eea-9e29-4453-b1fc-edf4064e2fa1",
+			"name": "Agregar proyecto fecha finalizacion invalida",
+			"url": "http://localhost:8090/opData/API/V2/proyectos/2/2020-10-05/2021-10-05/2020-12-05/V2%20test%20postman/2/NA",
+			"time": 8,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Codigo 400 badrequest esperado": true,
+				"Mensaje de error esperado": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Codigo 400 badrequest esperado": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Mensaje de error esperado": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Codigo 400 badrequest esperado": true,
+					"Mensaje de error esperado": true
+				}
+			]
+		},
+		{
+			"id": "c7686609-e136-454c-aec2-1bdf441e4909",
+			"name": "Actualizar datos de un proyecto cuyo nombre exceda el max de caracteres permitidos",
+			"url": "http://localhost:8090/opData/API/V2/proyectos/19/2/2020-10-05/2021-10-05/2023-12-05/ygoe7gv5dgQHHDjDk5qsqtA514nPVwSn6GjGMl6GqT21pJXblsGGkoUZtYE4mVd7Na6UnDOPWrq9mKTiFH1JFCQDraPq5FAYXHqQuiGj0C9wMrhPl6CurhdT5442HdDf8fef0spz7hD8UmuPO81c2pEat0gfmdnZj6PKYM0vFi298KC0e4z34RWbKH3laoU4HIuZzleo5Vmb8og0gBrXraWFbbEyN7pPoB0qzHmKGyxXqSsxfa6Zy4F7TibnW5DNZD1z7GtiuGABtKG8wC9dDZzTYw4eT9n6uWO1q3IGOgcM4mNqnldN4UBWftWSXxRoCbOo1k3FdVdbNXIqK9Ut31LOW81QTVJWL9OZJH2U6kwiakRiKCR40XtWDatx9oTcc4r2peznhkqqMDsTdW7rI10NnkUcm1jAVy3seUvfCu4ebM7KZZUA2mAklfdWrkrpO7bX6qj3A5rXKdBPxww1ZZUy3j5ujL6ifl8biVlhz9JUHkVxssHf59/2/NA",
+			"time": 8,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Codigo 400 badrequest esperado": true,
+				"Mensaje de error valido  'La longitud mininma del nombre son minimo 2 y maximo 500 caracteres'": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Codigo 400 badrequest esperado": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Mensaje de error valido  'La longitud mininma del nombre son minimo 2 y maximo 500 caracteres'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Codigo 400 badrequest esperado": true,
+					"Mensaje de error valido  'La longitud mininma del nombre son minimo 2 y maximo 500 caracteres'": true
+				}
+			]
+		},
+		{
+			"id": "24a13892-c547-4049-97f6-1c6310686000",
+			"name": "Actualizar datos de un proyecto fecha finalizacion invalida",
+			"url": "http://localhost:8090/opData/API/V2/proyectos/19/2/2020-10-05/2021-10-05/2020-12-05/V2%20test%20postman/2/NA",
+			"time": 9,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Codigo 400 badrequest esperado": true,
+				"Mensaje de error esperado 'La fecha de finalizacion debe ser mayor a la fecha de registro e inicio.'": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Codigo 400 badrequest esperado": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Mensaje de error esperado 'La fecha de finalizacion debe ser mayor a la fecha de registro e inicio.'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Codigo 400 badrequest esperado": true,
+					"Mensaje de error esperado 'La fecha de finalizacion debe ser mayor a la fecha de registro e inicio.'": true
+				}
+			]
+		},
+		{
+			"id": "3672c9c1-31b1-40d4-8069-698a864d1e14",
+			"name": "Actualizar datos de un proyecto cuya descripcion excede el maximo de caracteres",
+			"url": "http://localhost:8090/opData/API/V2/proyectos/19/2/2020-10-05/2021-10-05/2023-12-05/Proyecto%20de%20prueba%20excedente/2/",
+			"time": 11,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Codigo 400 badrequest esperado": true,
+				"Mensaje de error esperado 'La longitud maxima de las observaciones son 12000 caracteres.'": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Codigo 400 badrequest esperado": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Mensaje de error esperado 'La longitud maxima de las observaciones son 12000 caracteres.'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				11
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Codigo 400 badrequest esperado": true,
+					"Mensaje de error esperado 'La longitud maxima de las observaciones son 12000 caracteres.'": true
+				}
+			]
+		},
+		{
+			"id": "e6fb11a1-dd1f-4e9e-94a5-00bbb6684710",
+			"name": "Actualizar datos de un proyecto cuyo nombre sea invalido",
+			"url": "http://localhost:8090/opData/API/V2/proyectos/19/3/2020-10-05/2021-10-05/2023-12-05/d/3/Esto%20es%20un%20test",
+			"time": 10,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Codigo 400 created esperado": true,
+				"Mensaje de error esperado ' La longitud mininma del nombre son minimo 2 y maximo 500 caracteres.'": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Codigo 400 created esperado": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Mensaje de error esperado ' La longitud mininma del nombre son minimo 2 y maximo 500 caracteres.'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				10
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Codigo 400 created esperado": true,
+					"Mensaje de error esperado ' La longitud mininma del nombre son minimo 2 y maximo 500 caracteres.'": true
+				}
+			]
+		},
+		{
+			"id": "d4968af9-6db1-4e61-913d-d9d9e35e73ba",
+			"name": "Obtener estado por id invalido",
+			"url": "http://localhost:8090/opData/API/V2/proyectos/estado/-1",
+			"time": 10,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Codigo http 400 badrequest": true,
+				"Estado esperado segun el id 'El id debe ser mayor a 0'": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Codigo http 400 badrequest": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Estado esperado segun el id 'El id debe ser mayor a 0'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				10
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Codigo http 400 badrequest": true,
+					"Estado esperado segun el id 'El id debe ser mayor a 0'": true
+				}
+			]
+		},
+		{
+			"id": "d0203b3e-8266-4957-90dd-aa24d4f806d5",
+			"name": "Crear un nuevo estado cuyo nombre excede el maximo de caracteres",
+			"url": "http://localhost:8090/opData/API/V2/proyectos/estado/Estado%20invalido%20765jmneXUgkYiL8HnvVddS1sKoD045E%20v2/0",
+			"time": 9,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Codigo 400 badRequest esperado": true,
+				"Se recibe mensaje error esperado 'La longitud maxima del nombre son 32 caracteres.'": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Codigo 400 badRequest esperado": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Se recibe mensaje error esperado 'La longitud maxima del nombre son 32 caracteres.'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Codigo 400 badRequest esperado": true,
+					"Se recibe mensaje error esperado 'La longitud maxima del nombre son 32 caracteres.'": true
+				}
+			]
+		},
+		{
+			"id": "55bf3903-f830-42b4-b441-4c8aea591a49",
+			"name": "Actualizar un nuevo estado cuyo nombre excede el maximo de caracteres",
+			"url": "http://localhost:8090/opData/API/V2/proyectos/estado/6/Estado%20invalido%20765jmneXUgkYiL8HnvVddS1sKoD045E%20v2/0",
+			"time": 9,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Codigo 400 badRequest esperado": true,
+				"Se recibe mensaje error esperado 'La longitud maxima del nombre son 32 caracteres.'": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Codigo 400 badRequest esperado": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Se recibe mensaje error esperado 'La longitud maxima del nombre son 32 caracteres.'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Codigo 400 badRequest esperado": true,
+					"Se recibe mensaje error esperado 'La longitud maxima del nombre son 32 caracteres.'": true
+				}
+			]
+		},
+		{
+			"id": "30af8127-eac7-4963-a720-31deaaf7b0d9",
+			"name": "Obtener todas las unidades",
+			"url": "http://localhost:8090/opData/API/V2/unidades/",
+			"time": 15,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Codigo http 200 valido": true,
+				"Devuelve JSON con unidades": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Codigo http 200 valido": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Devuelve JSON con unidades": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				15
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Codigo http 200 valido": true,
+					"Devuelve JSON con unidades": true
+				}
+			]
+		},
+		{
+			"id": "0f9994c0-9d4c-4912-85e9-d3ca477f886c",
+			"name": "Obtener unidad asignada a jefe",
+			"url": "http://localhost:8090/opData/API/V2/unidades/jefe/2201000",
+			"time": 12,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Codigo http 200 valido": true,
+				"Devuelve JSON con unidad del jefe pedido": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Codigo http 200 valido": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Devuelve JSON con unidad del jefe pedido": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				12
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Codigo http 200 valido": true,
+					"Devuelve JSON con unidad del jefe pedido": true
+				}
+			]
+		},
+		{
+			"id": "79e5b260-c183-4bec-ac0f-dcc9985147ad",
+			"name": "Agregar una nueva unidad",
+			"url": "http://localhost:8090/opData/API/V2/unidades/test%20postmanV5/22104555/1",
+			"time": 12,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Codigo http 201 valido": true,
+				"Devuelve JSON con unidad creada": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Codigo http 201 valido": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Devuelve JSON con unidad creada": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				12
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Codigo http 201 valido": true,
+					"Devuelve JSON con unidad creada": true
+				}
+			]
+		},
+		{
+			"id": "eb65134f-8d8f-4ff1-9a0b-8e1ea9c72eb6",
+			"name": "Modificar unidad",
+			"url": "http://localhost:8090/opData/API/V2/unidades/8/test%20postmanV5/22104555/1",
+			"time": 14,
+			"responseCode": {
+				"code": 202,
+				"name": "Accepted"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Codigo http 202 valido": true,
+				"Devuelve JSON con unidad modificada": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Codigo http 202 valido": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Devuelve JSON con unidad modificada": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				14
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Codigo http 202 valido": true,
+					"Devuelve JSON con unidad modificada": true
+				}
+			]
+		},
+		{
+			"id": "38da5bcb-144a-48d9-8315-f49294b175c3",
+			"name": "Obtener unidad usando id de jefe invalido",
+			"url": "http://localhost:8090/opData/API/V2/unidades/jefe/-1",
+			"time": 10,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Codigo http 400 valido": true,
+				"Mensaje de error valido 'El id debe ser positivo mayor a 0'": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Codigo http 400 valido": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Mensaje de error valido 'El id debe ser positivo mayor a 0'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				10
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Codigo http 400 valido": true,
+					"Mensaje de error valido 'El id debe ser positivo mayor a 0'": true
+				}
+			]
+		},
+		{
+			"id": "0001b67d-4b80-443f-b39f-f93f1a755124",
+			"name": "Crear unidad con nombre que exeda el maximo de caracteres",
+			"url": "http://localhost:8090/opData/API/V2/unidades/test%20ostmanNaUquptktOIq27rDWaJFlu4IV34mmfJnvHCgrklICE6dy18NH2T8bZylfAVBaGNouZiuIQMiwkTk7acm2efclPKKkjAEd4eCh5MBAhLU1ssjEVdIywn5QGfOo6DZpBrmrDK/22104555/0",
+			"time": 9,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Codigo http 400 valido": true,
+				"Mensaje de error valido 'La longitud mininma del nombre de unidad son minimo 2 y maximo 128 caracteres.'": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Codigo http 400 valido": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Mensaje de error valido 'La longitud mininma del nombre de unidad son minimo 2 y maximo 128 caracteres.'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Codigo http 400 valido": true,
+					"Mensaje de error valido 'La longitud mininma del nombre de unidad son minimo 2 y maximo 128 caracteres.'": true
+				}
+			]
+		},
+		{
+			"id": "bfe8b30d-e7d4-42db-aa34-0cdb00326975",
+			"name": "Modificar unidad con nombre que excede el max de caracteres",
+			"url": "http://localhost:8090/opData/API/V2/unidades/9/test%20ostmanNaUquptktOIq27rDWaJFlu4IV34mmfJnvHCgrklICE6dy18NH2T8bZylfAVBaGNouZiuIQMiwkTk7acm2efclPKKkjAEd4eCh5MBAhLU1ssjEVdIywn5QGfOo6DZpBrmrDK/22104555/0",
+			"time": 8,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Tiempo de respuesta menor a 200ms": true,
+				"Codigo http 400 valido": true,
+				"Mensaje de error valido 'La longitud mininma del nombre de unidad son minimo 2 y maximo 128 caracteres.'": true
+			},
+			"testPassFailCounts": {
+				"Tiempo de respuesta menor a 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Codigo http 400 valido": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Mensaje de error valido 'La longitud mininma del nombre de unidad son minimo 2 y maximo 128 caracteres.'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Tiempo de respuesta menor a 200ms": true,
+					"Codigo http 400 valido": true,
+					"Mensaje de error valido 'La longitud mininma del nombre de unidad son minimo 2 y maximo 128 caracteres.'": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 312,
+	"collection": {
+		"requests": [
+			{
+				"id": "d0707137-f9b0-4ea4-838b-16cbd392c021",
+				"method": "POST"
+			},
+			{
+				"id": "ad50669c-1cf5-4108-921f-565dc80493ff",
+				"method": "POST"
+			},
+			{
+				"id": "0f3aea4a-51ba-4679-b17e-2187fe27280b",
+				"method": "GET"
+			},
+			{
+				"id": "2e58d125-fd56-42ba-ba73-0b74bb6634b9",
+				"method": "GET"
+			},
+			{
+				"id": "b123c432-19fc-49f2-89f0-ce516f5e7db2",
+				"method": "POST"
+			},
+			{
+				"id": "0ac0fa3f-accf-4a02-9905-01296bff4ea2",
+				"method": "PUT"
+			},
+			{
+				"id": "969c3474-753e-4272-99f3-03e7a8380747",
+				"method": "GET"
+			},
+			{
+				"id": "036a3c65-3d94-4a8a-bac5-e93b017133d5",
+				"method": "GET"
+			},
+			{
+				"id": "3293e720-074a-4bcb-9c32-367de735c5ac",
+				"method": "POST"
+			},
+			{
+				"id": "232ba012-cdd9-460d-8280-bc86943b51aa",
+				"method": "PUT"
+			},
+			{
+				"id": "0a5af7e7-3fe7-461d-b24c-7ccb9d9acc14",
+				"method": "GET"
+			},
+			{
+				"id": "f9e70bb4-1a7f-416f-8603-ef9c20b5ba31",
+				"method": "POST"
+			},
+			{
+				"id": "fc4e2dd8-1bee-4ae0-a954-bc8a4dca72eb",
+				"method": "POST"
+			},
+			{
+				"id": "51979eea-9e29-4453-b1fc-edf4064e2fa1",
+				"method": "POST"
+			},
+			{
+				"id": "c7686609-e136-454c-aec2-1bdf441e4909",
+				"method": "PUT"
+			},
+			{
+				"id": "24a13892-c547-4049-97f6-1c6310686000",
+				"method": "PUT"
+			},
+			{
+				"id": "3672c9c1-31b1-40d4-8069-698a864d1e14",
+				"method": "PUT"
+			},
+			{
+				"id": "e6fb11a1-dd1f-4e9e-94a5-00bbb6684710",
+				"method": "PUT"
+			},
+			{
+				"id": "d4968af9-6db1-4e61-913d-d9d9e35e73ba",
+				"method": "GET"
+			},
+			{
+				"id": "d0203b3e-8266-4957-90dd-aa24d4f806d5",
+				"method": "POST"
+			},
+			{
+				"id": "55bf3903-f830-42b4-b441-4c8aea591a49",
+				"method": "PUT"
+			},
+			{
+				"id": "30af8127-eac7-4963-a720-31deaaf7b0d9",
+				"method": "GET"
+			},
+			{
+				"id": "0f9994c0-9d4c-4912-85e9-d3ca477f886c",
+				"method": "GET"
+			},
+			{
+				"id": "79e5b260-c183-4bec-ac0f-dcc9985147ad",
+				"method": "POST"
+			},
+			{
+				"id": "eb65134f-8d8f-4ff1-9a0b-8e1ea9c72eb6",
+				"method": "PUT"
+			},
+			{
+				"id": "38da5bcb-144a-48d9-8315-f49294b175c3",
+				"method": "GET"
+			},
+			{
+				"id": "0001b67d-4b80-443f-b39f-f93f1a755124",
+				"method": "POST"
+			},
+			{
+				"id": "bfe8b30d-e7d4-42db-aa34-0cdb00326975",
+				"method": "PUT"
+			}
+		]
+	}
+}

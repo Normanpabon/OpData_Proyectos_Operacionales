@@ -21,6 +21,8 @@ public class Estado {
 
     private String estado;
 
+    private Boolean habilitado;
+
 
 
 }

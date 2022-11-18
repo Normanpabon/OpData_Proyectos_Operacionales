@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "ae0fbfc0-a05e-4254-8274-a30101d28ded",
+		"name": "MSUsuarios : Rol",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener todos los roles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8088/MSUsers/V1/rol/roles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"MSUsers",
+						"V1",
+						"rol",
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener rol por id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8088/MSUsers/V1/rol/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"MSUsers",
+						"V1",
+						"rol",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear nuevo rol",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8088/MSUsers/V1/rol/RolDePrueba",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"MSUsers",
+						"V1",
+						"rol",
+						"RolDePrueba"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update rol",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8088/MSUsers/V1/rol/4/RolDePrueba Modificado/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"MSUsers",
+						"V1",
+						"rol",
+						"4",
+						"RolDePrueba Modificado",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,366 @@
+{
+	"info": {
+		"_postman_id": "afc84bea-7db5-4fce-9a5f-d53bcc3c77f6",
+		"name": "OpData REST API : Usuarios",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Test Login ",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/opData/API/V1/users/login/Miguel.gallego/miguel123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"opData",
+						"API",
+						"V1",
+						"users",
+						"login",
+						"Miguel.gallego",
+						"miguel123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener rol de usuario por id",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/opData/API/V1/users/userRol/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"opData",
+						"API",
+						"V1",
+						"users",
+						"userRol",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los usuarios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/opData/API/V1/users/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"opData",
+						"API",
+						"V1",
+						"users",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener usuario por id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/opData/API/V1/users/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"opData",
+						"API",
+						"V1",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un nuevo usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/opData/API/V1/users/{cod_ins}/{nombre}/{apellido}/{username}/{correo}/{rol}/{pass}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"opData",
+						"API",
+						"V1",
+						"users",
+						"{cod_ins}",
+						"{nombre}",
+						"{apellido}",
+						"{username}",
+						"{correo}",
+						"{rol}",
+						"{pass}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar usuario",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/opData/API/V1/users/{id}/{cod_ins}/{nombre}/{apellido}/{username}/{correo}/{rol}/{pass}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"opData",
+						"API",
+						"V1",
+						"users",
+						"{id}",
+						"{cod_ins}",
+						"{nombre}",
+						"{apellido}",
+						"{username}",
+						"{correo}",
+						"{rol}",
+						"{pass}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los roles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/opData/API/V1/users/rol/roles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"opData",
+						"API",
+						"V1",
+						"users",
+						"rol",
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener rol por id del rol",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/opData/API/V1/users/rol/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"opData",
+						"API",
+						"V1",
+						"users",
+						"rol",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un nuevo rol",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/opData/API/V1/users/rol/Nuevo rol de prueba/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"opData",
+						"API",
+						"V1",
+						"users",
+						"rol",
+						"Nuevo rol de prueba",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar rol",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/opData/API/V1/users/rol/5/Nuevo rol de prueba/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"opData",
+						"API",
+						"V1",
+						"users",
+						"rol",
+						"5",
+						"Nuevo rol de prueba",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener preferencia default",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/opData/API/V1/users/preferencia/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"opData",
+						"API",
+						"V1",
+						"users",
+						"preferencia",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener preferencia de usuario por UID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/opData/API/V1/users/preferencia/user/{UID}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"opData",
+						"API",
+						"V1",
+						"users",
+						"preferencia",
+						"user",
+						"{UID}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una nueva preferencia",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/opData/API/V1/users/preferencia/{uid}/{orden_pro}/{tema}/{fuente}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"opData",
+						"API",
+						"V1",
+						"users",
+						"preferencia",
+						"{uid}",
+						"{orden_pro}",
+						"{tema}",
+						"{fuente}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar preferencia",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/opData/API/V1/users/preferencia/{id}/{uid}/{orden_pro}/{tema}/{fuente}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"opData",
+						"API",
+						"V1",
+						"users",
+						"preferencia",
+						"{id}",
+						"{uid}",
+						"{orden_pro}",
+						"{tema}",
+						"{fuente}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

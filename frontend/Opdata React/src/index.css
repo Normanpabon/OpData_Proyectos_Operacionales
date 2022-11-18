@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root-login {
+  background-color: white;
+  background-image: url(./assets/Background.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#root {
+  font-family: "Roboto";
+}

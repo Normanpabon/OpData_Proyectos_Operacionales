@@ -10,6 +10,11 @@ import reactor.core.publisher.Mono;
 public interface UnidadRepository extends ReactiveCrudRepository<Unidad, Long> {
 
 
-    @Query("SELECT * FROM unidad WHERE uid_jefe=:uid")
+    // todo : Cambiar logica, esta limitado a 1 pues se supone que un jefe tiene max una unidad
+    // adicional a que devolvemos un mono entonces esperamos un unico dato
+    @Query("SELECT * FROM unidad WHERE uid_jefe=:uid LIMIT 1")
     Mono<Unidad> getUnidadByJefe(int uid);
+
+    @Query("SELECT * FROM unidad ORDER BY id DESC LIMIT 1")
+    Mono<Unidad> getLastUnidadAdded();
 }

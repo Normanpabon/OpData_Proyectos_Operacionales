@@ -1,0 +1,280 @@
+{
+	"info": {
+		"_postman_id": "419caeaa-78e3-4300-bd49-767e0f6cece7",
+		"name": "OpData REST API : Proyectos Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener todos los proyectos",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "dadas",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "dada",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Opdata eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9BZG1pbmlzdHJhZG9yIiwic3ViIjoiQWRtaW4ub3BkYXRhIiwiaWF0IjoxNjY3NjY4MDk4LCJleHAiOjE2Njc2NzMwOTh9.HSMoUTCRTxRNg6Qm0yk50WX5FUZ3T_QqI_V7QFy39MU",
+						"type": "default"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8090/opData/API/V2/proyectos/",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"opData",
+						"API",
+						"V2",
+						"proyectos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener proyectos de unidad",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "OpdataKey eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9KZWZlVW5pZGFkIiwic3ViIjoianVhbi5nYWxsZWdvIiwiaWF0IjoxNjY3NjY2NTk2LCJleHAiOjE2Njc2NzE1OTZ9.ONQDmSi-azWiCmxJf1N7PBdmRv4EKJg0gxXt47AiXUo",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "localhost:8090/opData/API/V2/proyectos/unidad/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"opData",
+						"API",
+						"V2",
+						"proyectos",
+						"unidad",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener proyecto por id ",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/opData/API/V1/proyectos/1\n",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"opData",
+						"API",
+						"V1",
+						"proyectos",
+						"1\n"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un nuevo proyecto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/opData/API/V1/proyectos/2/2020-10-05/2021-10-05/2023-12-05/V2 Proyecto mandado a api desde postman/2/NA",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"opData",
+						"API",
+						"V1",
+						"proyectos",
+						"2",
+						"2020-10-05",
+						"2021-10-05",
+						"2023-12-05",
+						"V2 Proyecto mandado a api desde postman",
+						"2",
+						"NA"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar datos del proyecto",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/opData/API/V1/proyectos/{id}/{unidad}/{feReg}/{feIni}/{feEnd}/{desc}/{id_estado}/{obs}\n",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"opData",
+						"API",
+						"V1",
+						"proyectos",
+						"{id}",
+						"{unidad}",
+						"{feReg}",
+						"{feIni}",
+						"{feEnd}",
+						"{desc}",
+						"{id_estado}",
+						"{obs}\n"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los estados de proyectos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/opData/API/V1/proyectos/estado/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"opData",
+						"API",
+						"V1",
+						"proyectos",
+						"estado",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener el estado por id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/opData/API/V1/proyectos/estado/{id}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"opData",
+						"API",
+						"V1",
+						"proyectos",
+						"estado",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un nuevo estado para proyectos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/opData/API/V1/proyectos/estado/{est}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"opData",
+						"API",
+						"V1",
+						"proyectos",
+						"estado",
+						"{est}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"Admin.opdata\",\r\n  \"password\": \"toor\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/opData/API/V2/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"opData",
+						"API",
+						"V2",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener datos usuario",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

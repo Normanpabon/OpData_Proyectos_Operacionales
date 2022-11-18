@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "84715a3e-466d-43a5-869b-d97b583d4ef5",
+		"name": "MSUsuarios : Usuario",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Loguear usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8088/MSUsers/V1/usuario/login/miguel123/Miguel.gallego",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"MSUsers",
+						"V1",
+						"usuario",
+						"login",
+						"miguel123",
+						"Miguel.gallego"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los usuarios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8088/MSUsers/V1/usuario/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"MSUsers",
+						"V1",
+						"usuario",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Devolver informacion de usuario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8088/MSUsers/V1/usuario/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"MSUsers",
+						"V1",
+						"usuario",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear nuevo usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8088/MSUsers/V1/usuario/2201420/Santiago/Molina/Santiago.Molina/santiago.Molina@uao.edu.com/2/Pass123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"MSUsers",
+						"V1",
+						"usuario",
+						"2201420",
+						"Santiago",
+						"Molina",
+						"Santiago.Molina",
+						"santiago.Molina@uao.edu.com",
+						"2",
+						"Pass123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update usuario",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8088/MSUsers/V1/usuario/4/2201420/Santiago/Molineros/Santiago.Molina/santiago.Molina@uao.edu.com/2/Pass123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"MSUsers",
+						"V1",
+						"usuario",
+						"4",
+						"2201420",
+						"Santiago",
+						"Molineros",
+						"Santiago.Molina",
+						"santiago.Molina@uao.edu.com",
+						"2",
+						"Pass123"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

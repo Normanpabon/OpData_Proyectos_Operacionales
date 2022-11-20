@@ -96,6 +96,12 @@ function ProjectForm() {
     } else {
       validationTemp = { ...validationTemp, estado_default: false };
     }
+    if (project.id_estado == 4 && project.observaciones == "") {
+      validationTemp = { ...validationTemp, obs_anulado: true };
+      validationPass = false;
+    } else {
+      validationTemp = { ...validationTemp, obs_anulado: false };
+    }
     if (project.observaciones.length > 12000) {
       validationTemp = { ...validationTemp, obs: true };
       validationPass = false;
@@ -325,6 +331,9 @@ function ProjectForm() {
                 <span className="label-text-alt text-error">
                   {validation.obs
                     ? "La longitud no debe sobrepasar los 12000 caracteres"
+                    : ""}
+                  {validation.obs_anulado
+                    ? "Debe escribir el motivo de la anulación en las observaciones"
                     : ""}
                 </span>
               </label>

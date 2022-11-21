@@ -4,6 +4,7 @@ import ProjectFilterName from "./ProjectFilterName";
 import ProjectFilterStatus from "./ProjectFilterStatus";
 import ProjectFilterSearch from "./ProjectFilterSearch";
 import ProjectQuickFilterButtons from "./ProjectQuickFilterButtons";
+import ProjectQuickExportCsv from "./ProjectQuickExportCsv";
 function ProjectFilterBar() {
   const [open, setOpen] = useState(true);
   useEffect(() => {
@@ -89,6 +90,15 @@ function ProjectFilterBar() {
       <ProjectFilterName open={open} />
       <ProjectFilterDate open={open} />
       <ProjectFilterStatus open={open} />
+      
+      {/** Codigo para boton de generar reporte */}
+      {open ?(
+        <div className="divider font-bold">Generar reporte</div>
+      ): (
+        <div className="divider"></div>
+      )}
+      <ProjectQuickExportCsv open={open}/>
+
     </div>
   );
 }

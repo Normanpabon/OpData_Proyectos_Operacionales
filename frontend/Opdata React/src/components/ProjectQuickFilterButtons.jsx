@@ -16,6 +16,7 @@ function ProjectQuickFilterButtons({ open }) {
         <label
           onClick={() => {
             setUserTitle("Proyectos activos");
+            {/**TODO: Quitar id 1 hardcodeado */}
             filterProjectsBySingleStatus(1);
           }}
           className={`btn btn-primary text-white w-full mt-2`}

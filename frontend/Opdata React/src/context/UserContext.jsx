@@ -23,7 +23,7 @@ export function UserContextProvider({ children }) {
   const [unit, setUnit] = useState("");
   const [units, setUnits] = useState([]);
   const [filteredUnits, setFilteredUnits] = useState([]);
-  const opDataRestApi = "http://localhost:8090/opData/API/V2";
+  const opDataRestApi = "http://192.168.2.138:8090/opData/API/V2";
   const [alert, setAlert] = useState(" hidden");
   const [userTitle, setUserTitle] = useState("Proyectos Activos");
 
@@ -87,6 +87,85 @@ export function UserContextProvider({ children }) {
     } catch (error) {}
   };
 
+  //Obtener proyectos mostrados
+  {/**Todo: Esta mandando todos los proyectos, no solo los mostrados actualmente al usuario */}
+  const returnShowedProjects = () => {
+
+
+    // Crear una variable global que contenga una copia del arreglo de proyectos luego de cada filtro
+
+    var parsedProjects = parseProjects(filteredProjects);
+    return parsedProjects;
+  }
+
+  // Crear metodo para parsear arreglo de proyectos, agregando el nombre del estado y unidad donde tiene su id respectivo
+
+  // Quitar tambien el id del proyecto, pues no se requiere ese dato
+
+  const parseProjects = (projectList) => {
+    
+    // recuperar nombre unidad y estado e iterar cambian la lista, 
+
+    var parsedProjects = [];
+
+    var keysArray = [];
+    for (const key in allStatus) {
+      if (allStatus[key]) {
+        keysArray.push(key);
+      }
+    }
+
+    for(const i in projectList){
+      
+      
+      //var tmpProject = projectList[i];
+      var tmpProject = {};
+      
+      // Pedir datos requeridos y guardar
+      var tmpProjectFromList = projectList[i];
+      tmpProject.fecha_registro = tmpProjectFromList.fecha_reg;
+      tmpProject.fecha_inicio = tmpProjectFromList.fecha_ini;
+      tmpProject.fecha_finalizacion = tmpProjectFromList.fecha_fin;
+      tmpProject.Proyecto_operacional = tmpProjectFromList.desc_pro;
+      
+
+      // Optimizar, usar switch o similar
+      for(const j in allStatus){
+
+        
+                    
+          var tmpStatus = allStatus[j];
+          
+
+          if(tmpStatus.id == tmpProjectFromList.id_estado){
+            
+            tmpProject.Estado = tmpStatus.estado;
+            break;
+          }else{
+            tmpProject.Estado = "Null";
+          }
+
+          
+                    
+
+      }
+
+      tmpProject.Observaciones = tmpProjectFromList.observaciones;
+      tmpProject.Unidad = user.nombre_unidad;
+
+
+      // Asignamos estado
+
+      
+      parsedProjects.push(tmpProject);
+    }
+    
+
+
+    
+    return parsedProjects;
+  }
+  
   //Projects filters
   const filterProjectsSoonToExpire = () => {
     setFilteredProjects(
@@ -800,6 +879,8 @@ export function UserContextProvider({ children }) {
         setUser: setUser,
         setAllStatus: setAllStatus,
         setAlert: setAlert,
+        returnShowedProjects: returnShowedProjects,
+        parseProjects: parseProjects,
         getProjectsByUnit: getProjectsByUnit,
         getAllStatus: getAllStatus,
         getUnitById: getUnitById,

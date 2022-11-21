@@ -23,7 +23,7 @@ export function UserContextProvider({ children }) {
   const [unit, setUnit] = useState("");
   const [units, setUnits] = useState([]);
   const [filteredUnits, setFilteredUnits] = useState([]);
-  const opDataRestApi = "http://192.168.2.138:8090/opData/API/V2";
+  const opDataRestApi = "https://opdataapi.loca.lt/opData/API/V2";
   const [alert, setAlert] = useState(" hidden");
   const [userTitle, setUserTitle] = useState("Proyectos Activos");
 

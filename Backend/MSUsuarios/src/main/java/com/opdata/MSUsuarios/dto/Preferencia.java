@@ -5,7 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.annotation.Id;
+
+import javax.sql.DataSource;
 
 @Data
 @AllArgsConstructor
@@ -13,6 +20,8 @@ import org.springframework.data.annotation.Id;
 @Builder
 
 public class Preferencia {
+
+
 
     @Id
     private int id;

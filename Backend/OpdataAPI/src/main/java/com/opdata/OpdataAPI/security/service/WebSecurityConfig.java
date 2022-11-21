@@ -44,7 +44,7 @@ public class WebSecurityConfig {
                 .pathMatchers(HttpMethod.OPTIONS).permitAll()
                 .pathMatchers("/opData/API/V2/login").permitAll()
                 .pathMatchers("/OpData-API-Docs/swagger", "/OpData-API-Docs/**",
-                        "/OpData-API-Docs/swagger/**").permitAll()
+                        "/OpData-API-Docs/swagger/**", "/OpData-API-Docs/webjars/**").permitAll()
                 .anyExchange().authenticated()
                 .and().build();
     }

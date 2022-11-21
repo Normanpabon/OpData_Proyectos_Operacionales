@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 
 @Repository
+
 public interface UsuarioRepository extends R2dbcRepository<Usuario, Long> {
     // Implementar metodos para validaciones
 

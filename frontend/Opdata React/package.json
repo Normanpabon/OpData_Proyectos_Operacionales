@@ -13,7 +13,9 @@
     "daisyui": "^2.31.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.4.2"
+    "react-router-dom": "^6.4.2",
+    "prop-types": "^15.7.2",
+    "export-to-csv":"^0.2.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",

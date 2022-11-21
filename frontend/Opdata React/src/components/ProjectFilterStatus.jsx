@@ -15,6 +15,7 @@ function ProjectFilterStatus({ open }) {
       statusArrayTemp = { ...statusArrayTemp, [status.id]: false };
     });
     setStatusArray(statusArrayTemp);
+    
   }, []);
 
   return (

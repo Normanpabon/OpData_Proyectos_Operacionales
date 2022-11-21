@@ -2,6 +2,7 @@ import { ExportToCsv } from 'export-to-csv';
 import { useUser } from "../context/UserContext";
 function ProjectQuickExportCsv({ open }) {
     
+  
     
     {/**No se estan pasando actualmente a las opciones, definen las columnas del csv */}
     const headers = [
@@ -13,6 +14,9 @@ function ProjectQuickExportCsv({ open }) {
         {label: "Observaciones", key: "obs"},
     ];
 
+    {/**Importar metodo para devolver los proyectos filtrados */}
+    const { returnShowedProjects } = useUser();
+
 
     {/**Borrar el test data cuando se recuperen los proyectos mostrados en el dash */}
     
@@ -20,6 +24,8 @@ function ProjectQuickExportCsv({ open }) {
         {fecha_reg: "11/20/2022", fecha_ini: "11/25/2022", fecha_end: "11/25/2022", desc_pro: "Proyecto prueba CSV", estado: "Activo", obs:"proyectoTest", unidad:"Unidad de software"},
         {fecha_reg: "09/20/2022", fecha_ini: "10/25/2022", fecha_end: "11/25/2022", desc_pro: "Proyecto prueba CSV 2", estado: "En espera", obs:"proyectoTest 2", unidad:"Unidad de software"}
     ];
+
+    var dataObtainedFromContext = [{}];
 
     {/**Opciones para export-to-csv */}
     const options = {
@@ -49,9 +55,18 @@ function ProjectQuickExportCsv({ open }) {
 
             {/** Aca agregar logica de datos a filtrar y descargar para generar el csv */}
             console.log("Se ha precionado el boton para generar el reporte");
-            {/**<CSVDownload data={testData} headers={headers} />*/}
+            {/**Todo: Esta mandando todos los proyectos, no solo los mostrados actualmente al */}
+            dataObtainedFromContext = returnShowedProjects();
+            
+            var dataLenght = Object.keys(dataObtainedFromContext).length;
 
-            csvExporter.generateCsv(testData);
+            // Si la informacion recuperada esta nula, no la exportamos
+            if(dataLenght > 2){
+              csvExporter.generateCsv(dataObtainedFromContext);
+            }else{
+              console.log("No esta definida la data aun");
+            }
+            
           
             
           }}
